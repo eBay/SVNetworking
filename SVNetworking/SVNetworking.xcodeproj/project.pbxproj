@@ -21,6 +21,7 @@
 		43D2A21E18D39438002CFE55 /* SVRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D2A21B18D39438002CFE55 /* SVRequest.m */; };
 		43D2A22218D39485002CFE55 /* SVFunctional.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D2A22118D39485002CFE55 /* SVFunctional.m */; };
 		43D2A22918D39572002CFE55 /* SVRemoteResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D2A22818D39572002CFE55 /* SVRemoteResource.m */; };
+		43D2A22C18D3987C002CFE55 /* SVRemoteImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D2A22B18D3987C002CFE55 /* SVRemoteImage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,8 @@
 		43D2A22118D39485002CFE55 /* SVFunctional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVFunctional.m; sourceTree = "<group>"; };
 		43D2A22718D39572002CFE55 /* SVRemoteResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRemoteResource.h; sourceTree = "<group>"; };
 		43D2A22818D39572002CFE55 /* SVRemoteResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRemoteResource.m; sourceTree = "<group>"; };
+		43D2A22A18D3987C002CFE55 /* SVRemoteImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRemoteImage.h; sourceTree = "<group>"; };
+		43D2A22B18D3987C002CFE55 /* SVRemoteImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRemoteImage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +189,8 @@
 		43D2A22318D39536002CFE55 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				43D2A22A18D3987C002CFE55 /* SVRemoteImage.h */,
+				43D2A22B18D3987C002CFE55 /* SVRemoteImage.m */,
 				43D2A22718D39572002CFE55 /* SVRemoteResource.h */,
 				43D2A22818D39572002CFE55 /* SVRemoteResource.m */,
 			);
@@ -276,6 +281,7 @@
 				43D2A21E18D39438002CFE55 /* SVRequest.m in Sources */,
 				43D2A21C18D39438002CFE55 /* SVDataRequest.m in Sources */,
 				43D2A22218D39485002CFE55 /* SVFunctional.m in Sources */,
+				43D2A22C18D3987C002CFE55 /* SVRemoteImage.m in Sources */,
 				43D2A21D18D39438002CFE55 /* SVJSONRequest.m in Sources */,
 				43D2A22918D39572002CFE55 /* SVRemoteResource.m in Sources */,
 				43D2A1F718D39363002CFE55 /* SVNetworking.m in Sources */,
