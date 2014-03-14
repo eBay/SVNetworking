@@ -43,7 +43,21 @@
     }];
 }
 
-#pragma mark - Implementation
+#pragma mark - Implementation - Custom Loading
+-(void)beginLoading
+{
+    SVDiskCache *cache = [self.class diskCache];
+    
+    if ([cache hasDataForKey:self.key])
+    {
+        [self finishLoadingWithData:[cache dataForKey:self.key]];
+    }
+    else
+    {
+        [super beginLoading];
+    }
+}
+
 -(SVDataRequest*)requestForNetworkLoading
 {
     return [SVDataRequest GETRequestWithURL:_URL];
@@ -56,6 +70,13 @@
     if (image)
     {
         self.image = image;
+        
+        SVDiskCache *cache = [self.class diskCache];
+        
+        if (![cache hasDataForKey:self.key])
+        {
+            [cache writeData:data forKey:self.key];
+        }
     }
     else
     {
