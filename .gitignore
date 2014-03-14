@@ -1,0 +1,80 @@
+# lol os x
+.DS_Store
+
+Sparkle
+
+# vim
+*.swp
+
+.sass-cache/
+# instruments
+*.trace
+
+# xcode
+DerivedData/
+build/*
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+!default.xcworkspace
+project.xcworkspace
+xcuserdata
+xcshareddata
+profile
+*.moved-aside
+
+# appcode
+.idea
+
+# doxygen
+Source/Documentation
+
+Website/style.css
+DerivedData
+Documentation
+
+*.save
+iOSInjectionProject
+
+# android
+
+# built application files
+*.apk
+*.ap_
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# generated files
+bin/
+gen/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Eclipse project files
+.classpath
+.project
+
+# Android Studio
+*/.gradle
+*/local.properties
+*/.idea/workspace.xml
+
+.gradle
+/*/local.properties
+/*/out
+/*/*/build
+/*/*/production
+*.iml
+*.iws
+*.ipr
+*~
+*.swp
