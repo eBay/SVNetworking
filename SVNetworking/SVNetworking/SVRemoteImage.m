@@ -29,7 +29,7 @@
 }
 
 #pragma mark - Implementation
--(SVDataRequest*)requestForLoading
+-(SVDataRequest*)requestForNetworkLoad
 {
     return [SVDataRequest GETRequestWithURL:_URL];
 }

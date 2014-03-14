@@ -75,7 +75,7 @@
         self.state = SVRemoteResourceStateLoading;
         
         // send loading request
-        _request = [self requestForLoading];
+        _request = [self requestForNetworkLoad];
         _request.delegate = self;
         [_request start];
     }
@@ -109,7 +109,7 @@
 }
 
 #pragma mark - Implementation
--(SVDataRequest*)requestForLoading
+-(SVDataRequest*)requestForNetworkLoad
 {
     [self doesNotRecognizeSelector:_cmd];
     return nil;

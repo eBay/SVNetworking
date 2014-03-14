@@ -31,7 +31,7 @@ typedef enum {
 -(void)load;
 
 #pragma mark - Implementation
--(SVDataRequest*)requestForLoading;
+-(SVDataRequest*)requestForNetworkLoad;
 -(void)finishWithData:(NSData*)data error:(NSError**)error;
 
 @end
