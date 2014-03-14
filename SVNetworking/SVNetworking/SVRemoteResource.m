@@ -75,7 +75,7 @@
         self.state = SVRemoteResourceStateLoading;
         
         // send loading request
-        _request = [self requestForNetworkLoad];
+        _request = [self requestForNetworkLoading];
         _request.delegate = self;
         [_request start];
     }
@@ -83,6 +83,19 @@
 
 #pragma mark - Data Request Delegate
 -(void)request:(SVDataRequest *)request finishedWithData:(NSData *)data response:(NSHTTPURLResponse *)response
+{
+    [self finishLoadingWithData:data];
+    _request = nil;
+}
+
+-(void)request:(SVRequest *)request failedWithError:(NSError *)error
+{
+    [self finishLoadingWithError:error];
+    _request = nil;
+}
+
+#pragma mark - Implementation - Custom Load
+-(void)finishLoadingWithData:(NSData*)data
 {
     NSError *error = nil;
     [self finishWithData:data error:&error];
@@ -96,25 +109,22 @@
     {
         self.state = SVRemoteResourceStateFinished;
     }
-    
-    _request = nil;
 }
 
--(void)request:(SVRequest *)request failedWithError:(NSError *)error
+-(void)finishLoadingWithError:(NSError *)error
 {
     self.error = error;
     self.state = SVRemoteResourceStateError;
-    
-    _request = nil;
 }
 
-#pragma mark - Implementation
--(SVDataRequest*)requestForNetworkLoad
+#pragma mark - Implementation - Network Load
+-(SVDataRequest*)requestForNetworkLoading
 {
     [self doesNotRecognizeSelector:_cmd];
     return nil;
 }
 
+#pragma mark - Implementation
 -(void)finishWithData:(NSData*)data error:(NSError**)error;
 {
     [self doesNotRecognizeSelector:_cmd];

@@ -30,8 +30,14 @@ typedef enum {
 #pragma mark - Loading
 -(void)load;
 
-#pragma mark - Implementation
--(SVDataRequest*)requestForNetworkLoad;
+#pragma mark - Implementation - Custom Loading
+-(void)finishLoadingWithData:(NSData*)data;
+-(void)finishLoadingWithError:(NSError*)error;
+
+#pragma mark - Implementation - Network Loading
+-(SVDataRequest*)requestForNetworkLoading;
+
+#pragma mark - Implementation - Shared
 -(void)finishWithData:(NSData*)data error:(NSError**)error;
 
 @end
