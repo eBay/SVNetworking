@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Svpply. All rights reserved.
 //
 
+#import "SVDiskCache.h"
 #import "SVRemoteImage.h"
 
 @interface SVRemoteImage ()
@@ -19,6 +20,20 @@
 @end
 
 @implementation SVRemoteImage
+
+#pragma mark - Disk Cache
++(SVDiskCache*)diskCache
+{
+    static SVDiskCache *cache;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSArray* caches = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+        NSString* path = [caches.firstObject stringByAppendingPathComponent:@"SVImageLoader"];
+        cache = [[SVDiskCache alloc] initWithPath:path];
+    });
+    
+    return cache;
+}
 
 #pragma mark - Access
 +(instancetype)remoteImageForURL:(NSURL*)URL
