@@ -21,6 +21,8 @@ typedef enum {
 +(instancetype)resourceWithKey:(NSString*)key withInitializationBlock:(void(^)(id resource))block;
 +(NSString*)keyForString:(NSString*)string;
 
+@property (nonatomic, readonly) NSString *key;
+
 #pragma mark - State
 @property (nonatomic, readonly) SVRemoteResourceState state;
 

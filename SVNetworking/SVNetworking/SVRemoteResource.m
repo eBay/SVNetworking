@@ -41,12 +41,17 @@
     {
         resource = [self new];
         
-        if (block)
+        if (resource)
         {
-            block(resource);
+            resource->_key = key;
+            
+            if (block)
+            {
+                block(resource);
+            }
+            
+            [resourceTable setObject:resource forKey:key];
         }
-        
-        [resourceTable setObject:resource forKey:key];
     }
     
     return resource;
