@@ -17,6 +17,10 @@ typedef enum {
 
 @interface SVRemoteResource : NSObject
 
+#pragma mark - Unique Resources
++(instancetype)resourceWithKey:(NSString*)key withInitializationBlock:(void(^)(id resource))block;
++(NSString*)keyForString:(NSString*)string;
+
 #pragma mark - State
 @property (nonatomic, readonly) SVRemoteResourceState state;
 
