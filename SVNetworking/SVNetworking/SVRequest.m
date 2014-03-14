@@ -112,7 +112,7 @@ static NSString* SVURLEncode(NSString* string)
     [self.class showNetworkActivityIndicator];
 #endif
     
-    if (NSClassFromString(@"NSURLSession"))
+    if (NSClassFromString(@"NSURLSession") && NO)
     {
         _sessionTask = [[NSURLSession sharedSession] dataTaskWithRequest:[self constructRequest] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
             
