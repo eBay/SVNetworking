@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		43D2A1F018D39363002CFE55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D2A1EF18D39363002CFE55 /* Foundation.framework */; };
-		43D2A1F518D39363002CFE55 /* SVNetworking.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 43D2A1F418D39363002CFE55 /* SVNetworking.h */; };
 		43D2A1FE18D39363002CFE55 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D2A1FD18D39363002CFE55 /* XCTest.framework */; };
 		43D2A1FF18D39363002CFE55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D2A1EF18D39363002CFE55 /* Foundation.framework */; };
 		43D2A20118D39363002CFE55 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D2A20018D39363002CFE55 /* UIKit.framework */; };
@@ -32,19 +31,6 @@
 			remoteInfo = SVNetworking;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		43D2A1EA18D39363002CFE55 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "include/$(PRODUCT_NAME)";
-			dstSubfolderSpec = 16;
-			files = (
-				43D2A1F518D39363002CFE55 /* SVNetworking.h in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		43D2A1EC18D39363002CFE55 /* libSVNetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSVNetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -203,7 +189,6 @@
 			buildPhases = (
 				43D2A1E818D39363002CFE55 /* Sources */,
 				43D2A1E918D39363002CFE55 /* Frameworks */,
-				43D2A1EA18D39363002CFE55 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -461,6 +446,7 @@
 				43D2A21118D39363002CFE55 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		43D2A21218D39363002CFE55 /* Build configuration list for PBXNativeTarget "SVNetworkingTests" */ = {
 			isa = XCConfigurationList;
@@ -469,6 +455,7 @@
 				43D2A21418D39363002CFE55 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
