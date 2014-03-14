@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		43D2A1F018D39363002CFE55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D2A1EF18D39363002CFE55 /* Foundation.framework */; };
 		43D2A1F518D39363002CFE55 /* SVNetworking.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 43D2A1F418D39363002CFE55 /* SVNetworking.h */; };
-		43D2A1F718D39363002CFE55 /* SVNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D2A1F618D39363002CFE55 /* SVNetworking.m */; };
 		43D2A1FE18D39363002CFE55 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D2A1FD18D39363002CFE55 /* XCTest.framework */; };
 		43D2A1FF18D39363002CFE55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D2A1EF18D39363002CFE55 /* Foundation.framework */; };
 		43D2A20118D39363002CFE55 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D2A20018D39363002CFE55 /* UIKit.framework */; };
@@ -52,7 +51,6 @@
 		43D2A1EF18D39363002CFE55 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		43D2A1F318D39363002CFE55 /* SVNetworking-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SVNetworking-Prefix.pch"; sourceTree = "<group>"; };
 		43D2A1F418D39363002CFE55 /* SVNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVNetworking.h; sourceTree = "<group>"; };
-		43D2A1F618D39363002CFE55 /* SVNetworking.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVNetworking.m; sourceTree = "<group>"; };
 		43D2A1FC18D39363002CFE55 /* SVNetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SVNetworkingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D2A1FD18D39363002CFE55 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		43D2A20018D39363002CFE55 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -132,7 +130,6 @@
 				43D2A21518D3942C002CFE55 /* Requests */,
 				43D2A21F18D3947E002CFE55 /* Utility */,
 				43D2A1F418D39363002CFE55 /* SVNetworking.h */,
-				43D2A1F618D39363002CFE55 /* SVNetworking.m */,
 				43D2A1F218D39363002CFE55 /* Supporting Files */,
 			);
 			path = SVNetworking;
@@ -284,7 +281,6 @@
 				43D2A22C18D3987C002CFE55 /* SVRemoteImage.m in Sources */,
 				43D2A21D18D39438002CFE55 /* SVJSONRequest.m in Sources */,
 				43D2A22918D39572002CFE55 /* SVRemoteResource.m in Sources */,
-				43D2A1F718D39363002CFE55 /* SVNetworking.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

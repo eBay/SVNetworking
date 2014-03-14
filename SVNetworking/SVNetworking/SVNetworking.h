@@ -6,8 +6,9 @@
 //  Copyright (c) 2014 Svpply. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-@interface SVNetworking : NSObject
-
-@end
+#import <SVNetworking/SVDataRequest.h>
+#import <SVNetworking/SVFunctional.h>
+#import <SVNetworking/SVJSONRequest.h>
+#import <SVNetworking/SVRemoteImage.h>
+#import <SVNetworking/SVRemoteResource.h>
+#import <SVNetworking/SVRequest.h>
