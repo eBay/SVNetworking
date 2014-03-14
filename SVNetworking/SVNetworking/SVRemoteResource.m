@@ -74,10 +74,8 @@
         // update state
         self.state = SVRemoteResourceStateLoading;
         
-        // send loading request
-        _request = [self requestForNetworkLoading];
-        _request.delegate = self;
-        [_request start];
+        // custom or network loading
+        [self beginLoading];
     }
 }
 
@@ -95,6 +93,14 @@
 }
 
 #pragma mark - Implementation - Custom Load
+-(void)beginLoading
+{
+    // send loading request
+    _request = [self requestForNetworkLoading];
+    _request.delegate = self;
+    [_request start];
+}
+
 -(void)finishLoadingWithData:(NSData*)data
 {
     NSError *error = nil;

@@ -31,6 +31,7 @@ typedef enum {
 -(void)load;
 
 #pragma mark - Implementation - Custom Loading
+-(void)beginLoading;
 -(void)finishLoadingWithData:(NSData*)data;
 -(void)finishLoadingWithError:(NSError*)error;
 
