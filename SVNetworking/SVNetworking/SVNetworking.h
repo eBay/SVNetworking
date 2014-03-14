@@ -7,6 +7,7 @@
 //
 
 #import <SVNetworking/SVDataRequest.h>
+#import <SVNetworking/SVDiskCache.h>
 #import <SVNetworking/SVFunctional.h>
 #import <SVNetworking/SVJSONRequest.h>
 #import <SVNetworking/SVRemoteImage.h>
