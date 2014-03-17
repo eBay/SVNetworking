@@ -12,6 +12,6 @@
 
 #pragma mark - Implementation
 -(void)finishLoadingWithData:(NSData*)data;
--(void)finishWithData:(NSData*)data error:(NSError**)error;
+-(void)parseFinishedData:(NSData*)data error:(NSError**)error;
 
 @end

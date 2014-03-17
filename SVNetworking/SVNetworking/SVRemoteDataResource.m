@@ -43,7 +43,7 @@
 -(void)finishLoadingWithData:(NSData*)data
 {
     NSError *error = nil;
-    [self finishWithData:data error:&error];
+    [self parseFinishedData:data error:&error];
     
     if (error)
     {
@@ -63,7 +63,7 @@
 }
 
 #pragma mark - Implementation
--(void)finishWithData:(NSData*)data error:(NSError**)error;
+-(void)parseFinishedData:(NSData*)data error:(NSError**)error;
 {
     [self doesNotRecognizeSelector:_cmd];
 }

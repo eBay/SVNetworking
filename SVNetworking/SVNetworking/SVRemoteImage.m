@@ -68,7 +68,7 @@
     return [SVDataRequest GETRequestWithURL:_URL];
 }
 
--(void)finishWithData:(NSData*)data error:(NSError**)error
+-(void)parseFinishedData:(NSData*)data error:(NSError**)error
 {
     UIImage *image = [[UIImage alloc] initWithData:data];
     
