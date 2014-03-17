@@ -22,7 +22,7 @@
 @implementation SVRemoteResource
 
 #pragma mark - Unique Resources
-+(instancetype)resourceWithUniqueKey:(NSString *)uniqueKey withInitializationBlock:(void (^)(id))block
++(NSMapTable*)uniqueTable
 {
     static NSMapTable *resourceTable;
     
@@ -31,6 +31,17 @@
         resourceTable = [NSMapTable strongToWeakObjectsMapTable];
     });
     
+    return resourceTable;
+}
+
++(instancetype)cachedResourceWithUniqueKey:(NSString*)uniqueKey
+{
+    return [[self uniqueTable] objectForKey:uniqueKey];
+}
+
++(instancetype)resourceWithUniqueKey:(NSString *)uniqueKey withInitializationBlock:(void (^)(id))block
+{
+    NSMapTable *resourceTable = [self uniqueTable];
     SVRemoteResource *resource = [resourceTable objectForKey:uniqueKey];
     
     if (!resource)

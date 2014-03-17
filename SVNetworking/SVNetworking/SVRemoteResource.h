@@ -18,6 +18,7 @@ typedef enum {
 @interface SVRemoteResource : NSObject
 
 #pragma mark - Unique Resources
++(instancetype)cachedResourceWithUniqueKey:(NSString*)uniqueKey;
 +(instancetype)resourceWithUniqueKey:(NSString*)uniqueKey withInitializationBlock:(void(^)(id resource))block;
 +(NSString*)uniqueKeyForString:(NSString*)string;
 
