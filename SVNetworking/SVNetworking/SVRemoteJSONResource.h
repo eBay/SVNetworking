@@ -6,44 +6,31 @@
 //  Copyright (c) 2014 Svpply. All rights reserved.
 //
 
-#import "SVRemoteResource.h"
-#import "SVJSONRequest.h"
+#import "SVRemoteJSONRequestResource.h"
+
+@interface SVRemoteJSONResource : SVRemoteJSONRequestResource
+
+#pragma mark - Access
+/**
+ Returns an (in-memory) cached remote JSON resource for the specified URL.
+ */
++(instancetype)cachedRemoteJSONForURL:(NSURL*)URL;
 
 /**
- SVRemoteJSONResource is an abstract class of SVRemoteResource that loads a resource as JSON data over the network.
- Once loading is finished, subclasses must interpret that data to set their properties, or fail with an error.
+ Returns a remote JSON resource for the specified URL.
  */
-@interface SVRemoteJSONResource : SVRemoteResource
++(instancetype)remoteJSONForURL:(NSURL*)URL;
 
-#pragma mark - Implementation
+#pragma mark - URL
 /**
- After JSON loading is complete, this message will be passed. Subclasses generally will not need to override this
- message.
- 
- If subclasses provide an alternative loading implementation in -beginLoading (i.e. from a disk cache), they should
- pass this message once the JSON has been loaded.
+ The URL to load JSON from.
  */
--(void)finishLoadingWithJSON:(id)JSON;
+@property (nonatomic, readonly, strong) NSURL *URL;
 
+#pragma mark - Data
 /**
- A convenience message for subclasses using a data-based alternative loading method (i.e. a disk cache). This message
- will parse the passed data and pass -finishLoadingWithJSON: or -failLoadingWithError: as is appropriate.
+ The loaded JSON object. This property is observable.
  */
--(void)finishLoadingWithJSONData:(NSData*)JSONData;
-
-#pragma mark - Subclass Implementation
-/**
- Subclasses must override this message to provide a JSON request to load themselves.
- 
- The default implementation throws an exception.
- */
--(SVJSONRequest*)requestForNetworkLoading;
-
-/**
- Subclasses must override this message to parse loaded JSON (and set completion properties) or set the error pointer.
- 
- The default implementation throws an exception.
- */
--(void)parseFinishedJSON:(id)JSON error:(NSError**)error;
+@property (nonatomic, readonly, strong) id JSON;
 
 @end
