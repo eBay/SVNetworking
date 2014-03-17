@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Svpply. All rights reserved.
 //
 
-#import "SVRemoteJSONResource.h"
+#import "SVRemoteJSONRequestResource.h"
 
-@interface SVRemoteJSONResource () <SVJSONRequestDelegate>
+@interface SVRemoteJSONRequestResource () <SVJSONRequestDelegate>
 {
 @private
     SVJSONRequest *_request;
@@ -16,7 +16,7 @@
 
 @end
 
-@implementation SVRemoteJSONResource
+@implementation SVRemoteJSONRequestResource
 
 #pragma mark - JSON Request Delegate
 -(void)request:(SVDataRequest *)request finishedWithJSON:(id)JSON response:(NSHTTPURLResponse *)response

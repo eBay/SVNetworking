@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Svpply. All rights reserved.
 //
 
-#import "SVRemoteDataResource.h"
+#import "SVRemoteDataRequestResource.h"
 
-@interface SVRemoteDataResource () <SVDataRequestDelegate>
+@interface SVRemoteDataRequestResource () <SVDataRequestDelegate>
 {
 @private
     SVDataRequest *_request;
@@ -16,7 +16,7 @@
 
 @end
 
-@implementation SVRemoteDataResource
+@implementation SVRemoteDataRequestResource
 
 #pragma mark - Data Request Delegate
 -(void)request:(SVDataRequest *)request finishedWithData:(NSData *)data response:(NSHTTPURLResponse *)response

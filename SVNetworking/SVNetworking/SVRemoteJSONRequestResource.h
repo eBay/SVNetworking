@@ -10,10 +10,10 @@
 #import "SVJSONRequest.h"
 
 /**
- SVRemoteJSONResource is an abstract class of SVRemoteResource that loads a resource as JSON data over the network.
- Once loading is finished, subclasses must interpret that data to set their properties, or fail with an error.
+ SVRemoteJSONRequest Resource is an abstract class of SVRemoteResource that loads a resource as JSON data over the
+ network. Once loading is finished, subclasses must interpret that data to set their properties, or fail with an error.
  */
-@interface SVRemoteJSONResource : SVRemoteResource
+@interface SVRemoteJSONRequestResource : SVRemoteResource
 
 #pragma mark - Implementation
 /**

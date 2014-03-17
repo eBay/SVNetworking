@@ -9,10 +9,10 @@
 #import "SVRemoteResource.h"
 
 /**
- SVRemoteDataResource is an abstract class of SVRemoteResource that loads a resource as raw data over the network.
- Once loading is finished, subclasses must interpret that data to set their properties, or fail with an error.
+ SVRemoteDataRequestResource is an abstract class of SVRemoteResource that loads a resource as raw data over the
+ network. Once loading is finished, subclasses must interpret that data to set their properties, or fail with an error.
  */
-@interface SVRemoteDataResource : SVRemoteResource
+@interface SVRemoteDataRequestResource : SVRemoteResource
 
 #pragma mark - Implementation
 /**
