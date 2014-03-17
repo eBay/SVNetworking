@@ -22,7 +22,7 @@
 @implementation SVRemoteResource
 
 #pragma mark - Unique Resources
-+(instancetype)resourceWithKey:(NSString*)key withInitializationBlock:(void(^)(id resource))block;
++(instancetype)resourceWithUniqueKey:(NSString *)uniqueKey withInitializationBlock:(void (^)(id))block
 {
     static NSMapTable *resourceTable;
     
@@ -31,7 +31,7 @@
         resourceTable = [NSMapTable strongToWeakObjectsMapTable];
     });
     
-    SVRemoteResource *resource = [resourceTable objectForKey:key];
+    SVRemoteResource *resource = [resourceTable objectForKey:uniqueKey];
     
     if (!resource)
     {
@@ -39,21 +39,21 @@
         
         if (resource)
         {
-            resource->_key = key;
+            resource->_uniqueKey = uniqueKey;
             
             if (block)
             {
                 block(resource);
             }
             
-            [resourceTable setObject:resource forKey:key];
+            [resourceTable setObject:resource forKey:uniqueKey];
         }
     }
     
     return resource;
 }
 
-+(NSString*)keyForString:(NSString *)string
++(NSString*)uniqueKeyForString:(NSString *)string
 {
     // why we're not using NSString hash -> https://gist.github.com/fphilipe/3413755
     // note that the class name is prefixed

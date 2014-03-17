@@ -38,7 +38,7 @@
 #pragma mark - Access
 +(instancetype)remoteImageForURL:(NSURL*)URL
 {
-    return [self resourceWithKey:[self keyForString:URL.absoluteString] withInitializationBlock:^(SVRemoteImage *image) {
+    return [self resourceWithUniqueKey:[self uniqueKeyForString:URL.absoluteString] withInitializationBlock:^(SVRemoteImage *image) {
         image.URL = URL;
     }];
 }
@@ -48,9 +48,9 @@
 {
     SVDiskCache *cache = [self.class diskCache];
     
-    if ([cache hasDataForKey:self.key])
+    if ([cache hasDataForKey:self.uniqueKey])
     {
-        [self finishLoadingWithData:[cache dataForKey:self.key]];
+        [self finishLoadingWithData:[cache dataForKey:self.uniqueKey]];
     }
     else
     {
@@ -73,9 +73,9 @@
         
         SVDiskCache *cache = [self.class diskCache];
         
-        if (![cache hasDataForKey:self.key])
+        if (![cache hasDataForKey:self.uniqueKey])
         {
-            [cache writeData:data forKey:self.key];
+            [cache writeData:data forKey:self.uniqueKey];
         }
     }
     else
