@@ -85,7 +85,9 @@
     }
     else
     {
-        *error = [NSError errorWithDomain:@"com.svpply" code:0 userInfo:@{}];
+        *error = [NSError errorWithDomain:@"com.svpply" code:0 userInfo:@{
+            NSLocalizedDescriptionKey: @"Failed to load image data"
+        }];
     }
 }
 
