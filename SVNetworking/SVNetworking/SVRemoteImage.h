@@ -27,11 +27,27 @@
  */
 +(instancetype)remoteImageForURL:(NSURL*)URL;
 
+/**
+ Returns an (in-memory) cached remote image for the specified URL, with the specified scale.
+ */
++(instancetype)cachedRemoteImageForURL:(NSURL*)URL withScale:(CGFloat)scale;
+
+/**
+ Returns a remote image for the specified URL, with the specified scale.
+ */
++(instancetype)remoteImageForURL:(NSURL*)URL withScale:(CGFloat)scale;
+
 #pragma mark - URL
 /**
  The image URL to load from.
  */
 @property (nonatomic, readonly, strong) NSURL *URL;
+
+#pragma mark - Scale
+/**
+ The scale factor for the image.
+ */
+@property (nonatomic, readonly) CGFloat scale;
 
 #pragma mark - Image
 /**
