@@ -15,5 +15,6 @@
 #import <SVNetworking/SVRemoteImage.h>
 #import <SVNetworking/SVRemoteDataResource.h>
 #import <SVNetworking/SVRemoteJSONResource.h>
+#import <SVNetworking/SVRemoteProxyResource.h>
 #import <SVNetworking/SVRemoteResource.h>
 #import <SVNetworking/SVRequest.h>
