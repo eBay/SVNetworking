@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SVRemoteDataResource.h"
+#import "SVRemoteDataRequestResource.h"
 
 /**
  SVRemoteImage loads an image over the network from a URL. Observe the -image property with KVO or bindings.
  
  Images are cached to disk once loaded, and will be loaded from the cache if available.
  */
-@interface SVRemoteImage : SVRemoteDataResource
+@interface SVRemoteImage : SVRemoteDataRequestResource
 
 #pragma mark - Access
 /**

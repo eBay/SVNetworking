@@ -8,64 +8,40 @@
 
 #import "SVRemoteDataResource.h"
 
-@interface SVRemoteDataResource () <SVDataRequestDelegate>
-{
-@private
-    SVDataRequest *_request;
-}
+@interface SVRemoteDataResource ()
+
+#pragma mark - URL
+@property (nonatomic, strong) NSURL *URL;
+
+#pragma mark - Data
+@property (nonatomic, strong) NSData* data;
 
 @end
 
 @implementation SVRemoteDataResource
 
-#pragma mark - Data Request Delegate
--(void)request:(SVDataRequest *)request finishedWithData:(NSData *)data response:(NSHTTPURLResponse *)response
+#pragma mark - Access
++(instancetype)cachedRemoteDataForURL:(NSURL*)URL
 {
-    [self finishLoadingWithData:data];
-    _request = nil;
+    return [self cachedResourceWithUniqueKey:URL.absoluteString];
 }
 
--(void)request:(SVRequest *)request failedWithError:(NSError *)error
++(instancetype)remoteDataForURL:(NSURL*)URL
 {
-    [self failLoadingWithError:error];
-    _request = nil;
+    return [self resourceWithUniqueKey:URL.absoluteString withInitializationBlock:^(SVRemoteDataResource *resource) {
+        resource.URL = URL;
+    }];
 }
 
-#pragma mark - Implementation
--(void)beginLoading
-{
-    // send loading request
-    _request = [self requestForNetworkLoading];
-    _request.delegate = self;
-    [_request start];
-}
-
--(void)finishLoadingWithData:(NSData*)data
-{
-    NSError *error = nil;
-    [self parseFinishedData:data error:&error];
-    
-    if (error)
-    {
-        [self failLoadingWithError:error];
-    }
-    else
-    {
-        [self finishLoading];
-    }
-}
-
-#pragma mark - Subclass Implementation
+#pragma mark - Implementation - Network Loading
 -(SVDataRequest*)requestForNetworkLoading
 {
-    [self doesNotRecognizeSelector:_cmd];
-    return nil;
+    return [SVDataRequest GETRequestWithURL:_URL];
 }
 
-#pragma mark - Implementation
--(void)parseFinishedData:(NSData*)data error:(NSError**)error;
+-(void)parseFinishedData:(NSData*)data error:(NSError**)error
 {
-    [self doesNotRecognizeSelector:_cmd];
+    self.data = data;
 }
 
 @end
