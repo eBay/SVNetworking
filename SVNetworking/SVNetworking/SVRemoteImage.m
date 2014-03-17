@@ -28,7 +28,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         NSArray* caches = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-        NSString* path = [caches.firstObject stringByAppendingPathComponent:@"SVImageLoader"];
+        NSString* path = [caches.firstObject stringByAppendingPathComponent:@"SVRemoteImage"];
         cache = [[SVDiskCache alloc] initWithPath:path];
     });
     
