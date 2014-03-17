@@ -12,6 +12,7 @@
 		41B38E1D18D7752E000064D3 /* NSObject+SVBindings.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B38E1A18D7752E000064D3 /* NSObject+SVBindings.m */; };
 		41B38E1E18D7752E000064D3 /* NSObject+SVMultibindings.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B38E1C18D7752E000064D3 /* NSObject+SVMultibindings.m */; };
 		41B38E2918D79C98000064D3 /* SVRemoteDataResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B38E2818D79C98000064D3 /* SVRemoteDataResource.m */; };
+		41B38E2C18D79DA8000064D3 /* SVRemoteJSONResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B38E2B18D79DA8000064D3 /* SVRemoteJSONResource.m */; };
 		43D2A1F018D39363002CFE55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D2A1EF18D39363002CFE55 /* Foundation.framework */; };
 		43D2A1FE18D39363002CFE55 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D2A1FD18D39363002CFE55 /* XCTest.framework */; };
 		43D2A1FF18D39363002CFE55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D2A1EF18D39363002CFE55 /* Foundation.framework */; };
@@ -49,6 +50,8 @@
 		41B38E1C18D7752E000064D3 /* NSObject+SVMultibindings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SVMultibindings.m"; sourceTree = "<group>"; };
 		41B38E2718D79C98000064D3 /* SVRemoteDataResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRemoteDataResource.h; sourceTree = "<group>"; };
 		41B38E2818D79C98000064D3 /* SVRemoteDataResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRemoteDataResource.m; sourceTree = "<group>"; };
+		41B38E2A18D79DA8000064D3 /* SVRemoteJSONResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRemoteJSONResource.h; sourceTree = "<group>"; };
+		41B38E2B18D79DA8000064D3 /* SVRemoteJSONResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRemoteJSONResource.m; sourceTree = "<group>"; };
 		43D2A1EC18D39363002CFE55 /* libSVNetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSVNetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D2A1EF18D39363002CFE55 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		43D2A1F318D39363002CFE55 /* SVNetworking-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SVNetworking-Prefix.pch"; sourceTree = "<group>"; };
@@ -213,6 +216,8 @@
 				41B38E1618D761C5000064D3 /* SVRemoteJSONRequestResource.m */,
 				41B38E2718D79C98000064D3 /* SVRemoteDataResource.h */,
 				41B38E2818D79C98000064D3 /* SVRemoteDataResource.m */,
+				41B38E2A18D79DA8000064D3 /* SVRemoteJSONResource.h */,
+				41B38E2B18D79DA8000064D3 /* SVRemoteJSONResource.m */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -310,6 +315,7 @@
 				43D2A21E18D39438002CFE55 /* SVRequest.m in Sources */,
 				43D2A21C18D39438002CFE55 /* SVDataRequest.m in Sources */,
 				43D2A23218D3AA6E002CFE55 /* SVDiskCache.m in Sources */,
+				41B38E2C18D79DA8000064D3 /* SVRemoteJSONResource.m in Sources */,
 				41B38E2918D79C98000064D3 /* SVRemoteDataResource.m in Sources */,
 				41B38E1D18D7752E000064D3 /* NSObject+SVBindings.m in Sources */,
 				41B38E1718D761C5000064D3 /* SVRemoteJSONRequestResource.m in Sources */,
