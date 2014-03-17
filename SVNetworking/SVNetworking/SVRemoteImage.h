@@ -9,16 +9,34 @@
 #import <UIKit/UIKit.h>
 #import "SVRemoteDataResource.h"
 
+/**
+ SVRemoteImage loads an image over the network from a URL. Observe the -image property with KVO or bindings.
+ 
+ Images are cached to disk once loaded, and will be loaded from the cache if available.
+ */
 @interface SVRemoteImage : SVRemoteDataResource
 
 #pragma mark - Access
+/**
+ Returns an (in-memory) cached remote image for the specified URL.
+ */
 +(instancetype)cachedRemoteImageForURL:(NSURL*)URL;
+
+/**
+ Returns a remote image for the specified URL.
+ */
 +(instancetype)remoteImageForURL:(NSURL*)URL;
 
 #pragma mark - URL
+/**
+ The image URL to load from.
+ */
 @property (nonatomic, readonly, strong) NSURL *URL;
 
 #pragma mark - Image
+/**
+ The loaded image. This property is observable.
+ */
 @property (nonatomic, readonly, strong) UIImage *image;
 
 @end
