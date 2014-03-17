@@ -36,6 +36,11 @@
 }
 
 #pragma mark - Access
++(instancetype)cachedRemoteImageForURL:(NSURL*)URL
+{
+    return [self cachedResourceWithUniqueKey:[self uniqueKeyForString:URL.absoluteString]];
+}
+
 +(instancetype)remoteImageForURL:(NSURL*)URL
 {
     return [self resourceWithUniqueKey:[self uniqueKeyForString:URL.absoluteString] withInitializationBlock:^(SVRemoteImage *image) {

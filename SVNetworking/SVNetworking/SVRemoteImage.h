@@ -12,6 +12,7 @@
 @interface SVRemoteImage : SVRemoteDataResource
 
 #pragma mark - Access
++(instancetype)cachedRemoteImageForURL:(NSURL*)URL;
 +(instancetype)remoteImageForURL:(NSURL*)URL;
 
 #pragma mark - URL
