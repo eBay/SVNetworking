@@ -83,6 +83,13 @@ typedef enum {
  */
 -(void)load;
 
+/**
+ Passes -load to the resource, then returns the resource. Somewhat based on the style of -autorelease.
+ 
+ Generally used to simplifying binding blocks from three lines to one.
+ */
+-(instancetype)autoload;
+
 #pragma mark - Implementation
 /**
  Subclasses should pass this message to self when the loading process is complete. This will update the -state

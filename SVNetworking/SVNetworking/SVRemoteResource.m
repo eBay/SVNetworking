@@ -98,6 +98,12 @@
     }
 }
 
+-(instancetype)autoload
+{
+    [self load];
+    return self;
+}
+
 #pragma mark - Implementation
 -(void)finishLoading
 {
