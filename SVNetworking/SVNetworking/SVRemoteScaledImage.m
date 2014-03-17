@@ -55,7 +55,7 @@
 }
 
 #pragma mark - Implementation
--(void)parseFinishedProxiedResource:(id)proxiedResource
+-(void)parseFinishedProxiedResource:(SVRemoteImage*)proxiedResource
                        withListener:(id<SVRemoteProxyResourceCompletionListener>)listener
 {
     // obviously, we need to actually scale here... some additions we can make for concurrency as well
