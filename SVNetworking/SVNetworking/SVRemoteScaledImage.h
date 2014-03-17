@@ -31,6 +31,17 @@
  */
 +(instancetype)remoteScaledImageForURL:(NSURL*)URL withSize:(CGSize)size;
 
+/**
+ Returns an (in-memory) cached remote image for the specified URL, with the specified scale factor, scaled to the
+ specified size.
+ */
++(instancetype)cachedRemoteScaledImageForURL:(NSURL*)URL withScale:(CGFloat)scale size:(CGSize)size;
+
+/**
+ Returns a remote image for the specified URL, with the specified scale factor, scaled to the specified size;
+ */
++(instancetype)remoteScaledImageForURL:(NSURL*)URL withScale:(CGFloat)scale size:(CGSize)size;
+
 #pragma mark - Image Size
 /**
  The image size to scale to.

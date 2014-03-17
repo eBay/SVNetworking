@@ -21,7 +21,17 @@
 #pragma mark - Access
 +(instancetype)cachedRemoteScaledImageForURL:(NSURL*)URL withSize:(CGSize)size
 {
-    SVRemoteImage *image = [SVRemoteImage cachedRemoteImageForURL:URL];
+    return [self cachedRemoteScaledImageForURL:URL withScale:1 size:size];
+}
+
++(instancetype)remoteScaledImageForURL:(NSURL*)URL withSize:(CGSize)size
+{
+    return [self remoteScaledImageForURL:URL withScale:1 size:size];
+}
+
++(instancetype)cachedRemoteScaledImageForURL:(NSURL*)URL withScale:(CGFloat)scale size:(CGSize)size
+{
+    SVRemoteImage *image = [SVRemoteImage cachedRemoteImageForURL:URL withScale:scale];
     
     if (image)
     {
@@ -33,9 +43,9 @@
     }
 }
 
-+(instancetype)remoteScaledImageForURL:(NSURL*)URL withSize:(CGSize)size;
++(instancetype)remoteScaledImageForURL:(NSURL*)URL withScale:(CGFloat)scale size:(CGSize)size
 {
-    SVRemoteImage *image = [SVRemoteImage remoteImageForURL:URL];
+    SVRemoteImage *image = [SVRemoteImage remoteImageForURL:URL withScale:scale];
     
     return [self resourceProxyingResource:image
                         withAdditionalKey:NSStringFromCGSize(size)
