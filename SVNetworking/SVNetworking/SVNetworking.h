@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Svpply. All rights reserved.
 //
 
+#import <SVNetworking/NSObject+SVBindings.h>
+#import <SVNetworking/NSObject+SVMultibindings.h>
 #import <SVNetworking/SVDataRequest.h>
 #import <SVNetworking/SVDiskCache.h>
 #import <SVNetworking/SVFunctional.h>
