@@ -496,6 +496,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "/usr/local/include/$(TARGET_NAME)/";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -509,6 +510,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "/usr/local/include/$(TARGET_NAME)/";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
