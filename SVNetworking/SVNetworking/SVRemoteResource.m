@@ -84,6 +84,12 @@
 {
     if (_state == SVRemoteResourceStateNotLoaded || _state == SVRemoteResourceStateError)
     {
+        // clear error if applicable
+        if (_error)
+        {
+            self.error = nil;
+        }
+        
         // update state
         self.state = SVRemoteResourceStateLoading;
         
