@@ -9,11 +9,7 @@
 #import <CommonCrypto/CommonCrypto.h>
 #import "SVRemoteResource.h"
 
-@interface SVRemoteResource () <SVDataRequestDelegate>
-{
-@private
-    SVDataRequest *_request;
-}
+@interface SVRemoteResource ()
 
 #pragma mark - State
 @property (nonatomic) SVRemoteResourceState state;
@@ -84,61 +80,21 @@
     }
 }
 
-#pragma mark - Data Request Delegate
--(void)request:(SVDataRequest *)request finishedWithData:(NSData *)data response:(NSHTTPURLResponse *)response
-{
-    [self finishLoadingWithData:data];
-    _request = nil;
-}
-
--(void)request:(SVRequest *)request failedWithError:(NSError *)error
-{
-    [self finishLoadingWithError:error];
-    _request = nil;
-}
-
 #pragma mark - Implementation - Custom Load
 -(void)beginLoading
 {
-    // send loading request
-    _request = [self requestForNetworkLoading];
-    _request.delegate = self;
-    [_request start];
+    [self doesNotRecognizeSelector:_cmd];
 }
 
--(void)finishLoadingWithData:(NSData*)data
+-(void)finishLoading
 {
-    NSError *error = nil;
-    [self finishWithData:data error:&error];
-    
-    if (error)
-    {
-        self.error = error;
-        self.state = SVRemoteResourceStateError;
-    }
-    else
-    {
-        self.state = SVRemoteResourceStateFinished;
-    }
+    self.state = SVRemoteResourceStateFinished;
 }
 
 -(void)finishLoadingWithError:(NSError *)error
 {
     self.error = error;
     self.state = SVRemoteResourceStateError;
-}
-
-#pragma mark - Implementation - Network Load
--(SVDataRequest*)requestForNetworkLoading
-{
-    [self doesNotRecognizeSelector:_cmd];
-    return nil;
-}
-
-#pragma mark - Implementation
--(void)finishWithData:(NSData*)data error:(NSError**)error;
-{
-    [self doesNotRecognizeSelector:_cmd];
 }
 
 @end

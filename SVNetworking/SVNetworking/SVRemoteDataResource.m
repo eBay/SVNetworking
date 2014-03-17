@@ -8,6 +8,64 @@
 
 #import "SVRemoteDataResource.h"
 
+@interface SVRemoteDataResource () <SVDataRequestDelegate>
+{
+@private
+    SVDataRequest *_request;
+}
+
+@end
+
 @implementation SVRemoteDataResource
+
+#pragma mark - Data Request Delegate
+-(void)request:(SVDataRequest *)request finishedWithData:(NSData *)data response:(NSHTTPURLResponse *)response
+{
+    [self finishLoadingWithData:data];
+    _request = nil;
+}
+
+-(void)request:(SVRequest *)request failedWithError:(NSError *)error
+{
+    [self finishLoadingWithError:error];
+    _request = nil;
+}
+
+#pragma mark - Implementation - Custom Load
+-(void)beginLoading
+{
+    // send loading request
+    _request = [self requestForNetworkLoading];
+    _request.delegate = self;
+    [_request start];
+}
+
+-(void)finishLoadingWithData:(NSData*)data
+{
+    NSError *error = nil;
+    [self finishWithData:data error:&error];
+    
+    if (error)
+    {
+        [self finishLoadingWithError:error];
+    }
+    else
+    {
+        [self finishLoading];
+    }
+}
+
+#pragma mark - Implementation - Network Load
+-(SVDataRequest*)requestForNetworkLoading
+{
+    [self doesNotRecognizeSelector:_cmd];
+    return nil;
+}
+
+#pragma mark - Implementation
+-(void)finishWithData:(NSData*)data error:(NSError**)error;
+{
+    [self doesNotRecognizeSelector:_cmd];
+}
 
 @end

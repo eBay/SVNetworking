@@ -10,4 +10,6 @@
 
 @interface SVRemoteDataResource : SVRemoteResource
 
+-(void)finishLoadingWithData:(NSData*)data;
+
 @end
