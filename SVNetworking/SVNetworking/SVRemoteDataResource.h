@@ -6,37 +6,31 @@
 //  Copyright (c) 2014 Svpply. All rights reserved.
 //
 
-#import "SVRemoteResource.h"
+#import "SVRemoteDataRequestResource.h"
+
+@interface SVRemoteDataResource : SVRemoteDataRequestResource
+
+#pragma mark - Access
+/**
+ Returns an (in-memory) cached remote data for the specified URL.
+ */
++(instancetype)cachedRemoteDataForURL:(NSURL*)URL;
 
 /**
- SVRemoteDataResource is an abstract class of SVRemoteResource that loads a resource as raw data over the network.
- Once loading is finished, subclasses must interpret that data to set their properties, or fail with an error.
+ Returns a remote data for the specified URL.
  */
-@interface SVRemoteDataResource : SVRemoteResource
++(instancetype)remoteDataForURL:(NSURL*)URL;
 
-#pragma mark - Implementation
+#pragma mark - URL
 /**
- After data loading is complete, this message will be passed. Subclasses generally will not need to override this
- message.
- 
- If subclasses provide an alternative loading implementation in -beginLoading (i.e. from a disk cache), they should
- pass this message once the data has been loaded.
+ The URL to load data from.
  */
--(void)finishLoadingWithData:(NSData*)data;
+@property (nonatomic, readonly, strong) NSURL *URL;
 
-#pragma mark - Subclass Implementation
+#pragma mark - Data
 /**
- Subclasses must override this message to provide a data request to load themselves.
- 
- The default implementation throws an exception.
+ The loaded data. This property is observable.
  */
--(SVDataRequest*)requestForNetworkLoading;
-
-/**
- Subclasses must override this message to parse loaded data (and set completion properties) or set the error pointer.
- 
- The default implementation throws an exception.
- */
--(void)parseFinishedData:(NSData*)data error:(NSError**)error;
+@property (nonatomic, readonly, strong) NSData* data;
 
 @end

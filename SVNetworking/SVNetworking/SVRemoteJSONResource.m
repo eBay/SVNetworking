@@ -8,78 +8,40 @@
 
 #import "SVRemoteJSONResource.h"
 
-@interface SVRemoteJSONResource () <SVJSONRequestDelegate>
-{
-@private
-    SVJSONRequest *_request;
-}
+@interface SVRemoteJSONResource ()
+
+#pragma mark - URL
+@property (nonatomic, strong) NSURL *URL;
+
+#pragma mark - JSON
+@property (nonatomic, strong) id JSON;
 
 @end
 
 @implementation SVRemoteJSONResource
 
-#pragma mark - JSON Request Delegate
--(void)request:(SVDataRequest *)request finishedWithJSON:(id)JSON response:(NSHTTPURLResponse *)response
+#pragma mark - Access
++(instancetype)cachedRemoteJSONForURL:(NSURL *)URL
 {
-    [self finishLoadingWithJSON:JSON];
-    _request = nil;
+    return [self cachedResourceWithUniqueKey:URL.absoluteString];
 }
 
--(void)request:(SVRequest *)request failedWithError:(NSError *)error
++(instancetype)remoteJSONForURL:(NSURL *)URL
 {
-    [self failLoadingWithError:error];
-    _request = nil;
+    return [self resourceWithUniqueKey:URL.absoluteString withInitializationBlock:^(SVRemoteJSONResource *resource) {
+        resource.URL = URL;
+    }];
 }
 
-#pragma mark - Implementation
--(void)beginLoading
-{
-    // send loading request
-    _request = [self requestForNetworkLoading];
-    _request.delegate = self;
-    [_request start];
-}
-
--(void)finishLoadingWithJSON:(id)JSON
-{
-    NSError *error = nil;
-    [self parseFinishedJSON:JSON error:&error];
-    
-    if (error)
-    {
-        [self failLoadingWithError:error];
-    }
-    else
-    {
-        [self finishLoading];
-    }
-}
-
--(void)finishLoadingWithJSONData:(NSData*)JSONData
-{
-    NSError *error = nil;
-    id JSON = [NSJSONSerialization JSONObjectWithData:JSONData options:0 error:&error];
-    
-    if (error)
-    {
-        [self failLoadingWithError:error];
-    }
-    else
-    {
-        [self finishLoadingWithJSON:JSON];
-    }
-}
-
-#pragma mark - Subclass Implementation
+#pragma mark - Implementation - Network Loading
 -(SVJSONRequest*)requestForNetworkLoading
 {
-    [self doesNotRecognizeSelector:_cmd];
-    return nil;
+    return [SVJSONRequest GETRequestWithURL:_URL];
 }
 
 -(void)parseFinishedJSON:(id)JSON error:(NSError *__autoreleasing *)error
 {
-    [self doesNotRecognizeSelector:_cmd];
+    self.JSON = JSON;
 }
 
 @end
