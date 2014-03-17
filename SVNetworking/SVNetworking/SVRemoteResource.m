@@ -91,7 +91,7 @@
     self.state = SVRemoteResourceStateFinished;
 }
 
--(void)finishLoadingWithError:(NSError *)error
+-(void)failLoadingWithError:(NSError *)error
 {
     self.error = error;
     self.state = SVRemoteResourceStateError;

@@ -27,7 +27,7 @@
 
 -(void)request:(SVRequest *)request failedWithError:(NSError *)error
 {
-    [self finishLoadingWithError:error];
+    [self failLoadingWithError:error];
     _request = nil;
 }
 
@@ -47,7 +47,7 @@
     
     if (error)
     {
-        [self finishLoadingWithError:error];
+        [self failLoadingWithError:error];
     }
     else
     {
