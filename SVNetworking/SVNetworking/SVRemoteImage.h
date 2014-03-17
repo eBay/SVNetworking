@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SVRemoteResource.h"
+#import "SVRemoteDataResource.h"
 
-@interface SVRemoteImage : SVRemoteResource
+@interface SVRemoteImage : SVRemoteDataResource
 
 #pragma mark - Access
 +(instancetype)remoteImageForURL:(NSURL*)URL;
