@@ -6,17 +6,17 @@
 //  Copyright (c) 2014 Svpply. All rights reserved.
 //
 
-#import <SVNetworking/NSObject+SVBindings.h>
-#import <SVNetworking/NSObject+SVMultibindings.h>
-#import <SVNetworking/SVDataRequest.h>
-#import <SVNetworking/SVDiskCache.h>
-#import <SVNetworking/SVFunctional.h>
-#import <SVNetworking/SVJSONRequest.h>
-#import <SVNetworking/SVRemoteImage.h>
-#import <SVNetworking/SVRemoteDataRequestResource.h>
-#import <SVNetworking/SVRemoteDataResource.h>
-#import <SVNetworking/SVRemoteJSONRequestResource.h>
-#import <SVNetworking/SVRemoteJSONResource.h>
-#import <SVNetworking/SVRemoteProxyResource.h>
-#import <SVNetworking/SVRemoteResource.h>
-#import <SVNetworking/SVRequest.h>
+#import "NSObject+SVBindings.h"
+#import "NSObject+SVMultibindings.h"
+#import "SVDataRequest.h"
+#import "SVDiskCache.h"
+#import "SVFunctional.h"
+#import "SVJSONRequest.h"
+#import "SVRemoteImage.h"
+#import "SVRemoteDataRequestResource.h"
+#import "SVRemoteDataResource.h"
+#import "SVRemoteJSONRequestResource.h"
+#import "SVRemoteJSONResource.h"
+#import "SVRemoteProxyResource.h"
+#import "SVRemoteResource.h"
+#import "SVRequest.h"
