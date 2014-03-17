@@ -25,6 +25,12 @@
  */
 -(void)finishLoadingWithJSON:(id)JSON;
 
+/**
+ A convenience message for subclasses using a data-based alternative loading method (i.e. a disk cache). This message
+ will parse the passed data and pass -finishLoadingWithJSON: or -failLoadingWithError: as is appropriate.
+ */
+-(void)finishLoadingWithJSONData:(NSData*)JSONData;
+
 #pragma mark - Subclass Implementation
 /**
  Subclasses must override this message to provide a JSON request to load themselves.

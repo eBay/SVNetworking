@@ -55,6 +55,21 @@
     }
 }
 
+-(void)finishLoadingWithJSONData:(NSData*)JSONData
+{
+    NSError *error = nil;
+    id JSON = [NSJSONSerialization JSONObjectWithData:JSONData options:0 error:&error];
+    
+    if (error)
+    {
+        [self failLoadingWithError:error];
+    }
+    else
+    {
+        [self finishLoadingWithJSON:JSON];
+    }
+}
+
 #pragma mark - Implementation - Network Load
 -(SVJSONRequest*)requestForNetworkLoading
 {
