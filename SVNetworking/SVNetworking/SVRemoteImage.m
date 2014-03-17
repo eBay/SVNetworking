@@ -14,6 +14,9 @@
 #pragma mark - URL
 @property (nonatomic, strong) NSURL *URL;
 
+#pragma mark - Scale
+@property (nonatomic) CGFloat scale;
+
 #pragma mark - Image
 @property (nonatomic, strong) UIImage *image;
 
@@ -38,13 +41,28 @@
 #pragma mark - Access
 +(instancetype)cachedRemoteImageForURL:(NSURL*)URL
 {
-    return [self cachedResourceWithUniqueKey:URL.absoluteString];
+    return [self cachedRemoteImageForURL:URL withScale:1];
 }
 
 +(instancetype)remoteImageForURL:(NSURL*)URL
 {
-    return [self resourceWithUniqueKey:URL.absoluteString withInitializationBlock:^(SVRemoteImage *image) {
+    return [self remoteImageForURL:URL withScale:1];
+}
+
++(instancetype)cachedRemoteImageForURL:(NSURL*)URL withScale:(CGFloat)scale
+{
+    NSString *key = [NSString stringWithFormat:@"%f%@", scale, URL];
+    
+    return [self cachedResourceWithUniqueKey:key];
+}
+
++(instancetype)remoteImageForURL:(NSURL*)URL withScale:(CGFloat)scale
+{
+    NSString *key = [NSString stringWithFormat:@"%f%@", scale, URL];
+    
+    return [self resourceWithUniqueKey:key withInitializationBlock:^(SVRemoteImage *image) {
         image.URL = URL;
+        image.scale = scale;
     }];
 }
 
@@ -71,7 +89,7 @@
 
 -(void)parseFinishedData:(NSData*)data error:(NSError**)error
 {
-    UIImage *image = [[UIImage alloc] initWithData:data];
+    UIImage *image = [[UIImage alloc] initWithData:data scale:_scale];
     
     if (image)
     {
