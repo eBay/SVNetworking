@@ -21,14 +21,17 @@
 +(instancetype)cachedResourceProxyingResource:(SVRemoteResource*)proxiedResource
                             withAdditionalKey:(NSString*)additionalKey
 {
-    return [self cachedResourceWithUniqueKey:proxiedResource.uniqueKeyHash];
+    NSString *key = [NSString stringWithFormat:@"%@%@", proxiedResource.uniqueKeyHash, additionalKey];
+    return [self cachedResourceWithUniqueKey:key];
 }
 
 +(instancetype)resourceProxyingResource:(SVRemoteResource*)proxiedResource
                       withAdditionalKey:(NSString*)additionalKey
                     initializationBlock:(void(^)(id resource))initializationBlock;
 {
-    return [self resourceWithUniqueKey:proxiedResource.uniqueKeyHash withInitializationBlock:^(SVRemoteProxyResource *resource) {
+    NSString *key = [NSString stringWithFormat:@"%@%@", proxiedResource.uniqueKeyHash, additionalKey];
+    
+    return [self resourceWithUniqueKey:key withInitializationBlock:^(SVRemoteProxyResource *resource) {
         resource->_proxiedResource = proxiedResource;
         
         if (initializationBlock)
