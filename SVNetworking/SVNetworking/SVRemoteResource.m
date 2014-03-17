@@ -92,12 +92,7 @@
     }
 }
 
-#pragma mark - Implementation - Custom Load
--(void)beginLoading
-{
-    [self doesNotRecognizeSelector:_cmd];
-}
-
+#pragma mark - Implementation
 -(void)finishLoading
 {
     self.state = SVRemoteResourceStateFinished;
@@ -107,6 +102,12 @@
 {
     self.error = error;
     self.state = SVRemoteResourceStateError;
+}
+
+#pragma mark - Subclass Implementation
+-(void)beginLoading
+{
+    [self doesNotRecognizeSelector:_cmd];
 }
 
 @end

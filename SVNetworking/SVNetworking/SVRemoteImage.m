@@ -63,6 +63,7 @@
     }
 }
 
+#pragma mark - Implementation - Network Loading
 -(SVDataRequest*)requestForNetworkLoading
 {
     return [SVDataRequest GETRequestWithURL:_URL];

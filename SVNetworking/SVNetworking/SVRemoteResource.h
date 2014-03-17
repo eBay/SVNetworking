@@ -85,13 +85,6 @@ typedef enum {
 
 #pragma mark - Implementation
 /**
- Subclasses must override this message, to begin their loading implementation.
- 
- The default implementation of this message throws an exception.
- */
--(void)beginLoading;
-
-/**
  Subclasses should pass this message to self when the loading process is complete. This will update the -state
  property to SVRemoteResourceStateFinished.
  */
@@ -102,5 +95,13 @@ typedef enum {
  properties.
  */
 -(void)failLoadingWithError:(NSError*)error;
+
+#pragma mark - Subclass Implementation
+/**
+ Subclasses must override this message, to begin their loading implementation.
+ 
+ The default implementation of this message throws an exception.
+ */
+-(void)beginLoading;
 
 @end

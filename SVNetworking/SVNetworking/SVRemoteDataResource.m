@@ -31,7 +31,7 @@
     _request = nil;
 }
 
-#pragma mark - Implementation - Custom Load
+#pragma mark - Implementation
 -(void)beginLoading
 {
     // send loading request
@@ -55,7 +55,7 @@
     }
 }
 
-#pragma mark - Implementation - Network Load
+#pragma mark - Subclass Implementation
 -(SVDataRequest*)requestForNetworkLoading
 {
     [self doesNotRecognizeSelector:_cmd];
