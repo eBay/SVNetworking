@@ -20,9 +20,8 @@ typedef enum {
 #pragma mark - Unique Resources
 +(instancetype)cachedResourceWithUniqueKey:(NSString*)uniqueKey;
 +(instancetype)resourceWithUniqueKey:(NSString*)uniqueKey withInitializationBlock:(void(^)(id resource))block;
-+(NSString*)uniqueKeyForString:(NSString*)string;
 
-@property (nonatomic, readonly) NSString *uniqueKey;
+@property (nonatomic, readonly) NSString *uniqueKeyHash;
 
 #pragma mark - State
 @property (nonatomic, readonly) SVRemoteResourceState state;

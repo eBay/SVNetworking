@@ -38,12 +38,12 @@
 #pragma mark - Access
 +(instancetype)cachedRemoteImageForURL:(NSURL*)URL
 {
-    return [self cachedResourceWithUniqueKey:[self uniqueKeyForString:URL.absoluteString]];
+    return [self cachedResourceWithUniqueKey:URL.absoluteString];
 }
 
 +(instancetype)remoteImageForURL:(NSURL*)URL
 {
-    return [self resourceWithUniqueKey:[self uniqueKeyForString:URL.absoluteString] withInitializationBlock:^(SVRemoteImage *image) {
+    return [self resourceWithUniqueKey:URL.absoluteString withInitializationBlock:^(SVRemoteImage *image) {
         image.URL = URL;
     }];
 }
@@ -53,9 +53,9 @@
 {
     SVDiskCache *cache = [self.class diskCache];
     
-    if ([cache hasDataForKey:self.uniqueKey])
+    if ([cache hasDataForKey:self.uniqueKeyHash])
     {
-        [self finishLoadingWithData:[cache dataForKey:self.uniqueKey]];
+        [self finishLoadingWithData:[cache dataForKey:self.uniqueKeyHash]];
     }
     else
     {
@@ -78,9 +78,9 @@
         
         SVDiskCache *cache = [self.class diskCache];
         
-        if (![cache hasDataForKey:self.uniqueKey])
+        if (![cache hasDataForKey:self.uniqueKeyHash])
         {
-            [cache writeData:data forKey:self.uniqueKey];
+            [cache writeData:data forKey:self.uniqueKeyHash];
         }
     }
     else

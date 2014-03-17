@@ -36,12 +36,13 @@
 
 +(instancetype)cachedResourceWithUniqueKey:(NSString*)uniqueKey
 {
-    return [[self uniqueTable] objectForKey:uniqueKey];
+    return [[self uniqueTable] objectForKey:[self uniqueKeyHashForString:uniqueKey]];
 }
 
 +(instancetype)resourceWithUniqueKey:(NSString *)uniqueKey withInitializationBlock:(void (^)(id))block
 {
     NSMapTable *resourceTable = [self uniqueTable];
+    NSString *hash = [self uniqueKeyHashForString:uniqueKey];
     SVRemoteResource *resource = [resourceTable objectForKey:uniqueKey];
     
     if (!resource)
@@ -50,7 +51,7 @@
         
         if (resource)
         {
-            resource->_uniqueKey = uniqueKey;
+            resource->_uniqueKeyHash = hash;
             
             if (block)
             {
@@ -64,7 +65,7 @@
     return resource;
 }
 
-+(NSString*)uniqueKeyForString:(NSString *)string
++(NSString*)uniqueKeyHashForString:(NSString *)string
 {
     // why we're not using NSString hash -> https://gist.github.com/fphilipe/3413755
     // note that the class name is prefixed
