@@ -11,10 +11,16 @@
 @interface SVRemoteProxyResource : SVRemoteResource
 
 #pragma mark - Access
-+(instancetype)cachedResourceProxyingResource:(SVRemoteResource*)proxiedResource;
-+(instancetype)resourceProxyingResource:(SVRemoteResource*)proxiedResource;
++(instancetype)cachedResourceProxyingResource:(SVRemoteResource*)proxiedResource
+                            withAdditionalKey:(NSString*)additionalKey;
++(instancetype)resourceProxyingResource:(SVRemoteResource*)proxiedResource
+                      withAdditionalKey:(NSString*)additionalKey
+                    initializationBlock:(void(^)(id resource))initializationBlock;
 
 #pragma mark - Proxied Resource
-@property (nonatomic, readonly, strong) id proxiedResource;
+@property (nonatomic, readonly, strong) SVRemoteResource *proxiedResource;
+
+#pragma mark - Subclass Implementation
+-(void)parseFinishedProxiedResource:(id)proxiedResource error:(NSError**)error;
 
 @end
