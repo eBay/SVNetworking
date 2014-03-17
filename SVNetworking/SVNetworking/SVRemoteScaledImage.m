@@ -55,10 +55,14 @@
 }
 
 #pragma mark - Implementation
--(void)parseFinishedProxiedResource:(SVRemoteImage*)proxiedResource error:(NSError**)error
+-(void)parseFinishedProxiedResource:(id)proxiedResource
+                       withListener:(id<SVRemoteProxyResourceCompletionListener>)listener
 {
     // obviously, we need to actually scale here... some additions we can make for concurrency as well
     self.image = proxiedResource.image;
+    
+    // tell the listener we're done
+    [listener remoteProxyResourceFinished];
 }
 
 @end

@@ -8,6 +8,13 @@
 
 #import "SVRemoteResource.h"
 
+@protocol SVRemoteProxyResourceCompletionListener <NSObject>
+
+-(void)remoteProxyResourceFinished;
+-(void)remoteProxyResourceFailedToFinishWithError:(NSError*)error;
+
+@end
+
 /**
  SVRemoteProxyResource uses a second remote resource to load its data. Loading state and error state are propagated
  upwards from the proxied remote resource.
@@ -55,10 +62,14 @@
 
 #pragma mark - Subclass Implementation
 /**
- Subclasses must override this message to parse the loaded proxy object or set the error pointer.
+ Subclasses must override this message to parse the loaded proxy object.
+ 
+ Messages to the listener object may be passed synchronously or asynchronously, but they must be passed on the main
+ thread.
  
  The default implementation throws an exception.
  */
--(void)parseFinishedProxiedResource:(id)proxiedResource error:(NSError**)error;
+-(void)parseFinishedProxiedResource:(id)proxiedResource
+                       withListener:(id<SVRemoteProxyResourceCompletionListener>)listener;
 
 @end

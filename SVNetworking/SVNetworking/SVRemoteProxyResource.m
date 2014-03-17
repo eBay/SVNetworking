@@ -9,6 +9,10 @@
 #import "NSObject+SVBindings.h"
 #import "SVRemoteProxyResource.h"
 
+@interface SVRemoteProxyResource () <SVRemoteProxyResourceCompletionListener>
+
+@end
+
 @implementation SVRemoteProxyResource
 
 #pragma mark - Deallocation
@@ -57,17 +61,7 @@
 
 -(void)finishLoadingProxiedResource
 {
-    NSError *error = nil;
-    [self parseFinishedProxiedResource:_proxiedResource error:&error];
-    
-    if (error)
-    {
-        [self failLoadingWithError:error];
-    }
-    else
-    {
-        [self finishLoading];
-    }
+    [self parseFinishedProxiedResource:_proxiedResource withListener:self];
 }
 
 #pragma mark - KVO
@@ -106,9 +100,21 @@
 }
 
 #pragma mark - Subclass Implementation
--(void)parseFinishedProxiedResource:(id)proxiedResource error:(NSError**)error
+-(void)parseFinishedProxiedResource:(id)proxiedResource
+                       withListener:(id<SVRemoteProxyResourceCompletionListener>)listener
 {
     [self doesNotRecognizeSelector:_cmd];
+}
+
+#pragma mark - Remote Proxy Resource Completion Listener
+-(void)remoteProxyResourceFinished
+{
+    [self finishLoading];
+}
+
+-(void)remoteProxyResourceFailedToFinishWithError:(NSError *)error
+{
+    [self failLoadingWithError:error];
 }
 
 @end
