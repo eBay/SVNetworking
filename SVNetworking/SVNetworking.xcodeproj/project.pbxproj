@@ -32,6 +32,8 @@
 		41B38E3D18D7A1BB000064D3 /* SVRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 43D2A21A18D39438002CFE55 /* SVRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		41B38E3E18D7A1BB000064D3 /* SVFunctional.h in Headers */ = {isa = PBXBuildFile; fileRef = 43D2A22018D39485002CFE55 /* SVFunctional.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		41B38E3F18D7A1BB000064D3 /* SVNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 43D2A1F418D39363002CFE55 /* SVNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		430C17E418D8A78300070925 /* SVRemoteImageProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 430C17E318D8A77C00070925 /* SVRemoteImageProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		430C17E618D8A79100070925 /* SVRemoteScaledImageProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 430C17E518D8A79100070925 /* SVRemoteScaledImageProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43C9137118D8A0BB000718E7 /* SVRemoteProxyResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 43C9136F18D8A0BB000718E7 /* SVRemoteProxyResource.h */; };
 		43C9137218D8A0BB000718E7 /* SVRemoteProxyResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C9137018D8A0BB000718E7 /* SVRemoteProxyResource.m */; };
 		43D2A1F018D39363002CFE55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D2A1EF18D39363002CFE55 /* Foundation.framework */; };
@@ -77,6 +79,8 @@
 		41B38E2818D79C98000064D3 /* SVRemoteDataResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRemoteDataResource.m; sourceTree = "<group>"; };
 		41B38E2A18D79DA8000064D3 /* SVRemoteJSONResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRemoteJSONResource.h; sourceTree = "<group>"; };
 		41B38E2B18D79DA8000064D3 /* SVRemoteJSONResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRemoteJSONResource.m; sourceTree = "<group>"; };
+		430C17E318D8A77C00070925 /* SVRemoteImageProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVRemoteImageProtocol.h; sourceTree = "<group>"; };
+		430C17E518D8A79100070925 /* SVRemoteScaledImageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRemoteScaledImageProtocol.h; sourceTree = "<group>"; };
 		43C9136F18D8A0BB000718E7 /* SVRemoteProxyResource.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = SVRemoteProxyResource.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		43C9137018D8A0BB000718E7 /* SVRemoteProxyResource.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = SVRemoteProxyResource.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		43D2A1EC18D39363002CFE55 /* libSVNetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSVNetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,8 +168,10 @@
 		43C9136D18D8A07D000718E7 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				430C17E318D8A77C00070925 /* SVRemoteImageProtocol.h */,
 				43D2A22A18D3987C002CFE55 /* SVRemoteImage.h */,
 				43D2A22B18D3987C002CFE55 /* SVRemoteImage.m */,
+				430C17E518D8A79100070925 /* SVRemoteScaledImageProtocol.h */,
 				41B38E2218D7879A000064D3 /* SVRemoteScaledImage.h */,
 				41B38E2318D7879A000064D3 /* SVRemoteScaledImage.m */,
 			);
@@ -319,9 +325,11 @@
 				41B38E3C18D7A1BB000064D3 /* SVJSONRequest.h in Headers */,
 				41B38E3D18D7A1BB000064D3 /* SVRequest.h in Headers */,
 				41B38E3E18D7A1BB000064D3 /* SVFunctional.h in Headers */,
+				430C17E618D8A79100070925 /* SVRemoteScaledImageProtocol.h in Headers */,
 				41B38E3F18D7A1BB000064D3 /* SVNetworking.h in Headers */,
 				41B38E3718D7A1BB000064D3 /* SVRemoteDataRequestResource.h in Headers */,
 				41B38E3818D7A1BB000064D3 /* SVRemoteJSONRequestResource.h in Headers */,
+				430C17E418D8A78300070925 /* SVRemoteImageProtocol.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

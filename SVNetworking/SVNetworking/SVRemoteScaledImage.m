@@ -12,7 +12,8 @@
 @interface SVRemoteScaledImage ()
 
 @property (nonatomic) CGSize size;
-@property (nonatomic) NSURL *URL;
+@property (nonatomic) CGFloat scale;
+@property (nonatomic, strong) NSURL *URL;
 @property (nonatomic, strong) UIImage *image;
 
 @end
@@ -53,6 +54,7 @@
                       initializationBlock:^(SVRemoteScaledImage *resource) {
         resource.size = size;
         resource.URL = URL;
+        resource.scale = scale;
     }];
 }
 
