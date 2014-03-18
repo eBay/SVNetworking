@@ -4,4 +4,7 @@
    <FileRef
       location = "group:../SVNetworking/SVNetworking.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:ImageLoadingExample/ImageLoadingExample.xcodeproj">
+   </FileRef>
 </Workspace>
