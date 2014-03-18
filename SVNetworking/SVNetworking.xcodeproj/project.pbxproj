@@ -135,6 +135,48 @@
 			name = Bindings;
 			sourceTree = "<group>";
 		};
+		43C9136B18D8A05A000718E7 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				41B38E1218D756AA000064D3 /* SVRemoteDataRequestResource.h */,
+				41B38E1318D756AA000064D3 /* SVRemoteDataRequestResource.m */,
+				41B38E2718D79C98000064D3 /* SVRemoteDataResource.h */,
+				41B38E2818D79C98000064D3 /* SVRemoteDataResource.m */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		43C9136C18D8A068000718E7 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				41B38E1518D761C5000064D3 /* SVRemoteJSONRequestResource.h */,
+				41B38E1618D761C5000064D3 /* SVRemoteJSONRequestResource.m */,
+				41B38E2A18D79DA8000064D3 /* SVRemoteJSONResource.h */,
+				41B38E2B18D79DA8000064D3 /* SVRemoteJSONResource.m */,
+			);
+			name = JSON;
+			sourceTree = "<group>";
+		};
+		43C9136D18D8A07D000718E7 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				43D2A22A18D3987C002CFE55 /* SVRemoteImage.h */,
+				43D2A22B18D3987C002CFE55 /* SVRemoteImage.m */,
+				41B38E2218D7879A000064D3 /* SVRemoteScaledImage.h */,
+				41B38E2318D7879A000064D3 /* SVRemoteScaledImage.m */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		43C9136E18D8A08D000718E7 /* Proxy */ = {
+			isa = PBXGroup;
+			children = (
+				41B38E1F18D77DE0000064D3 /* SVRemoteRetainedProxyResource.h */,
+				41B38E2018D77DE0000064D3 /* SVRemoteRetainedProxyResource.m */,
+			);
+			name = Proxy;
+			sourceTree = "<group>";
+		};
 		43D2A1E318D39363002CFE55 = {
 			isa = PBXGroup;
 			children = (
@@ -229,26 +271,12 @@
 		43D2A22318D39536002CFE55 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				43D2A22A18D3987C002CFE55 /* SVRemoteImage.h */,
-				43D2A22B18D3987C002CFE55 /* SVRemoteImage.m */,
 				43D2A22718D39572002CFE55 /* SVRemoteResource.h */,
 				43D2A22818D39572002CFE55 /* SVRemoteResource.m */,
-				41B38E1218D756AA000064D3 /* SVRemoteDataRequestResource.h */,
-				41B38E1318D756AA000064D3 /* SVRemoteDataRequestResource.m */,
-				41B38E1518D761C5000064D3 /* SVRemoteJSONRequestResource.h */,
-				41B38E1618D761C5000064D3 /* SVRemoteJSONRequestResource.m */,
-				41B38E1F18D77DE0000064D3 /* SVRemoteRetainedProxyResource.h */,
-				41B38E2018D77DE0000064D3 /* SVRemoteRetainedProxyResource.m */,
-				41B38E2218D7879A000064D3 /* SVRemoteScaledImage.h */,
-				41B38E2318D7879A000064D3 /* SVRemoteScaledImage.m */,
-				41B38E1218D756AA000064D3 /* SVRemoteDataRequestResource.h */,
-				41B38E1318D756AA000064D3 /* SVRemoteDataRequestResource.m */,
-				41B38E1518D761C5000064D3 /* SVRemoteJSONRequestResource.h */,
-				41B38E1618D761C5000064D3 /* SVRemoteJSONRequestResource.m */,
-				41B38E2718D79C98000064D3 /* SVRemoteDataResource.h */,
-				41B38E2818D79C98000064D3 /* SVRemoteDataResource.m */,
-				41B38E2A18D79DA8000064D3 /* SVRemoteJSONResource.h */,
-				41B38E2B18D79DA8000064D3 /* SVRemoteJSONResource.m */,
+				43C9136B18D8A05A000718E7 /* Data */,
+				43C9136C18D8A068000718E7 /* JSON */,
+				43C9136D18D8A07D000718E7 /* Images */,
+				43C9136E18D8A08D000718E7 /* Proxy */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
