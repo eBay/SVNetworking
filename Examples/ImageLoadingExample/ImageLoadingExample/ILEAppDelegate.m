@@ -9,6 +9,7 @@
 #import "ILEAppDelegate.h"
 #import "ILEBasicViewController.h"
 #import "ILEScalingViewController.h"
+#import "ILETableViewController.h"
 
 @implementation ILEAppDelegate
 
@@ -24,8 +25,12 @@
     scaling.edgesForExtendedLayout = UIRectEdgeNone;
     scaling.tabBarItem.title = @"Scaling";
     
+    ILETableViewController *table = [ILETableViewController new];
+    table.edgesForExtendedLayout = UIRectEdgeNone;
+    table.tabBarItem.title = @"Table";
+    
     UITabBarController *tab = [UITabBarController new];
-    tab.viewControllers = @[basic, scaling];
+    tab.viewControllers = @[basic, scaling, table];
     
     self.window.rootViewController = tab;
     

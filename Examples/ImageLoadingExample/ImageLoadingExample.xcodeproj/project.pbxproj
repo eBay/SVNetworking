@@ -12,6 +12,8 @@
 		430C17ED18D8A9DB00070925 /* ILEBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 430C17EB18D8A9DB00070925 /* ILEBasicViewController.m */; };
 		430C17EE18D8A9DB00070925 /* ILEBasicViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 430C17EC18D8A9DB00070925 /* ILEBasicViewController.xib */; };
 		430C17F218D8AE8400070925 /* ILEScalingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 430C17F118D8AE8400070925 /* ILEScalingViewController.m */; };
+		430C17F518D8BCAE00070925 /* ILETableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 430C17F418D8BCAE00070925 /* ILETableViewController.m */; };
+		430C17F818D8BCBE00070925 /* ILERemoteImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 430C17F718D8BCBE00070925 /* ILERemoteImageTableViewCell.m */; };
 		43C913C418D8A66D000718E7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43C913C318D8A66D000718E7 /* Foundation.framework */; };
 		43C913C618D8A66D000718E7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43C913C518D8A66D000718E7 /* CoreGraphics.framework */; };
 		43C913C818D8A66D000718E7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43C913C718D8A66D000718E7 /* UIKit.framework */; };
@@ -45,6 +47,10 @@
 		430C17EC18D8A9DB00070925 /* ILEBasicViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ILEBasicViewController.xib; sourceTree = "<group>"; };
 		430C17F018D8AE8400070925 /* ILEScalingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILEScalingViewController.h; sourceTree = "<group>"; };
 		430C17F118D8AE8400070925 /* ILEScalingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILEScalingViewController.m; sourceTree = "<group>"; };
+		430C17F318D8BCAE00070925 /* ILETableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILETableViewController.h; sourceTree = "<group>"; };
+		430C17F418D8BCAE00070925 /* ILETableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILETableViewController.m; sourceTree = "<group>"; };
+		430C17F618D8BCBE00070925 /* ILERemoteImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILERemoteImageTableViewCell.h; sourceTree = "<group>"; };
+		430C17F718D8BCBE00070925 /* ILERemoteImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILERemoteImageTableViewCell.m; sourceTree = "<group>"; };
 		43C913C018D8A66D000718E7 /* ImageLoadingExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageLoadingExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43C913C318D8A66D000718E7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		43C913C518D8A66D000718E7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -131,6 +137,10 @@
 				430C17EC18D8A9DB00070925 /* ILEBasicViewController.xib */,
 				430C17F018D8AE8400070925 /* ILEScalingViewController.h */,
 				430C17F118D8AE8400070925 /* ILEScalingViewController.m */,
+				430C17F318D8BCAE00070925 /* ILETableViewController.h */,
+				430C17F418D8BCAE00070925 /* ILETableViewController.m */,
+				430C17F618D8BCBE00070925 /* ILERemoteImageTableViewCell.h */,
+				430C17F718D8BCBE00070925 /* ILERemoteImageTableViewCell.m */,
 				43C913D518D8A66D000718E7 /* Images.xcassets */,
 				43C913CA18D8A66D000718E7 /* Supporting Files */,
 			);
@@ -264,7 +274,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				43C913D018D8A66D000718E7 /* main.m in Sources */,
+				430C17F818D8BCBE00070925 /* ILERemoteImageTableViewCell.m in Sources */,
 				430C17F218D8AE8400070925 /* ILEScalingViewController.m in Sources */,
+				430C17F518D8BCAE00070925 /* ILETableViewController.m in Sources */,
 				430C17E918D8A8CC00070925 /* ILERemoteImageView.m in Sources */,
 				43C913D418D8A66D000718E7 /* ILEAppDelegate.m in Sources */,
 				430C17ED18D8A9DB00070925 /* ILEBasicViewController.m in Sources */,
