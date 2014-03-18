@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		430C17E218D8A6DF00070925 /* libSVNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 430C17E118D8A6DF00070925 /* libSVNetworking.a */; };
 		43C913C418D8A66D000718E7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43C913C318D8A66D000718E7 /* Foundation.framework */; };
 		43C913C618D8A66D000718E7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43C913C518D8A66D000718E7 /* CoreGraphics.framework */; };
 		43C913C818D8A66D000718E7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43C913C718D8A66D000718E7 /* UIKit.framework */; };
@@ -32,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		430C17E118D8A6DF00070925 /* libSVNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSVNetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		43C913C018D8A66D000718E7 /* ImageLoadingExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageLoadingExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43C913C318D8A66D000718E7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		43C913C518D8A66D000718E7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -55,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				430C17E218D8A6DF00070925 /* libSVNetworking.a in Frameworks */,
 				43C913C618D8A66D000718E7 /* CoreGraphics.framework in Frameworks */,
 				43C913C818D8A66D000718E7 /* UIKit.framework in Frameworks */,
 				43C913C418D8A66D000718E7 /* Foundation.framework in Frameworks */,
@@ -96,6 +99,7 @@
 		43C913C218D8A66D000718E7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				430C17E118D8A6DF00070925 /* libSVNetworking.a */,
 				43C913C318D8A66D000718E7 /* Foundation.framework */,
 				43C913C518D8A66D000718E7 /* CoreGraphics.framework */,
 				43C913C718D8A66D000718E7 /* UIKit.framework */,
@@ -363,6 +367,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ImageLoadingExample/ImageLoadingExample-Prefix.pch";
 				INFOPLIST_FILE = "ImageLoadingExample/ImageLoadingExample-Info.plist";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -376,6 +381,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ImageLoadingExample/ImageLoadingExample-Prefix.pch";
 				INFOPLIST_FILE = "ImageLoadingExample/ImageLoadingExample-Info.plist";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -440,6 +446,7 @@
 				43C913EE18D8A66D000718E7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		43C913EF18D8A66D000718E7 /* Build configuration list for PBXNativeTarget "ImageLoadingExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -448,6 +455,7 @@
 				43C913F118D8A66D000718E7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
