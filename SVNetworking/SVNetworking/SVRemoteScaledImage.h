@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "SVRemoteProxyResource.h"
+#import "SVRemoteRetainedProxyResource.h"
 
 /**
  SVRemoteScaledImage loads an image over the network from a URL, and scales it to fit within the specified size.
@@ -18,7 +18,7 @@
  Internally, the class proxies SVRemoteImage, so images are cached to disk once loaded, and will be loaded from the
  cache if available.
  */
-@interface SVRemoteScaledImage : SVRemoteProxyResource
+@interface SVRemoteScaledImage : SVRemoteRetainedProxyResource
 
 #pragma mark - Access
 /**

@@ -11,7 +11,7 @@
 		41B38E1718D761C5000064D3 /* SVRemoteJSONRequestResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B38E1618D761C5000064D3 /* SVRemoteJSONRequestResource.m */; };
 		41B38E1D18D7752E000064D3 /* NSObject+SVBindings.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B38E1A18D7752E000064D3 /* NSObject+SVBindings.m */; };
 		41B38E1E18D7752E000064D3 /* NSObject+SVMultibindings.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B38E1C18D7752E000064D3 /* NSObject+SVMultibindings.m */; };
-		41B38E2118D77DE0000064D3 /* SVRemoteProxyResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B38E2018D77DE0000064D3 /* SVRemoteProxyResource.m */; };
+		41B38E2118D77DE0000064D3 /* SVRemoteRetainedProxyResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B38E2018D77DE0000064D3 /* SVRemoteRetainedProxyResource.m */; };
 		41B38E2418D7879A000064D3 /* SVRemoteScaledImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B38E2318D7879A000064D3 /* SVRemoteScaledImage.m */; };
 		41B38E2918D79C98000064D3 /* SVRemoteDataResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B38E2818D79C98000064D3 /* SVRemoteDataResource.m */; };
 		41B38E2C18D79DA8000064D3 /* SVRemoteJSONResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B38E2B18D79DA8000064D3 /* SVRemoteJSONResource.m */; };
@@ -21,7 +21,7 @@
 		41B38E3118D7A1BB000064D3 /* SVRemoteImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 43D2A22A18D3987C002CFE55 /* SVRemoteImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		41B38E3218D7A1BB000064D3 /* SVRemoteResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 43D2A22718D39572002CFE55 /* SVRemoteResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		41B38E3318D7A1BB000064D3 /* SVRemoteDataRequestResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 41B38E1218D756AA000064D3 /* SVRemoteDataRequestResource.h */; };
-		41B38E3518D7A1BB000064D3 /* SVRemoteProxyResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 41B38E1F18D77DE0000064D3 /* SVRemoteProxyResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		41B38E3518D7A1BB000064D3 /* SVRemoteRetainedProxyResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 41B38E1F18D77DE0000064D3 /* SVRemoteRetainedProxyResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		41B38E3618D7A1BB000064D3 /* SVRemoteScaledImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 41B38E2218D7879A000064D3 /* SVRemoteScaledImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		41B38E3718D7A1BB000064D3 /* SVRemoteDataRequestResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 41B38E1218D756AA000064D3 /* SVRemoteDataRequestResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		41B38E3818D7A1BB000064D3 /* SVRemoteJSONRequestResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 41B38E1518D761C5000064D3 /* SVRemoteJSONRequestResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -67,8 +67,8 @@
 		41B38E1A18D7752E000064D3 /* NSObject+SVBindings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SVBindings.m"; sourceTree = "<group>"; };
 		41B38E1B18D7752E000064D3 /* NSObject+SVMultibindings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SVMultibindings.h"; sourceTree = "<group>"; };
 		41B38E1C18D7752E000064D3 /* NSObject+SVMultibindings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SVMultibindings.m"; sourceTree = "<group>"; };
-		41B38E1F18D77DE0000064D3 /* SVRemoteProxyResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRemoteProxyResource.h; sourceTree = "<group>"; };
-		41B38E2018D77DE0000064D3 /* SVRemoteProxyResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRemoteProxyResource.m; sourceTree = "<group>"; };
+		41B38E1F18D77DE0000064D3 /* SVRemoteRetainedProxyResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRemoteRetainedProxyResource.h; sourceTree = "<group>"; };
+		41B38E2018D77DE0000064D3 /* SVRemoteRetainedProxyResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRemoteRetainedProxyResource.m; sourceTree = "<group>"; };
 		41B38E2218D7879A000064D3 /* SVRemoteScaledImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRemoteScaledImage.h; sourceTree = "<group>"; };
 		41B38E2318D7879A000064D3 /* SVRemoteScaledImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRemoteScaledImage.m; sourceTree = "<group>"; };
 		41B38E2718D79C98000064D3 /* SVRemoteDataResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRemoteDataResource.h; sourceTree = "<group>"; };
@@ -237,8 +237,8 @@
 				41B38E1318D756AA000064D3 /* SVRemoteDataRequestResource.m */,
 				41B38E1518D761C5000064D3 /* SVRemoteJSONRequestResource.h */,
 				41B38E1618D761C5000064D3 /* SVRemoteJSONRequestResource.m */,
-				41B38E1F18D77DE0000064D3 /* SVRemoteProxyResource.h */,
-				41B38E2018D77DE0000064D3 /* SVRemoteProxyResource.m */,
+				41B38E1F18D77DE0000064D3 /* SVRemoteRetainedProxyResource.h */,
+				41B38E2018D77DE0000064D3 /* SVRemoteRetainedProxyResource.m */,
 				41B38E2218D7879A000064D3 /* SVRemoteScaledImage.h */,
 				41B38E2318D7879A000064D3 /* SVRemoteScaledImage.m */,
 				41B38E1218D756AA000064D3 /* SVRemoteDataRequestResource.h */,
@@ -276,7 +276,7 @@
 				41B38E3218D7A1BB000064D3 /* SVRemoteResource.h in Headers */,
 				41B38E3318D7A1BB000064D3 /* SVRemoteDataRequestResource.h in Headers */,
 				41B38E3818D7A1BB000064D3 /* SVRemoteJSONRequestResource.h in Headers */,
-				41B38E3518D7A1BB000064D3 /* SVRemoteProxyResource.h in Headers */,
+				41B38E3518D7A1BB000064D3 /* SVRemoteRetainedProxyResource.h in Headers */,
 				41B38E3618D7A1BB000064D3 /* SVRemoteScaledImage.h in Headers */,
 				41B38E3918D7A1BB000064D3 /* SVRemoteDataResource.h in Headers */,
 				41B38E3A18D7A1BB000064D3 /* SVRemoteJSONResource.h in Headers */,
@@ -382,7 +382,7 @@
 				43D2A22218D39485002CFE55 /* SVFunctional.m in Sources */,
 				41B38E1E18D7752E000064D3 /* NSObject+SVMultibindings.m in Sources */,
 				43D2A22C18D3987C002CFE55 /* SVRemoteImage.m in Sources */,
-				41B38E2118D77DE0000064D3 /* SVRemoteProxyResource.m in Sources */,
+				41B38E2118D77DE0000064D3 /* SVRemoteRetainedProxyResource.m in Sources */,
 				43D2A21D18D39438002CFE55 /* SVJSONRequest.m in Sources */,
 				43D2A22918D39572002CFE55 /* SVRemoteResource.m in Sources */,
 				41B38E2418D7879A000064D3 /* SVRemoteScaledImage.m in Sources */,

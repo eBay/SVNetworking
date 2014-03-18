@@ -7,13 +7,13 @@
 //
 
 #import "NSObject+SVBindings.h"
-#import "SVRemoteProxyResource.h"
+#import "SVRemoteRetainedProxyResource.h"
 
-@interface SVRemoteProxyResource () <SVRemoteProxyResourceCompletionListener>
+@interface SVRemoteRetainedProxyResource () <SVRemoteProxyResourceCompletionListener>
 
 @end
 
-@implementation SVRemoteProxyResource
+@implementation SVRemoteRetainedProxyResource
 
 #pragma mark - Deallocation
 -(void)dealloc
@@ -35,7 +35,7 @@
 {
     NSString *key = [NSString stringWithFormat:@"%@%@", proxiedResource.uniqueKeyHash, additionalKey];
     
-    return [self resourceWithUniqueKey:key withInitializationBlock:^(SVRemoteProxyResource *resource) {
+    return [self resourceWithUniqueKey:key withInitializationBlock:^(SVRemoteRetainedProxyResource *resource) {
         resource->_proxiedResource = proxiedResource;
         
         if (initializationBlock)

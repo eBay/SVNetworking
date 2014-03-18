@@ -19,7 +19,7 @@
  SVRemoteProxyResource uses a second remote resource to load its data. Loading state and error state are propagated
  upwards from the proxied remote resource.
  */
-@interface SVRemoteProxyResource : SVRemoteResource
+@interface SVRemoteRetainedProxyResource : SVRemoteResource
 
 #pragma mark - Access
 /**
