@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		430C17E218D8A6DF00070925 /* libSVNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 430C17E118D8A6DF00070925 /* libSVNetworking.a */; };
+		430C17E918D8A8CC00070925 /* ILERemoteImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 430C17E818D8A8CC00070925 /* ILERemoteImageView.m */; };
 		43C913C418D8A66D000718E7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43C913C318D8A66D000718E7 /* Foundation.framework */; };
 		43C913C618D8A66D000718E7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43C913C518D8A66D000718E7 /* CoreGraphics.framework */; };
 		43C913C818D8A66D000718E7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43C913C718D8A66D000718E7 /* UIKit.framework */; };
@@ -34,6 +35,8 @@
 
 /* Begin PBXFileReference section */
 		430C17E118D8A6DF00070925 /* libSVNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSVNetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		430C17E718D8A8CC00070925 /* ILERemoteImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILERemoteImageView.h; sourceTree = "<group>"; };
+		430C17E818D8A8CC00070925 /* ILERemoteImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILERemoteImageView.m; sourceTree = "<group>"; };
 		43C913C018D8A66D000718E7 /* ImageLoadingExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageLoadingExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43C913C318D8A66D000718E7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		43C913C518D8A66D000718E7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -113,6 +116,8 @@
 			children = (
 				43C913D218D8A66D000718E7 /* ILEAppDelegate.h */,
 				43C913D318D8A66D000718E7 /* ILEAppDelegate.m */,
+				430C17E718D8A8CC00070925 /* ILERemoteImageView.h */,
+				430C17E818D8A8CC00070925 /* ILERemoteImageView.m */,
 				43C913D518D8A66D000718E7 /* Images.xcassets */,
 				43C913CA18D8A66D000718E7 /* Supporting Files */,
 			);
@@ -245,6 +250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43C913D018D8A66D000718E7 /* main.m in Sources */,
+				430C17E918D8A8CC00070925 /* ILERemoteImageView.m in Sources */,
 				43C913D418D8A66D000718E7 /* ILEAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
