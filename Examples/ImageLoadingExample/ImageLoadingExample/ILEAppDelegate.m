@@ -8,15 +8,30 @@
 
 #import "ILEAppDelegate.h"
 #import "ILEBasicViewController.h"
+#import "ILEScalingViewController.h"
 
 @implementation ILEAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [ILEBasicViewController new];
+    
+    ILEBasicViewController *basic = [ILEBasicViewController new];
+    basic.edgesForExtendedLayout = UIRectEdgeNone;
+    basic.tabBarItem.title = @"Basic";
+    
+    ILEScalingViewController *scaling = [ILEScalingViewController new];
+    scaling.edgesForExtendedLayout = UIRectEdgeNone;
+    scaling.tabBarItem.title = @"Scaling";
+    
+    UITabBarController *tab = [UITabBarController new];
+    tab.viewControllers = @[basic, scaling];
+    
+    self.window.rootViewController = tab;
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
