@@ -48,6 +48,12 @@
  */
 @property (nonatomic, readonly) CGSize size;
 
+#pragma mark - URL
+/**
+ The image URL to load from.
+ */
+@property (nonatomic, readonly, strong) NSURL *URL;
+
 #pragma mark - Image
 /**
  The loaded image. This property is observable.
