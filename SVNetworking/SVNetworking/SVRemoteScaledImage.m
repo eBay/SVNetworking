@@ -74,7 +74,7 @@
         };
         
         // scale the image
-        UIGraphicsBeginImageContext(fitSize);
+        UIGraphicsBeginImageContextWithOptions(fitSize, NO, _scale);
         [image drawInRect:CGRectMake(0.0, 0.0, fitSize.width, fitSize.height)];
         UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
