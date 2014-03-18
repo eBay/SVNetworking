@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="5053"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ILEBasicViewController">
             <connections>
                 <outlet property="_bottomView" destination="PLU-BT-MWp" id="81t-Xu-GhC"/>
+                <outlet property="_scalingSwitch" destination="d3X-cp-HHp" id="esR-k0-78f"/>
                 <outlet property="_topView" destination="eUG-RJ-iEl" id="OxF-cA-TYH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -24,7 +25,20 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PLU-BT-MWp" customClass="ILERemoteImageView">
                     <rect key="frame" x="0.0" y="298" width="320" height="270"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <subviews>
+                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="d3X-cp-HHp">
+                            <rect key="frame" x="264" y="0.0" width="51" height="31"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <connections>
+                                <action selector="scalingSwitchAction:" destination="-1" eventType="valueChanged" id="BUJ-E4-0gN"/>
+                            </connections>
+                        </switch>
+                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="d3X-cp-HHp" secondAttribute="trailing" constant="7" id="2ET-VV-Zzf"/>
+                        <constraint firstItem="d3X-cp-HHp" firstAttribute="top" secondItem="PLU-BT-MWp" secondAttribute="top" id="nZ5-95-njm"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
