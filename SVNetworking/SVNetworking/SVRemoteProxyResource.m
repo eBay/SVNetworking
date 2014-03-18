@@ -1,88 +1,71 @@
 //
 //  SVRemoteProxyResource.m
-//  SVNetworking
+//  
 //
-//  Created by Nate Stedman on 3/17/14.
-//  Copyright (c) 2014 Svpply. All rights reserved.
+//  Created by Nate Stedman on 3/18/14.
+//
 //
 
-#import "NSObject+SVBindings.h"
 #import "SVRemoteProxyResource.h"
 
+@interface SVRemoteProxyResource () <SVRemoteProxyResourceCompletionListener>
+{
+@private
+    SVRemoteResource *_acquiredProxyResource;
+}
+
+@end
+
 @implementation SVRemoteProxyResource
-
-#pragma mark - Deallocation
--(void)dealloc
-{
-    [self sv_unbindAll];
-}
-
-#pragma mark - Access
-+(instancetype)cachedResourceProxyingResource:(SVRemoteResource*)proxiedResource
-                            withAdditionalKey:(NSString*)additionalKey
-{
-    NSString *key = [NSString stringWithFormat:@"%@%@", proxiedResource.uniqueKeyHash, additionalKey];
-    return [self cachedResourceWithUniqueKey:key];
-}
-
-+(instancetype)resourceProxyingResource:(SVRemoteResource*)proxiedResource
-                      withAdditionalKey:(NSString*)additionalKey
-                    initializationBlock:(void(^)(id resource))initializationBlock;
-{
-    NSString *key = [NSString stringWithFormat:@"%@%@", proxiedResource.uniqueKeyHash, additionalKey];
-    
-    return [self resourceWithUniqueKey:key withInitializationBlock:^(SVRemoteProxyResource *resource) {
-        resource->_proxiedResource = proxiedResource;
-        
-        if (initializationBlock)
-        {
-            initializationBlock(resource);
-        }
-    }];
-}
 
 #pragma mark - Loading
 -(void)beginLoading
 {
-    if (_proxiedResource.state == SVRemoteResourceStateFinished)
+    // acquire the resource, if necessary
+    if (!_acquiredProxyResource)
     {
+        _acquiredProxyResource = [self acquireProxiedResource];
+    }
+    
+    if (_acquiredProxyResource.state == SVRemoteResourceStateFinished)
+    {
+        // if the resource has already finished, we can proceed directly to completion
         [self finishLoadingProxiedResource];
+        _acquiredProxyResource = nil;
+    }
+    else if (_acquiredProxyResource.state == SVRemoteResourceStateError)
+    {
+        // if the resource has already failed, we can proceed direectly to failure
+        [self failLoadingWithError:_acquiredProxyResource.error];
+        _acquiredProxyResource = nil;
     }
     else
     {
-        [_proxiedResource addObserver:self forKeyPath:@"state" options:0 context:NULL];
-        [_proxiedResource beginLoading];
+        // otherwise, wait for state changes and begin loading
+        [_acquiredProxyResource addObserver:self forKeyPath:@"state" options:0 context:NULL];
+        [_acquiredProxyResource beginLoading];
     }
 }
 
 -(void)finishLoadingProxiedResource
 {
-    NSError *error = nil;
-    [self parseFinishedProxiedResource:_proxiedResource error:&error];
-    
-    if (error)
-    {
-        [self failLoadingWithError:error];
-    }
-    else
-    {
-        [self finishLoading];
-    }
+    [self parseFinishedProxiedResource:_acquiredProxyResource withListener:self];
 }
 
 #pragma mark - KVO
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if (object == _proxiedResource && [keyPath isEqualToString:@"state"])
+    if (object == _acquiredProxyResource && [keyPath isEqualToString:@"state"])
     {
-        switch (_proxiedResource.state)
+        switch (_acquiredProxyResource.state)
         {
             case SVRemoteResourceStateError:
                 // propagate the error to this resource
-                [self failLoadingWithError:_proxiedResource.error];
+                [self failLoadingWithError:_acquiredProxyResource.error];
                 
                 // clean up KVO
-                [_proxiedResource removeObserver:self forKeyPath:keyPath];
+                [_acquiredProxyResource removeObserver:self forKeyPath:keyPath];
+                _acquiredProxyResource = nil;
                 
                 break;
                 
@@ -91,10 +74,11 @@
                 [self finishLoadingProxiedResource];
                 
                 // clean up KVO
-                [_proxiedResource removeObserver:self forKeyPath:keyPath];
+                [_acquiredProxyResource removeObserver:self forKeyPath:keyPath];
+                _acquiredProxyResource = nil;
                 
                 break;
-            
+                
             default:
                 break;
         }
@@ -105,8 +89,26 @@
     }
 }
 
+#pragma mark - Remote Proxy Resource Completion Listener
+-(void)remoteProxyResourceFinished
+{
+    [self finishLoading];
+}
+
+-(void)remoteProxyResourceFailedToFinishWithError:(NSError *)error
+{
+    [self failLoadingWithError:error];
+}
+
 #pragma mark - Subclass Implementation
--(void)parseFinishedProxiedResource:(id)proxiedResource error:(NSError**)error
+-(SVRemoteResource*)acquireProxiedResource
+{
+    [self doesNotRecognizeSelector:_cmd];
+    return nil;
+}
+
+-(void)parseFinishedProxiedResource:(id)proxiedResource
+                       withListener:(id<SVRemoteProxyResourceCompletionListener>)listener
 {
     [self doesNotRecognizeSelector:_cmd];
 }

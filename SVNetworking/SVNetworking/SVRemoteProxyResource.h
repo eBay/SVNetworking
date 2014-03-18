@@ -1,64 +1,69 @@
 //
 //  SVRemoteProxyResource.h
-//  SVNetworking
+//  
 //
-//  Created by Nate Stedman on 3/17/14.
-//  Copyright (c) 2014 Svpply. All rights reserved.
+//  Created by Nate Stedman on 3/18/14.
+//
 //
 
 #import "SVRemoteResource.h"
 
 /**
+ Optionally asynchronous completion listener for SVRemoteProxyResource parsing.
+ 
+ All completion listener messages should be passed on the main thread.
+ */
+@protocol SVRemoteProxyResourceCompletionListener <NSObject>
+
+/**
+ If parsing succeeds, pass this message to the completion listener.
+ 
+ This message must be passed on the main thread.
+ */
+-(void)remoteProxyResourceFinished;
+
+/**
+ If parsing fails, pass this message to the completion listener with an appropriate error object.
+ 
+ This message must be passed on the main thread.
+ */
+-(void)remoteProxyResourceFailedToFinishWithError:(NSError*)error;
+
+@end
+
+/**
  SVRemoteProxyResource uses a second remote resource to load its data. Loading state and error state are propagated
  upwards from the proxied remote resource.
+ 
+ This direct subclasses of SVRemoteProxyResource will not automatically retain their
  */
 @interface SVRemoteProxyResource : SVRemoteResource
 
-#pragma mark - Access
-/**
- Retrieves a cached proxy remote resource with the given proxied resource and additional key, if one exists. Otherwise,
- returns nil.
- 
- The additional key is a key to uniquely identify the proxy resource, among all possible proxy resources of the class
- that proxy the specified inner resource. There is no need to include the proxied resource's unique key - it is
- automatically included.
- 
- Subclasses should provide their own accessors, as additional key generation for each remote proxy resource subclass
- should be an implementation detail of that class, and not externally visible.
- */
-+(instancetype)cachedResourceProxyingResource:(SVRemoteResource*)proxiedResource
-                            withAdditionalKey:(NSString*)additionalKey;
-
-/**
- Retrieves or creates a proxy remote resource with the given proxied resource and additional key. This message must be
- sent to the proxy resource subclass.
- 
- The additional key is a key to uniquely identify the proxy resource, among all possible proxy resources of the class
- that proxy the specified inner resource. There is no need to include the proxied resource's unique key - it is
- automatically included.
- 
- If the resource is created, it will be passed to the initialization block (for ivar initialization). Otherwise, it
- will be simply returned.
- 
- Subclasses should provide their own accessors, as additional key generation for each remote proxy resource subclass
- should be an implementation detail of that class, and not externally visible.
- */
-+(instancetype)resourceProxyingResource:(SVRemoteResource*)proxiedResource
-                      withAdditionalKey:(NSString*)additionalKey
-                    initializationBlock:(void(^)(id resource))initializationBlock;
-
-#pragma mark - Proxied Resource
-/**
- The proxied resource.
- */
-@property (nonatomic, readonly, strong) SVRemoteResource *proxiedResource;
-
 #pragma mark - Subclass Implementation
 /**
- Subclasses must override this message to parse the loaded proxy object or set the error pointer.
+ Subclasses must override this message to provide a resource to load and proxy.
+ 
+ It is not necessary to load the proxied resource - SVRemoteProxyResource will do this automatically.
+ 
+ The default implementation will retain the proxied resource while it is loading, then release it upon loading success
+ or failure. The proxied resource will be reacquired as is necessary for additional loading retry attempts.
+ 
+ SVRemoteRetainedProxyResource provides an implementation that specifies the resource to proxy at initialization time,
+ and returns it automatically.
  
  The default implementation throws an exception.
  */
--(void)parseFinishedProxiedResource:(id)proxiedResource error:(NSError**)error;
+-(SVRemoteResource*)acquireProxiedResource;
+
+/**
+ Subclasses must override this message to parse the loaded proxy object.
+ 
+ Messages to the listener object may be passed synchronously or asynchronously, but they must be passed on the main
+ thread.
+ 
+ The default implementation throws an exception.
+ */
+-(void)parseFinishedProxiedResource:(id)proxiedResource
+                       withListener:(id<SVRemoteProxyResourceCompletionListener>)listener;
 
 @end

@@ -12,6 +12,8 @@
 @interface SVRemoteScaledImage ()
 
 @property (nonatomic) CGSize size;
+@property (nonatomic) CGFloat scale;
+@property (nonatomic, strong) NSURL *URL;
 @property (nonatomic, strong) UIImage *image;
 
 @end
@@ -51,14 +53,47 @@
                         withAdditionalKey:NSStringFromCGSize(size)
                       initializationBlock:^(SVRemoteScaledImage *resource) {
         resource.size = size;
+        resource.URL = URL;
+        resource.scale = scale;
     }];
 }
 
 #pragma mark - Implementation
--(void)parseFinishedProxiedResource:(SVRemoteImage*)proxiedResource error:(NSError**)error
+-(void)parseFinishedProxiedResource:(SVRemoteImage*)proxiedResource
+                       withListener:(id<SVRemoteProxyResourceCompletionListener>)listener
 {
-    // obviously, we need to actually scale here... some additions we can make for concurrency as well
-    self.image = proxiedResource.image;
+    UIImage *image = proxiedResource.image;
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // calculate the correct image size to scale to
+        CGSize const imageSize = image.size;
+        CGFloat ratio = MIN(_size.width / imageSize.width, _size.height / imageSize.height);
+        CGSize fitSize = {
+            roundf(imageSize.width * ratio),
+            roundf(imageSize.height * ratio)
+        };
+        
+        // find out if the image has an alpha channel
+        CGImageAlphaInfo alpha = CGImageGetAlphaInfo(image.CGImage);
+        BOOL hasAlpha = alpha == kCGImageAlphaFirst ||
+                        alpha == kCGImageAlphaLast ||
+                        alpha == kCGImageAlphaPremultipliedFirst ||
+                        alpha == kCGImageAlphaPremultipliedLast;
+        
+        // scale the image
+        UIGraphicsBeginImageContextWithOptions(fitSize, !hasAlpha, _scale);
+        [image drawInRect:CGRectMake(0.0, 0.0, fitSize.width, fitSize.height)];
+        UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        // move back to the main thread for completion
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.image = scaledImage;
+            
+            // tell the listener we're done
+            [listener remoteProxyResourceFinished];
+        });
+    });
 }
 
 @end
