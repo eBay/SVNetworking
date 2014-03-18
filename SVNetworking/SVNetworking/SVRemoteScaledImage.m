@@ -73,8 +73,15 @@
             roundf(imageSize.height * ratio)
         };
         
+        // find out if the image has an alpha channel
+        CGImageAlphaInfo alpha = CGImageGetAlphaInfo(image.CGImage);
+        BOOL hasAlpha = alpha == kCGImageAlphaFirst ||
+                        alpha == kCGImageAlphaLast ||
+                        alpha == kCGImageAlphaPremultipliedFirst ||
+                        alpha == kCGImageAlphaPremultipliedLast;
+        
         // scale the image
-        UIGraphicsBeginImageContextWithOptions(fitSize, NO, _scale);
+        UIGraphicsBeginImageContextWithOptions(fitSize, !hasAlpha, _scale);
         [image drawInRect:CGRectMake(0.0, 0.0, fitSize.width, fitSize.height)];
         UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
