@@ -7,14 +7,14 @@
 //
 
 #import "ILEAppDelegate.h"
-#import "ILEViewController.h"
+#import "ILEBasicViewController.h"
 
 @implementation ILEAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [ILEViewController new];
+    self.window.rootViewController = [ILEBasicViewController new];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

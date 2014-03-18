@@ -9,9 +9,9 @@
 #import <SVNetworking/SVNetworking.h>
 
 #import "ILERemoteImageView.h"
-#import "ILEViewController.h"
+#import "ILEBasicViewController.h"
 
-@interface ILEViewController ()
+@interface ILEBasicViewController ()
 {
 @private
     IBOutlet ILERemoteImageView *_topView;
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation ILEViewController
+@implementation ILEBasicViewController
 
 -(void)viewDidLoad
 {

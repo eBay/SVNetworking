@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ILEViewController : UIViewController
+@interface ILEBasicViewController : UIViewController
 
 @end
