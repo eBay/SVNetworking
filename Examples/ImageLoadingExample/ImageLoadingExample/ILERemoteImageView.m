@@ -10,13 +10,30 @@
 
 @implementation ILERemoteImageView
 
+-(void)sharedInit
+{
+    [self sv_bind:@"image" toObject:self withKeyPath:@"remoteImage.image"];
+}
+
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    
+    if (self)
+    {
+        [self sharedInit];
+    }
+    
+    return self;
+}
+
 -(id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     
     if (self)
     {
-        [self sv_bind:@"image" toObject:self withKeyPath:@"remoteImage.image"];
+        [self sharedInit];
     }
     
     return self;
