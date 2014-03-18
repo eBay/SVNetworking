@@ -53,7 +53,9 @@
     bounds.size.height += rand() % (int)bounds.size.height;
     
     _imageView.frame = bounds;
-    _imageView.remoteImage = [SVRemoteScaledImage remoteScaledImageForURL:URL withSize:bounds.size];
+    _imageView.remoteImage = [SVRemoteScaledImage remoteScaledImageForURL:URL
+                                                                withScale:[UIScreen mainScreen].scale
+                                                                     size:bounds.size];
 }
 
 @end
