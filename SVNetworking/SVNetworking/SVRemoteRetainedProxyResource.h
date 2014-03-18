@@ -15,11 +15,13 @@
 
 @end
 
+#import "SVRemoteProxyResource.h"
+
 /**
  SVRemoteProxyResource uses a second remote resource to load its data. Loading state and error state are propagated
  upwards from the proxied remote resource.
  */
-@interface SVRemoteRetainedProxyResource : SVRemoteResource
+@interface SVRemoteRetainedProxyResource : SVRemoteProxyResource
 
 #pragma mark - Access
 /**
