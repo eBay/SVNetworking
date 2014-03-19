@@ -34,6 +34,8 @@
 		430C17E418D8A78300070925 /* SVRemoteImageProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 430C17E318D8A77C00070925 /* SVRemoteImageProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		430C17E618D8A79100070925 /* SVRemoteScaledImageProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 430C17E518D8A79100070925 /* SVRemoteScaledImageProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		430C17EF18D8AB2400070925 /* SVRemoteJSONRequestResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 41B38E1518D761C5000064D3 /* SVRemoteJSONRequestResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		430C17FE18DA0E2A00070925 /* SVImageScaler.h in Headers */ = {isa = PBXBuildFile; fileRef = 430C17FC18DA0E2A00070925 /* SVImageScaler.h */; };
+		430C17FF18DA0E2A00070925 /* SVImageScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 430C17FD18DA0E2A00070925 /* SVImageScaler.m */; };
 		43C9137118D8A0BB000718E7 /* SVRemoteProxyResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 43C9136F18D8A0BB000718E7 /* SVRemoteProxyResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43C9137218D8A0BB000718E7 /* SVRemoteProxyResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C9137018D8A0BB000718E7 /* SVRemoteProxyResource.m */; };
 		43D2A1F018D39363002CFE55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D2A1EF18D39363002CFE55 /* Foundation.framework */; };
@@ -81,6 +83,8 @@
 		41B38E2B18D79DA8000064D3 /* SVRemoteJSONResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRemoteJSONResource.m; sourceTree = "<group>"; };
 		430C17E318D8A77C00070925 /* SVRemoteImageProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVRemoteImageProtocol.h; sourceTree = "<group>"; };
 		430C17E518D8A79100070925 /* SVRemoteScaledImageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRemoteScaledImageProtocol.h; sourceTree = "<group>"; };
+		430C17FC18DA0E2A00070925 /* SVImageScaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVImageScaler.h; sourceTree = "<group>"; };
+		430C17FD18DA0E2A00070925 /* SVImageScaler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVImageScaler.m; sourceTree = "<group>"; };
 		43C9136F18D8A0BB000718E7 /* SVRemoteProxyResource.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = SVRemoteProxyResource.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		43C9137018D8A0BB000718E7 /* SVRemoteProxyResource.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = SVRemoteProxyResource.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		43D2A1EC18D39363002CFE55 /* libSVNetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSVNetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -174,6 +178,8 @@
 				430C17E518D8A79100070925 /* SVRemoteScaledImageProtocol.h */,
 				41B38E2218D7879A000064D3 /* SVRemoteScaledImage.h */,
 				41B38E2318D7879A000064D3 /* SVRemoteScaledImage.m */,
+				430C17FC18DA0E2A00070925 /* SVImageScaler.h */,
+				430C17FD18DA0E2A00070925 /* SVImageScaler.m */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -310,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				41B38E2E18D7A1BB000064D3 /* NSObject+SVBindings.h in Headers */,
+				430C17FE18DA0E2A00070925 /* SVImageScaler.h in Headers */,
 				41B38E2F18D7A1BB000064D3 /* NSObject+SVMultibindings.h in Headers */,
 				41B38E3018D7A1BB000064D3 /* SVDiskCache.h in Headers */,
 				41B38E3118D7A1BB000064D3 /* SVRemoteImage.h in Headers */,
@@ -417,6 +424,7 @@
 				43C9137218D8A0BB000718E7 /* SVRemoteProxyResource.m in Sources */,
 				43D2A21E18D39438002CFE55 /* SVRequest.m in Sources */,
 				43D2A21C18D39438002CFE55 /* SVDataRequest.m in Sources */,
+				430C17FF18DA0E2A00070925 /* SVImageScaler.m in Sources */,
 				43D2A23218D3AA6E002CFE55 /* SVDiskCache.m in Sources */,
 				41B38E2C18D79DA8000064D3 /* SVRemoteJSONResource.m in Sources */,
 				41B38E2918D79C98000064D3 /* SVRemoteDataResource.m in Sources */,

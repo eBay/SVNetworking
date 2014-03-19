@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Svpply. All rights reserved.
 //
 
+#import "SVImageScaler.h"
 #import "SVRemoteImage.h"
 #import "SVRemoteScaledImage.h"
 
@@ -64,36 +65,13 @@
 {
     UIImage *image = proxiedResource.image;
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        // calculate the correct image size to scale to
-        CGSize const imageSize = image.size;
-        CGFloat ratio = MIN(_size.width / imageSize.width, _size.height / imageSize.height);
-        CGSize fitSize = {
-            roundf(imageSize.width * ratio),
-            roundf(imageSize.height * ratio)
-        };
+    [SVImageScaler scaleImage:image toSize:_size withScale:_scale completion:^(UIImage *scaledImage) {
+        // assign image property
+        self.image = scaledImage;
         
-        // find out if the image has an alpha channel
-        CGImageAlphaInfo alpha = CGImageGetAlphaInfo(image.CGImage);
-        BOOL hasAlpha = alpha == kCGImageAlphaFirst ||
-                        alpha == kCGImageAlphaLast ||
-                        alpha == kCGImageAlphaPremultipliedFirst ||
-                        alpha == kCGImageAlphaPremultipliedLast;
-        
-        // scale the image
-        UIGraphicsBeginImageContextWithOptions(fitSize, !hasAlpha, _scale);
-        [image drawInRect:CGRectMake(0.0, 0.0, fitSize.width, fitSize.height)];
-        UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        
-        // move back to the main thread for completion
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.image = scaledImage;
-            
-            // tell the listener we're done
-            [listener remoteProxyResourceFinished];
-        });
-    });
+        // tell the listener we're done
+        [listener remoteProxyResourceFinished];
+    }];
 }
 
 @end
