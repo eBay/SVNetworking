@@ -51,6 +51,7 @@
     bounds.size.height /= 2;
     bounds.size.width += rand() % (int)bounds.size.width;
     bounds.size.height += rand() % (int)bounds.size.height;
+    bounds.size = CGSizeMake(round(bounds.size.width), round(bounds.size.height));
     
     _imageView.frame = bounds;
 }
