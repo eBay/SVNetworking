@@ -15,7 +15,7 @@
     UIActivityIndicatorView *_activityIndicatorView;
 }
 
-@property (nonatomic) BOOL loading;
+@property (nonatomic) BOOL activityIndicatorAnimating;
 @property (nonatomic) CGSize boundsSize;
 @property (nonatomic, strong) SVRemoteImage *remoteImage;
 
@@ -63,7 +63,7 @@
         [self sv_bind:@"image" toObject:self withKeyPath:@"remoteImage.image"];
         
         // bind loading indicator
-        [self sv_bind:@"loading" toObject:self withKeyPath:@"remoteImage.state" block:^id(id value) {
+        [self sv_bind:@"activityIndicatorAnimating" toObject:self withKeyPath:@"remoteImage.state" block:^id(id value) {
             return @([value intValue] == SVRemoteResourceStateLoading);
         }];
     }
@@ -89,11 +89,14 @@
     }
 }
 
--(void)setLoading:(BOOL)loading
+-(BOOL)activityIndicatorAnimating
 {
-    _loading = loading;
-    
-    if (_loading)
+    return _activityIndicatorView.isAnimating;
+}
+
+-(void)setActivityIndicatorAnimating:(BOOL)activityIndicatorAnimating
+{
+    if (activityIndicatorAnimating)
     {
         [_activityIndicatorView startAnimating];
     }
