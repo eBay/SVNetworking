@@ -1,3 +1,8 @@
+/**
+ A compile-time checker for key path generation. Goodbye, magic strings!
+ */
+#define SV_KEYPATH(object, path) ({ typedef __typeof(object.path) foo; @ #path; })
+
 typedef id(^SVBindingBlock)(id value);
 
 @interface NSObject (SVBindings)
