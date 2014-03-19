@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 Svpply. All rights reserved.
 //
 
-#import "ILERemoteImageView.h"
+#import "ILEScalingImageView.h"
 #import "ILEScalingViewController.h"
 
 @interface ILEScalingViewController ()
 {
 @private
     UIControl *_control;
-    ILERemoteImageView *_imageView;
+    ILEScalingImageView *_imageView;
 }
 
 @end
@@ -29,7 +29,7 @@
     [_control addTarget:self action:@selector(controlAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_control];
     
-    _imageView = [[ILERemoteImageView alloc] initWithFrame:_control.bounds];
+    _imageView = [[ILEScalingImageView alloc] initWithFrame:_control.bounds];
     _imageView.userInteractionEnabled = NO;
     _imageView.backgroundColor = [UIColor redColor];
     _imageView.contentMode = UIViewContentModeCenter;
@@ -40,12 +40,12 @@
 {
     [super viewDidLoad];
     [self controlAction];
+    
+    _imageView.URL = [NSURL URLWithString:@"http://s3-ec.buzzfed.com/static/2013-12/enhanced/webdr05/5/14/enhanced-buzz-19728-1386270926-14.jpg"];
 }
 
 -(void)controlAction
 {
-    NSURL *URL = [NSURL URLWithString:@"http://s3-ec.buzzfed.com/static/2013-12/enhanced/webdr05/5/14/enhanced-buzz-19728-1386270926-14.jpg"];
-    
     CGRect bounds = _control.bounds;
     bounds.size.width /= 2;
     bounds.size.height /= 2;
@@ -53,9 +53,6 @@
     bounds.size.height += rand() % (int)bounds.size.height;
     
     _imageView.frame = bounds;
-    _imageView.remoteImage = [SVRemoteScaledImage remoteScaledImageForURL:URL
-                                                                withScale:[UIScreen mainScreen].scale
-                                                                     size:bounds.size];
 }
 
 @end
