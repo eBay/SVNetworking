@@ -38,11 +38,11 @@
         CGFloat scale = [UIScreen mainScreen].scale;
         
         // bind the remote image
-        NSArray *pairs = @[SVMultibindPair(self, @"boundsSize"),
-                           SVMultibindPair(self, @"imageURL"),
-                           SVMultibindPair(self, @"retainFullSizedImage")];
+        NSArray *pairs = @[SVMultibindPair(self, SV_KEYPATH(self, boundsSize)),
+                           SVMultibindPair(self, SV_KEYPATH(self, imageURL)),
+                           SVMultibindPair(self, SV_KEYPATH(self, retainFullSizedImage))];
         
-        [self sv_multibind:@"remoteImage" toObjectAndKeyPathPairs:pairs withBlock:^id(SVMultibindArray *values) {
+        [self sv_multibind:SV_KEYPATH(self, remoteImage) toObjectAndKeyPathPairs:pairs withBlock:^id(SVMultibindArray *values) {
             // unpack values
             CGSize size = [values[0] CGSizeValue];
             NSURL *URL = values[1];
@@ -61,10 +61,10 @@
         }];
         
         // bind the image
-        [self sv_bind:@"image" toObject:self withKeyPath:@"remoteImage.image"];
+        [self sv_bind:SV_KEYPATH(self, image) toObject:self withKeyPath:SV_KEYPATH(self, remoteImage.image)];
         
         // bind loading indicator
-        [self sv_bind:@"activityIndicatorAnimating" toObject:self withKeyPath:@"remoteImage.state" block:^id(id value) {
+        [self sv_bind:SV_KEYPATH(self, activityIndicatorAnimating) toObject:self withKeyPath:SV_KEYPATH(self, remoteImage.state) block:^id(id value) {
             return @([value intValue] == SVRemoteResourceStateLoading);
         }];
     }
