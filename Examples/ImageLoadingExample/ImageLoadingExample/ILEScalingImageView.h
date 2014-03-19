@@ -10,6 +10,10 @@
 
 @interface ILEScalingImageView : UIImageView
 
+#pragma mark - Image URL
 @property (nonatomic, strong) NSURL *imageURL;
+
+#pragma mark - Full-Size Image Retention
+@property (nonatomic) BOOL retainFullSizedImage;
 
 @end

@@ -37,16 +37,21 @@
         CGFloat scale = [UIScreen mainScreen].scale;
         
         // bind the remote image
-        NSArray *pairs = @[SVMultibindPair(self, @"boundsSize"), SVMultibindPair(self, @"imageURL")];
+        NSArray *pairs = @[SVMultibindPair(self, @"boundsSize"),
+                           SVMultibindPair(self, @"imageURL"),
+                           SVMultibindPair(self, @"retainFullSizedImage")];
+        
         [self sv_multibind:@"remoteImage" toObjectAndKeyPathPairs:pairs withBlock:^id(SVMultibindArray *values) {
             // unpack values
             CGSize size = [values[0] CGSizeValue];
             NSURL *URL = values[1];
+            BOOL retainFullSizedImage = [values[2] boolValue];
             
             // transform to scaled image
             if (URL)
             {
-                return [[SVRemoteRetainedScaledImage remoteScaledImageForURL:URL withScale:scale size:size] autoload];
+                Class klass = retainFullSizedImage ? [SVRemoteRetainedScaledImage class] : [SVRemoteScaledImage class];
+                return [[klass remoteScaledImageForURL:URL withScale:scale size:size] autoload];
             }
             else
             {
