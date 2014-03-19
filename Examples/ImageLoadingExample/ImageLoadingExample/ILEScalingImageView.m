@@ -46,7 +46,7 @@
             // transform to scaled image
             if (URL)
             {
-                return [[SVRemoteScaledImage remoteScaledImageForURL:URL withScale:scale size:size] autoload];
+                return [[SVRemoteRetainedScaledImage remoteScaledImageForURL:URL withScale:scale size:size] autoload];
             }
             else
             {

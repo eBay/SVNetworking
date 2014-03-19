@@ -20,6 +20,6 @@
 #import "SVRemoteJSONResource.h"
 #import "SVRemoteProxyResource.h"
 #import "SVRemoteResource.h"
-#import "SVRemoteScaledImage.h"
+#import "SVRemoteRetainedScaledImage.h"
 #import "SVRemoteScaledImageProtocol.h"
 #import "SVRequest.h"

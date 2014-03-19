@@ -53,7 +53,7 @@
     ILERemoteImageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ILERemoteImageTableViewCell class])
                                                             forIndexPath:indexPath];
     
-    cell.remoteImage = [[SVRemoteScaledImage remoteScaledImageForURL:_corgis[indexPath.item]
+    cell.remoteImage = [[SVRemoteRetainedScaledImage remoteScaledImageForURL:_corgis[indexPath.item]
                                                            withScale:[UIScreen mainScreen].scale
                                                                 size:CGSizeMake(44, 44)] autoload];
     

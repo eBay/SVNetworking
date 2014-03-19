@@ -8,9 +8,9 @@
 
 #import "SVImageScaler.h"
 #import "SVRemoteImage.h"
-#import "SVRemoteScaledImage.h"
+#import "SVRemoteRetainedScaledImage.h"
 
-@interface SVRemoteScaledImage ()
+@interface SVRemoteRetainedScaledImage ()
 
 @property (nonatomic) CGSize size;
 @property (nonatomic) CGFloat scale;
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation SVRemoteScaledImage
+@implementation SVRemoteRetainedScaledImage
 
 #pragma mark - Access
 +(instancetype)cachedRemoteScaledImageForURL:(NSURL*)URL withSize:(CGSize)size
@@ -52,7 +52,7 @@
     
     return [self resourceProxyingResource:image
                         withAdditionalKey:NSStringFromCGSize(size)
-                      initializationBlock:^(SVRemoteScaledImage *resource) {
+                      initializationBlock:^(SVRemoteRetainedScaledImage *resource) {
         resource.size = size;
         resource.URL = URL;
         resource.scale = scale;
