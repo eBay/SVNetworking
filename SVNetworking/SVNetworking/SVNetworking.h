@@ -21,5 +21,6 @@
 #import "SVRemoteProxyResource.h"
 #import "SVRemoteResource.h"
 #import "SVRemoteRetainedScaledImage.h"
+#import "SVRemoteScaledImage.h"
 #import "SVRemoteScaledImageProtocol.h"
 #import "SVRequest.h"
