@@ -10,6 +10,6 @@
 
 @interface ILEScalingImageView : UIImageView
 
-@property (nonatomic, strong) NSURL *URL;
+@property (nonatomic, strong) NSURL *imageURL;
 
 @end

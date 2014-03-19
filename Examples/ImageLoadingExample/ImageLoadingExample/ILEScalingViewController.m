@@ -41,7 +41,7 @@
     [super viewDidLoad];
     [self controlAction];
     
-    _imageView.URL = [NSURL URLWithString:@"http://s3-ec.buzzfed.com/static/2013-12/enhanced/webdr05/5/14/enhanced-buzz-19728-1386270926-14.jpg"];
+    _imageView.imageURL = [NSURL URLWithString:@"http://s3-ec.buzzfed.com/static/2013-12/enhanced/webdr05/5/14/enhanced-buzz-19728-1386270926-14.jpg"];
 }
 
 -(void)controlAction
