@@ -16,4 +16,7 @@
 #pragma mark - Full-Size Image Retention
 @property (nonatomic) BOOL retainFullSizedImage;
 
+#pragma mark - Activity Indicator
+@property (nonatomic) UIActivityIndicatorViewStyle activityIndicatorViewStyle;
+
 @end

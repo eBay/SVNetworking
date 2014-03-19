@@ -89,6 +89,7 @@
     }
 }
 
+#pragma mark - Activity Indicator View
 -(BOOL)activityIndicatorAnimating
 {
     return _activityIndicatorView.isAnimating;
@@ -104,6 +105,16 @@
     {
         [_activityIndicatorView stopAnimating];
     }
+}
+
+-(UIActivityIndicatorViewStyle)activityIndicatorViewStyle
+{
+    return _activityIndicatorView.activityIndicatorViewStyle;
+}
+
+-(void)setActivityIndicatorViewStyle:(UIActivityIndicatorViewStyle)activityIndicatorViewStyle
+{
+    _activityIndicatorView.activityIndicatorViewStyle = activityIndicatorViewStyle;
 }
 
 @end
