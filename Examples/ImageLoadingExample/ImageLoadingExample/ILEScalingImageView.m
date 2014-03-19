@@ -10,7 +10,12 @@
 #import "ILEScalingImageView.h"
 
 @interface ILEScalingImageView ()
+{
+@private
+    UIActivityIndicatorView *_activityIndicatorView;
+}
 
+@property (nonatomic) BOOL loading;
 @property (nonatomic) CGSize boundsSize;
 @property (nonatomic, strong) SVRemoteImage *remoteImage;
 
@@ -24,6 +29,10 @@
     
     if (self)
     {
+        // add loading indicator
+        _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame:self.bounds];
+        [self addSubview:_activityIndicatorView];
+        
         // theoretically we should bind this too, to self.window.screen.scale, not sure if that all works with KVO
         CGFloat scale = [UIScreen mainScreen].scale;
         
@@ -47,6 +56,11 @@
         
         // bind the image
         [self sv_bind:@"image" toObject:self withKeyPath:@"remoteImage.image"];
+        
+        // bind loading indicator
+        [self sv_bind:@"loading" toObject:self withKeyPath:@"remoteImage.state" block:^id(id value) {
+            return @([value intValue] == SVRemoteResourceStateLoading);
+        }];
     }
     
     return self;
@@ -67,6 +81,20 @@
     if (!CGSizeEqualToSize(bounds.size, _boundsSize))
     {
         self.boundsSize = bounds.size;
+    }
+}
+
+-(void)setLoading:(BOOL)loading
+{
+    _loading = loading;
+    
+    if (_loading)
+    {
+        [_activityIndicatorView startAnimating];
+    }
+    else
+    {
+        [_activityIndicatorView stopAnimating];
     }
 }
 
