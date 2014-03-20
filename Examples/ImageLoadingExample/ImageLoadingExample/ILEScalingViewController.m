@@ -54,6 +54,13 @@
     bounds.size.height += rand() % (int)bounds.size.height;
     bounds.size = CGSizeMake(round(bounds.size.width), round(bounds.size.height));
     
+    UIViewContentMode modes[3] = {
+        UIViewContentModeTop,
+        UIViewContentModeCenter,
+        UIViewContentModeBottom
+    };
+    
+    _imageView.imageContentMode = modes[rand() % 3];
     _imageView.frame = bounds;
 }
 
