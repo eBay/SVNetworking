@@ -25,6 +25,9 @@
 
 -(void)sharedInit
 {
+    // default failure content mode is center
+    _failureImageContentMode = UIViewContentModeCenter;
+    
     // add loading indicator
     _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame:self.bounds];
     _activityIndicatorView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -73,6 +76,15 @@
         {
             return values[1]; // remote scaled image
         }
+    }];
+    
+    // bind content mode
+    pairs = @[SVMultibindPair(self, SV_KEYPATH(self, remoteImage.state)),
+              SVMultibindPair(self, SV_KEYPATH(self, failureImageContentMode))];
+    
+    [self sv_multibind:SV_KEYPATH(self, contentMode) toObjectAndKeyPathPairs:pairs withBlock:^id(SVMultibindArray *values) {
+        SVRemoteResourceState state = (SVRemoteResourceState)[values[0] intValue];
+        return state == SVRemoteResourceStateError ? values[1] : @(UIViewContentModeCenter);
     }];
     
     // bind loading indicator

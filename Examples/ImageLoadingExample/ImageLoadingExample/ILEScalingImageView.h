@@ -21,5 +21,6 @@
 
 #pragma mark - Failure Image
 @property (nonatomic, strong) UIImage *failureImage;
+@property (nonatomic) UIViewContentMode failureImageContentMode;
 
 @end
