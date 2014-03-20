@@ -32,6 +32,7 @@
         // add loading indicator
         _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame:self.bounds];
         _activityIndicatorView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
         [self addSubview:_activityIndicatorView];
         
         // theoretically we should bind this too, to self.window.screen.scale, not sure if that all works with KVO
