@@ -8,6 +8,7 @@
 
 #import "ILEAppDelegate.h"
 #import "ILEBasicViewController.h"
+#import "ILEFailureViewController.h"
 #import "ILEScalingViewController.h"
 #import "ILETableViewController.h"
 
@@ -29,8 +30,12 @@
     table.edgesForExtendedLayout = UIRectEdgeNone;
     table.tabBarItem.title = @"Table";
     
+    ILEFailureViewController *failure = [ILEFailureViewController new];
+    failure.edgesForExtendedLayout = UIRectEdgeNone;
+    failure.tabBarItem.title = @"Failure";
+    
     UITabBarController *tab = [UITabBarController new];
-    tab.viewControllers = @[basic, scaling, table];
+    tab.viewControllers = @[basic, scaling, table, failure];
     
     self.window.rootViewController = tab;
     

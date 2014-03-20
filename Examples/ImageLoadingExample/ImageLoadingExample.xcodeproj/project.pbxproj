@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4110270818DB57890030EE6F /* ILEFailureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4110270618DB57890030EE6F /* ILEFailureViewController.m */; };
+		4110270918DB57890030EE6F /* ILEFailureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4110270718DB57890030EE6F /* ILEFailureViewController.xib */; };
 		430C17E218D8A6DF00070925 /* libSVNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 430C17E118D8A6DF00070925 /* libSVNetworking.a */; };
 		430C17E918D8A8CC00070925 /* ILERemoteImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 430C17E818D8A8CC00070925 /* ILERemoteImageView.m */; };
 		430C17ED18D8A9DB00070925 /* ILEBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 430C17EB18D8A9DB00070925 /* ILEBasicViewController.m */; };
@@ -40,6 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4110270518DB57890030EE6F /* ILEFailureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILEFailureViewController.h; sourceTree = "<group>"; };
+		4110270618DB57890030EE6F /* ILEFailureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILEFailureViewController.m; sourceTree = "<group>"; };
+		4110270718DB57890030EE6F /* ILEFailureViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ILEFailureViewController.xib; sourceTree = "<group>"; };
 		430C17E118D8A6DF00070925 /* libSVNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSVNetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		430C17E718D8A8CC00070925 /* ILERemoteImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILERemoteImageView.h; sourceTree = "<group>"; };
 		430C17E818D8A8CC00070925 /* ILERemoteImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILERemoteImageView.m; sourceTree = "<group>"; };
@@ -146,6 +151,9 @@
 				430C17F418D8BCAE00070925 /* ILETableViewController.m */,
 				430C17F618D8BCBE00070925 /* ILERemoteImageTableViewCell.h */,
 				430C17F718D8BCBE00070925 /* ILERemoteImageTableViewCell.m */,
+				4110270518DB57890030EE6F /* ILEFailureViewController.h */,
+				4110270618DB57890030EE6F /* ILEFailureViewController.m */,
+				4110270718DB57890030EE6F /* ILEFailureViewController.xib */,
 				43C913D518D8A66D000718E7 /* Images.xcassets */,
 				43C913CA18D8A66D000718E7 /* Supporting Files */,
 			);
@@ -259,6 +267,7 @@
 			files = (
 				43C913CE18D8A66D000718E7 /* InfoPlist.strings in Resources */,
 				430C17EE18D8A9DB00070925 /* ILEBasicViewController.xib in Resources */,
+				4110270918DB57890030EE6F /* ILEFailureViewController.xib in Resources */,
 				43C913D618D8A66D000718E7 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,6 +294,7 @@
 				430C17F518D8BCAE00070925 /* ILETableViewController.m in Sources */,
 				430C17E918D8A8CC00070925 /* ILERemoteImageView.m in Sources */,
 				43C913D418D8A66D000718E7 /* ILEAppDelegate.m in Sources */,
+				4110270818DB57890030EE6F /* ILEFailureViewController.m in Sources */,
 				430C17ED18D8A9DB00070925 /* ILEBasicViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
