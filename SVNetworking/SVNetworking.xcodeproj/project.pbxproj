@@ -36,7 +36,7 @@
 		430C17EF18D8AB2400070925 /* SVRemoteJSONRequestResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 41B38E1518D761C5000064D3 /* SVRemoteJSONRequestResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		430C17FE18DA0E2A00070925 /* SVImageScaler.h in Headers */ = {isa = PBXBuildFile; fileRef = 430C17FC18DA0E2A00070925 /* SVImageScaler.h */; };
 		430C17FF18DA0E2A00070925 /* SVImageScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 430C17FD18DA0E2A00070925 /* SVImageScaler.m */; };
-		430C180218DA117800070925 /* SVRemoteScaledImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 430C180018DA117800070925 /* SVRemoteScaledImage.h */; };
+		430C180218DA117800070925 /* SVRemoteScaledImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 430C180018DA117800070925 /* SVRemoteScaledImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		430C180318DA117800070925 /* SVRemoteScaledImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 430C180118DA117800070925 /* SVRemoteScaledImage.m */; };
 		43C9137118D8A0BB000718E7 /* SVRemoteProxyResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 43C9136F18D8A0BB000718E7 /* SVRemoteProxyResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43C9137218D8A0BB000718E7 /* SVRemoteProxyResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C9137018D8A0BB000718E7 /* SVRemoteProxyResource.m */; };
