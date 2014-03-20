@@ -23,66 +23,84 @@
 
 @implementation ILEScalingImageView
 
+-(void)sharedInit
+{
+    // add loading indicator
+    _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame:self.bounds];
+    _activityIndicatorView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    _activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+    [self addSubview:_activityIndicatorView];
+    
+    // theoretically we should bind this too, to self.window.screen.scale, not sure if that all works with KVO
+    CGFloat scale = [UIScreen mainScreen].scale;
+    
+    // bind the remote image
+    NSArray *pairs = @[SVMultibindPair(self, SV_KEYPATH(self, boundsSize)),
+                       SVMultibindPair(self, SV_KEYPATH(self, imageURL)),
+                       SVMultibindPair(self, SV_KEYPATH(self, retainFullSizedImage))];
+    
+    [self sv_multibind:SV_KEYPATH(self, remoteImage) toObjectAndKeyPathPairs:pairs withBlock:^id(SVMultibindArray *values) {
+        // unpack values
+        CGSize size = [values[0] CGSizeValue];
+        NSURL *URL = values[1];
+        BOOL retainFullSizedImage = [values[2] boolValue];
+        
+        // transform to scaled image
+        if (URL)
+        {
+            Class klass = retainFullSizedImage ? [SVRemoteRetainedScaledImage class] : [SVRemoteScaledImage class];
+            return [[klass remoteScaledImageForURL:URL withScale:scale size:size] autoload];
+        }
+        else
+        {
+            return nil;
+        }
+    }];
+    
+    // bind the image
+    pairs = @[SVMultibindPair(self, SV_KEYPATH(self, remoteImage.state)),
+              SVMultibindPair(self, SV_KEYPATH(self, remoteImage.image)),
+              SVMultibindPair(self, SV_KEYPATH(self, failureImage))];
+    
+    [self sv_multibind:SV_KEYPATH(self, image) toObjectAndKeyPathPairs:pairs withBlock:^id(SVMultibindArray *values) {
+        SVRemoteResourceState state = (SVRemoteResourceState)[values[0] intValue];
+        
+        if (state == SVRemoteResourceStateError)
+        {
+            NSLog(@"%@", values[2]);
+            return values[2]; // failure image
+        }
+        else
+        {
+            return values[1]; // remote scaled image
+        }
+    }];
+    
+    // bind loading indicator
+    [self sv_bind:SV_KEYPATH(self, activityIndicatorAnimating) toObject:self withKeyPath:SV_KEYPATH(self, remoteImage.state) block:^id(id value) {
+        return @([value intValue] == SVRemoteResourceStateLoading);
+    }];
+}
+
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    
+    if (self)
+    {
+        [self sharedInit];
+    }
+    
+    return self;
+}
+
 -(id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     
     if (self)
     {
-        // add loading indicator
-        _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame:self.bounds];
-        _activityIndicatorView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        _activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-        [self addSubview:_activityIndicatorView];
-        
-        // theoretically we should bind this too, to self.window.screen.scale, not sure if that all works with KVO
-        CGFloat scale = [UIScreen mainScreen].scale;
-        
-        // bind the remote image
-        NSArray *pairs = @[SVMultibindPair(self, SV_KEYPATH(self, boundsSize)),
-                           SVMultibindPair(self, SV_KEYPATH(self, imageURL)),
-                           SVMultibindPair(self, SV_KEYPATH(self, retainFullSizedImage))];
-        
-        [self sv_multibind:SV_KEYPATH(self, remoteImage) toObjectAndKeyPathPairs:pairs withBlock:^id(SVMultibindArray *values) {
-            // unpack values
-            CGSize size = [values[0] CGSizeValue];
-            NSURL *URL = values[1];
-            BOOL retainFullSizedImage = [values[2] boolValue];
-            
-            // transform to scaled image
-            if (URL)
-            {
-                Class klass = retainFullSizedImage ? [SVRemoteRetainedScaledImage class] : [SVRemoteScaledImage class];
-                return [[klass remoteScaledImageForURL:URL withScale:scale size:size] autoload];
-            }
-            else
-            {
-                return nil;
-            }
-        }];
-        
-        // bind the image
-        pairs = @[SVMultibindPair(self, SV_KEYPATH(self, remoteImage.state)),
-                  SVMultibindPair(self, SV_KEYPATH(self, remoteImage.image)),
-                  SVMultibindPair(self, SV_KEYPATH(self, failureImage))];
-        
-        [self sv_multibind:SV_KEYPATH(self, image) toObjectAndKeyPathPairs:pairs withBlock:^id(SVMultibindArray *values) {
-            SVRemoteResourceState state = (SVRemoteResourceState)[values[0] intValue];
-            
-            if (state == SVRemoteResourceStateError)
-            {
-                return values[2]; // failure image
-            }
-            else
-            {
-                return values[1]; // remote scaled image
-            }
-        }];
-        
-        // bind loading indicator
-        [self sv_bind:SV_KEYPATH(self, activityIndicatorAnimating) toObject:self withKeyPath:SV_KEYPATH(self, remoteImage.state) block:^id(id value) {
-            return @([value intValue] == SVRemoteResourceStateLoading);
-        }];
+        [self sharedInit];
     }
     
     return self;
