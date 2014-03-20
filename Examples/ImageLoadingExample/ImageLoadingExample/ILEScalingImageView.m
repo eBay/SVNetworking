@@ -67,7 +67,6 @@
         
         if (state == SVRemoteResourceStateError)
         {
-            NSLog(@"%@", values[2]);
             return values[2]; // failure image
         }
         else
