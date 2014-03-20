@@ -18,6 +18,14 @@
 
 @implementation SVRemoteProxyResource
 
+-(void)dealloc
+{
+    if (_acquiredProxyResource)
+    {
+        [_acquiredProxyResource removeObserver:self forKeyPath:@"state"];
+    }
+}
+
 #pragma mark - Loading
 -(void)beginLoading
 {
