@@ -22,6 +22,14 @@
  */
 @property (nonatomic, strong) NSURL *imageURL;
 
+#pragma mark - Image Content Mode
+/**
+ The content mode that should be used for displaying successfully loaded remote images
+ 
+ Defaults to UIViewContentModeCenter.
+ */
+@property (nonatomic) UIViewContentMode imageContentMode;
+
 #pragma mark - Full-Size Image Retention
 /**
  If YES, SVRemoteRetainedScaledImage will be used to load images. Otherwise, SVRemoteScaledImage will be used.

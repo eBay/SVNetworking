@@ -25,7 +25,8 @@
 
 -(void)sharedInit
 {
-    // default failure content mode is center
+    // default content mode is center
+    _imageContentMode = UIViewContentModeCenter;
     _failureImageContentMode = UIViewContentModeCenter;
     
     // add loading indicator
@@ -80,11 +81,12 @@
     
     // bind content mode
     pairs = @[SVMultibindPair(self, SV_KEYPATH(self, remoteImage.state)),
+              SVMultibindPair(self, SV_KEYPATH(self, imageContentMode)),
               SVMultibindPair(self, SV_KEYPATH(self, failureImageContentMode))];
     
     [self sv_multibind:SV_KEYPATH(self, contentMode) toObjectAndKeyPathPairs:pairs withBlock:^id(SVMultibindArray *values) {
         SVRemoteResourceState state = (SVRemoteResourceState)[values[0] intValue];
-        return state == SVRemoteResourceStateError ? values[1] : @(UIViewContentModeCenter);
+        return values[state == SVRemoteResourceStateError ? 2 : 1];
     }];
     
     // bind loading indicator
