@@ -55,12 +55,12 @@
 
 @end
 
-@interface MBBindingPair : NSObject
+@interface SVMultibindingPair : NSObject
 @property (readwrite, unsafe_unretained) id object;
 @property (readwrite, strong) NSString* keyPath;
 @end
 
-@implementation MBBindingPair
+@implementation SVMultibindingPair
 
 -(NSString*)description
 {
@@ -71,13 +71,13 @@
 
 id SVMultibindPair(id object, NSString* keyPath)
 {
-    MBBindingPair* pair = [MBBindingPair new];
+    SVMultibindingPair* pair = [SVMultibindingPair new];
     pair.object = object;
     pair.keyPath = [keyPath copy];
     return pair;
 }
 
-@interface MBBinding : NSObject
+@interface SVMultibinding : NSObject
 {
 @private
     __unsafe_unretained id object;
@@ -90,7 +90,7 @@ id SVMultibindPair(id object, NSString* keyPath)
 
 @end
 
-@implementation MBBinding
+@implementation SVMultibinding
 
 -(id)initWithTargetObject:(id)_object keyPath:(NSString*)_keyPath pairs:(NSArray*)_pairs block:(SVMultibindBlock)_block
 {
@@ -103,7 +103,7 @@ id SVMultibindPair(id object, NSString* keyPath)
         keyPath = [_keyPath copy];
         block = [_block copy];
         
-        for (MBBindingPair* pair in pairs)
+        for (SVMultibindingPair* pair in pairs)
         {
             [pair.object addObserver:self forKeyPath:pair.keyPath options:0 context:NULL];
         }
@@ -116,7 +116,7 @@ id SVMultibindPair(id object, NSString* keyPath)
 
 -(void)dealloc
 {
-    for (MBBindingPair* pair in pairs)
+    for (SVMultibindingPair* pair in pairs)
     {
         [pair.object removeObserver:self forKeyPath:pair.keyPath];
     }
@@ -129,7 +129,7 @@ id SVMultibindPair(id object, NSString* keyPath)
     
     for (NSUInteger i = 0; i < count; i++)
     {
-        MBBindingPair* pair = pairs[i];
+        SVMultibindingPair* pair = pairs[i];
         values[i] = [pair.object valueForKeyPath:pair.keyPath];
     }
     
@@ -152,7 +152,7 @@ static char MBAssociatedKey;
         objc_setAssociatedObject(self, &MBAssociatedKey, bindings, OBJC_ASSOCIATION_RETAIN);
     }
     
-    MBBinding* binding = [[MBBinding alloc] initWithTargetObject:self keyPath:keyPath pairs:pairs block:block];
+    SVMultibinding* binding = [[SVMultibinding alloc] initWithTargetObject:self keyPath:keyPath pairs:pairs block:block];
     bindings[keyPath] = binding;
 }
 
