@@ -6,7 +6,8 @@
 //  Copyright (c) 2014 Svpply. All rights reserved.
 //
 
-#import "SVImageView.h"
+#import <SVNetworking/SVNetworking.h>
+
 #import "ILEScalingViewController.h"
 
 @interface ILEScalingViewController ()

@@ -6,8 +6,9 @@
 //  Copyright (c) 2014 Svpply. All rights reserved.
 //
 
+#import <SVNetworking/SVNetworking.h>
+
 #import "ILEFailureViewController.h"
-#import "SVImageView.h"
 
 @interface ILEFailureViewController ()
 {

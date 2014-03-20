@@ -11,6 +11,7 @@
 #import "SVDataRequest.h"
 #import "SVDiskCache.h"
 #import "SVFunctional.h"
+#import "SVImageView.h"
 #import "SVJSONRequest.h"
 #import "SVRemoteImage.h"
 #import "SVRemoteImageProtocol.h"
