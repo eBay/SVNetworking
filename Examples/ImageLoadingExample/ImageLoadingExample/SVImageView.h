@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ILEScalingImageView : UIImageView
+@interface SVImageView : UIImageView
 
 #pragma mark - Image URL
 @property (nonatomic, strong) NSURL *imageURL;

@@ -7,9 +7,9 @@
 //
 
 #import <SVNetworking/SVNetworking.h>
-#import "ILEScalingImageView.h"
+#import "SVImageView.h"
 
-@interface ILEScalingImageView ()
+@interface SVImageView ()
 {
 @private
     UIActivityIndicatorView *_activityIndicatorView;
@@ -21,7 +21,7 @@
 
 @end
 
-@implementation ILEScalingImageView
+@implementation SVImageView
 
 -(void)sharedInit
 {

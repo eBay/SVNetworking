@@ -7,12 +7,12 @@
 //
 
 #import "ILEFailureViewController.h"
-#import "ILEScalingImageView.h"
+#import "SVImageView.h"
 
 @interface ILEFailureViewController ()
 {
 @private
-    IBOutlet ILEScalingImageView *_scalingImageView;
+    IBOutlet SVImageView *_scalingImageView;
 }
 
 @end

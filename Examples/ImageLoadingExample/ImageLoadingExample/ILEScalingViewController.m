@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 Svpply. All rights reserved.
 //
 
-#import "ILEScalingImageView.h"
+#import "SVImageView.h"
 #import "ILEScalingViewController.h"
 
 @interface ILEScalingViewController ()
 {
 @private
     UIControl *_control;
-    ILEScalingImageView *_imageView;
+    SVImageView *_imageView;
 }
 
 @end
@@ -29,7 +29,7 @@
     [_control addTarget:self action:@selector(controlAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_control];
     
-    _imageView = [[ILEScalingImageView alloc] initWithFrame:_control.bounds];
+    _imageView = [[SVImageView alloc] initWithFrame:_control.bounds];
     _imageView.userInteractionEnabled = NO;
     _imageView.backgroundColor = [UIColor redColor];
     _imageView.contentMode = UIViewContentModeCenter;
