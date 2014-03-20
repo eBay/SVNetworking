@@ -19,4 +19,7 @@
 #pragma mark - Activity Indicator
 @property (nonatomic) UIActivityIndicatorViewStyle activityIndicatorViewStyle;
 
+#pragma mark - Failure Image
+@property (nonatomic, strong) UIImage *failureImage;
+
 @end

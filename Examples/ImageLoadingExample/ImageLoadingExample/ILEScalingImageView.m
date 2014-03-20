@@ -62,7 +62,22 @@
         }];
         
         // bind the image
-        [self sv_bind:SV_KEYPATH(self, image) toObject:self withKeyPath:SV_KEYPATH(self, remoteImage.image)];
+        pairs = @[SVMultibindPair(self, SV_KEYPATH(self, remoteImage.state)),
+                  SVMultibindPair(self, SV_KEYPATH(self, remoteImage.image)),
+                  SVMultibindPair(self, SV_KEYPATH(self, failureImage))];
+        
+        [self sv_multibind:SV_KEYPATH(self, image) toObjectAndKeyPathPairs:pairs withBlock:^id(SVMultibindArray *values) {
+            SVRemoteResourceState state = (SVRemoteResourceState)[values[0] intValue];
+            
+            if (state == SVRemoteResourceStateError)
+            {
+                return values[2]; // failure image
+            }
+            else
+            {
+                return values[1]; // remote scaled image
+            }
+        }];
         
         // bind loading indicator
         [self sv_bind:SV_KEYPATH(self, activityIndicatorAnimating) toObject:self withKeyPath:SV_KEYPATH(self, remoteImage.state) block:^id(id value) {
