@@ -8,6 +8,13 @@ typedef enum
     SVRequestMethodDELETE
 } SVRequestMethod;
 
+@protocol SVRequestNetworkActivityIndicatorDelegate <NSObject>
+
++(void)increaseNetworkActivityIndicatorCount;
++(void)decreaseNetworkActivityIndicatorCount;
+
+@end
+
 FOUNDATION_EXTERN NSString* SVStringForRequestMethod(SVRequestMethod method);
 
 @class SVRequest;
@@ -64,10 +71,8 @@ FOUNDATION_EXTERN NSString* SVStringForRequestMethod(SVRequestMethod method);
 -(NSMutableURLRequest*)constructRequest;
 -(void)handleCompletionWithData:(NSData*)data response:(NSHTTPURLResponse*)response;
 
-#if TARGET_OS_IPHONE
-#pragma mark - Spinner
-+(void)showNetworkActivityIndicator;
-+(void)hideNetworkActivityIndicator;
-#endif
+#pragma mark - Network Activity Indicator Delegate
++(id<SVRequestNetworkActivityIndicatorDelegate>)networkActivityIndicatorDelegate;
++(void)setNetworkActivityIndicatorDelegate:(id<SVRequestNetworkActivityIndicatorDelegate>)delegate;
 
 @end

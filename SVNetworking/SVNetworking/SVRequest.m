@@ -108,9 +108,7 @@ static NSString* SVURLEncode(NSString* string)
 #pragma mark - Sending
 -(void)start
 {
-#if TARGET_OS_IPHONE
-    [self.class showNetworkActivityIndicator];
-#endif
+    [[self.class networkActivityIndicatorDelegate] increaseNetworkActivityIndicatorCount];
     
     if (NSClassFromString(@"NSURLSession") && NO)
     {
@@ -135,9 +133,7 @@ static NSString* SVURLEncode(NSString* string)
         _connection = nil;
         _data = nil;
         
-        #if TARGET_OS_IPHONE
-        [self.class hideNetworkActivityIndicator];
-        #endif
+        [[self.class networkActivityIndicatorDelegate] decreaseNetworkActivityIndicatorCount];
     }
     else if (_sessionTask)
     {
@@ -191,9 +187,8 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
     [self handleCompletionWithData:_data response:_response];
     _connection = nil;
     
-#if TARGET_OS_IPHONE
-    [self.class hideNetworkActivityIndicator];
-#endif
+    [[self.class networkActivityIndicatorDelegate] increaseNetworkActivityIndicatorCount];
+    
     if (_delegate) CFRelease((__bridge CFTypeRef)_delegate);
 }
 
@@ -202,9 +197,7 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
     [_delegate request:self failedWithError:error];
     _connection = nil;
     
-#if TARGET_OS_IPHONE
-    [self.class hideNetworkActivityIndicator];
-#endif
+    [[self.class networkActivityIndicatorDelegate] increaseNetworkActivityIndicatorCount];
 }
 
 #pragma mark - Subclass Implementation
@@ -269,29 +262,18 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
     [self doesNotRecognizeSelector:_cmd];
 }
 
-#if TARGET_OS_IPHONE
-#pragma mark - Spinner
-static NSInteger spinnerCount = 0;
-+(void)showNetworkActivityIndicator
+#pragma mark - Network Activity Indicator Delegate
+static id<SVRequestNetworkActivityIndicatorDelegate> SVRequestRequestNetworkActivityIndicatorDelegate = nil;
+
++(id<SVRequestNetworkActivityIndicatorDelegate>)networkActivityIndicatorDelegate
 {
-    if (spinnerCount == 0)
-    {
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    }
-    
-    spinnerCount++;
+    return SVRequestRequestNetworkActivityIndicatorDelegate;
 }
 
-+(void)hideNetworkActivityIndicator
++(void)setNetworkActivityIndicatorDelegate:(id<SVRequestNetworkActivityIndicatorDelegate>)delegate
 {
-    spinnerCount--;
-    
-    if (spinnerCount == 0)
-    {
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    }
+    SVRequestRequestNetworkActivityIndicatorDelegate = delegate;
 }
-#endif
 
 @end
 
