@@ -125,16 +125,20 @@ id SVMultibindPair(id object, NSString* keyPath)
 -(void)observeValueForKeyPath:(NSString*)path ofObject:(id)obj change:(NSDictionary*)change context:(void*)context
 {
     NSUInteger count = pairs.count;
-    __autoreleasing id values[count];
     
-    for (NSUInteger i = 0; i < count; i++)
+    if (count > 0)
     {
-        SVMultibindingPair* pair = pairs[i];
-        values[i] = [pair.object valueForKeyPath:pair.keyPath];
+        __autoreleasing id values[count];
+        
+        for (NSUInteger i = 0; i < count; i++)
+        {
+            SVMultibindingPair* pair = pairs[i];
+            values[i] = [pair.object valueForKeyPath:pair.keyPath];
+        }
+        
+        SVMultibindArray* array = [SVMultibindArray arrayWithValues:values count:count];
+        [object setValue:block(array) forKeyPath:keyPath];
     }
-    
-    SVMultibindArray* array = [SVMultibindArray arrayWithValues:values count:count];
-    [object setValue:block(array) forKeyPath:keyPath];
 }
 
 @end
