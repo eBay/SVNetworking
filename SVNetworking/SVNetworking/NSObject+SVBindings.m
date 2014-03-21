@@ -16,7 +16,7 @@
     SVBindingBlock _block;
 }
 
--(id)initWithObject:(id)object
+-(instancetype)initWithObject:(id)object
             keyPath:(NSString*)keyPath
             boundTo:(id)boundObject
             keyPath:(NSString*)boundKeyPath
@@ -26,7 +26,7 @@
 
 @implementation SVBindingInternal
 
--(id)initWithObject:(id)object
+-(instancetype)initWithObject:(id)object
             keyPath:(NSString*)keyPath
             boundTo:(id)boundObject
             keyPath:(NSString*)boundKeyPath

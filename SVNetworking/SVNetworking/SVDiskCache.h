@@ -2,7 +2,7 @@
 
 @interface SVDiskCache : NSObject
 
--(id)initWithPath:(NSString*)path;
+-(instancetype)initWithPath:(NSString*)path;
 
 -(NSData*)dataForKey:(NSString*)key;
 -(void)writeData:(NSData*)data forKey:(NSString*)key;
