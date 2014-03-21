@@ -23,9 +23,9 @@
     // find out if the image has an alpha channel
     CGImageAlphaInfo alpha = CGImageGetAlphaInfo(image.CGImage);
     BOOL hasAlpha = alpha == kCGImageAlphaFirst ||
-    alpha == kCGImageAlphaLast ||
-    alpha == kCGImageAlphaPremultipliedFirst ||
-    alpha == kCGImageAlphaPremultipliedLast;
+                    alpha == kCGImageAlphaLast ||
+                    alpha == kCGImageAlphaPremultipliedFirst ||
+                    alpha == kCGImageAlphaPremultipliedLast;
     
     // scale the image
     UIGraphicsBeginImageContextWithOptions(fitSize, !hasAlpha, scale);
