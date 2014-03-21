@@ -10,8 +10,8 @@ typedef enum
 
 @protocol SVRequestNetworkActivityIndicatorDelegate <NSObject>
 
-+(void)increaseNetworkActivityIndicatorCount;
-+(void)decreaseNetworkActivityIndicatorCount;
+-(void)increaseNetworkActivityIndicatorCount;
+-(void)decreaseNetworkActivityIndicatorCount;
 
 @end
 
