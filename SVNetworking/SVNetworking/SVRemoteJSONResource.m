@@ -39,9 +39,10 @@
     return [SVJSONRequest GETRequestWithURL:_URL];
 }
 
--(void)parseFinishedJSON:(id)JSON error:(NSError *__autoreleasing *)error
+-(BOOL)parseFinishedJSON:(id)JSON error:(NSError *__autoreleasing *)error
 {
     self.JSON = JSON;
+    return YES;
 }
 
 @end

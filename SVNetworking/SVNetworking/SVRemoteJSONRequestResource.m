@@ -43,15 +43,15 @@
 -(void)finishLoadingWithJSON:(id)JSON
 {
     NSError *error = nil;
-    [self parseFinishedJSON:JSON error:&error];
+    BOOL success = [self parseFinishedJSON:JSON error:&error];
     
-    if (error)
+    if (success)
     {
-        [self failLoadingWithError:error];
+        [self finishLoading];
     }
     else
     {
-        [self finishLoading];
+        [self failLoadingWithError:error];
     }
 }
 
@@ -60,13 +60,13 @@
     NSError *error = nil;
     id JSON = [NSJSONSerialization JSONObjectWithData:JSONData options:0 error:&error];
     
-    if (error)
+    if (JSON)
     {
-        [self failLoadingWithError:error];
+        [self finishLoadingWithJSON:JSON];
     }
     else
     {
-        [self finishLoadingWithJSON:JSON];
+        [self failLoadingWithError:error];
     }
 }
 
@@ -77,9 +77,10 @@
     return nil;
 }
 
--(void)parseFinishedJSON:(id)JSON error:(NSError *__autoreleasing *)error
+-(BOOL)parseFinishedJSON:(id)JSON error:(NSError *__autoreleasing *)error
 {
     [self doesNotRecognizeSelector:_cmd];
+    return NO;
 }
 
 @end

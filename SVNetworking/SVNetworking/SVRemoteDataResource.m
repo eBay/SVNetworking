@@ -39,9 +39,10 @@
     return [SVDataRequest GETRequestWithURL:_URL];
 }
 
--(void)parseFinishedData:(NSData*)data error:(NSError**)error
+-(BOOL)parseFinishedData:(NSData*)data error:(NSError**)error
 {
     self.data = data;
+    return YES;
 }
 
 @end

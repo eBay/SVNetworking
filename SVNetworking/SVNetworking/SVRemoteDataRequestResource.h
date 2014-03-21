@@ -37,6 +37,6 @@
  
  The default implementation throws an exception.
  */
--(void)parseFinishedData:(NSData*)data error:(NSError**)error;
+-(BOOL)parseFinishedData:(NSData*)data error:(NSError**)error;
 
 @end

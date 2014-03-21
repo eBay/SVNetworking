@@ -87,7 +87,7 @@
     return [SVDataRequest GETRequestWithURL:_URL];
 }
 
--(void)parseFinishedData:(NSData*)data error:(NSError**)error
+-(BOOL)parseFinishedData:(NSData*)data error:(NSError**)error
 {
     UIImage *image = [[UIImage alloc] initWithData:data scale:_scale];
     
@@ -108,6 +108,8 @@
             NSLocalizedDescriptionKey: @"Failed to load image data"
         }];
     }
+    
+    return _image != nil;
 }
 
 @end

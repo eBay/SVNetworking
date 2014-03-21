@@ -44,6 +44,6 @@
  
  The default implementation throws an exception.
  */
--(void)parseFinishedJSON:(id)JSON error:(NSError**)error;
+-(BOOL)parseFinishedJSON:(id)JSON error:(NSError**)error;
 
 @end
