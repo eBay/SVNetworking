@@ -8,6 +8,9 @@
 
 #import "SVRemoteJSONRequestResource.h"
 
+/**
+ SVRemoteJSONResource loads JSON data over the network, and, once complete, provides it via an observable property.
+ */
 @interface SVRemoteJSONResource : SVRemoteJSONRequestResource
 
 #pragma mark - Access
