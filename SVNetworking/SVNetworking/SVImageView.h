@@ -6,7 +6,8 @@
 //  Copyright (c) 2014 Svpply. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "SVRemoteImageProtocol.h"
+#import "SVRemoteResource.h"
 
 /**
  SVImageView is a remote image view, backed by the scaling proxy image classes (which are, in turn, backed by
@@ -21,6 +22,14 @@
  The image URL for the current image.
  */
 @property (nonatomic, strong) NSURL *imageURL;
+
+#pragma mark - Remote Image
+/**
+ The remote image currently associated with the image view. The actual implementation class will vary.
+ 
+ Subclasses can use this property to implement custom failure/retry interfaces, etc.
+ */
+@property (nonatomic, readonly, strong) SVRemoteResource<SVRemoteImageProtocol> *remoteImage;
 
 #pragma mark - Image Content Mode
 /**
