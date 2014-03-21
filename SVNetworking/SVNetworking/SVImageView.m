@@ -17,7 +17,7 @@
 
 @property (nonatomic) BOOL activityIndicatorAnimating;
 @property (nonatomic) CGSize boundsSize;
-@property (nonatomic, strong) SVRemoteImage *remoteImage;
+@property (nonatomic, strong) SVRemoteResource<SVRemoteImageProtocol> *remoteImage;
 
 @end
 
