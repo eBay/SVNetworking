@@ -102,7 +102,7 @@
             [cache writeData:data forKey:self.uniqueKeyHash];
         }
     }
-    else
+    else if (error)
     {
         *error = [NSError errorWithDomain:@"com.svpply" code:0 userInfo:@{
             NSLocalizedDescriptionKey: @"Failed to load image data"
