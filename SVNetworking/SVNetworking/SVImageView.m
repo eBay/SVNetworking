@@ -64,29 +64,46 @@
     // bind the image
     pairs = @[SVMultibindPair(self, SV_KEYPATH(self, remoteImage.state)),
               SVMultibindPair(self, SV_KEYPATH(self, remoteImage.image)),
+              SVMultibindPair(self, SV_KEYPATH(self, emptyImage)),
               SVMultibindPair(self, SV_KEYPATH(self, failureImage))];
     
     [self sv_multibind:SV_KEYPATH(self, image) toObjectAndKeyPathPairs:pairs withBlock:^id(SVMultibindArray *values) {
-        SVRemoteResourceState state = (SVRemoteResourceState)[values[0] intValue];
-        
-        if (state == SVRemoteResourceStateError)
+        // if remoteImage is nil, this value will also be nil (as opposed to a possible non-nil, but "0", value)
+        if (values[0])
         {
-            return values[2]; // failure image
+            SVRemoteResourceState state = (SVRemoteResourceState)[values[0] intValue];
+            
+            if (state == SVRemoteResourceStateError)
+            {
+                return values[3]; // failure image
+            }
+            else
+            {
+                return values[1]; // remote scaled image
+            }
         }
         else
         {
-            return values[1]; // remote scaled image
+            return values[2]; // empty image
         }
     }];
     
     // bind content mode
     pairs = @[SVMultibindPair(self, SV_KEYPATH(self, remoteImage.state)),
               SVMultibindPair(self, SV_KEYPATH(self, imageContentMode)),
-              SVMultibindPair(self, SV_KEYPATH(self, failureImageContentMode))];
+              SVMultibindPair(self, SV_KEYPATH(self, failureImageContentMode)),
+              SVMultibindPair(self, SV_KEYPATH(self, emptyImageContentMode))];
     
     [self sv_multibind:SV_KEYPATH(self, contentMode) toObjectAndKeyPathPairs:pairs withBlock:^id(SVMultibindArray *values) {
-        SVRemoteResourceState state = (SVRemoteResourceState)[values[0] intValue];
-        return values[state == SVRemoteResourceStateError ? 2 : 1];
+        if (values[0]) // if the image view has a URL, check for error state
+        {
+            SVRemoteResourceState state = (SVRemoteResourceState)[values[0] intValue];
+            return values[state == SVRemoteResourceStateError ? 2 : 1];
+        }
+        else // otherwise, use empty image content mode
+        {
+            return values[3];
+        }
     }];
     
     // bind loading indicator

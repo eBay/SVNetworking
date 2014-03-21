@@ -46,6 +46,19 @@
  */
 @property (nonatomic) UIActivityIndicatorViewStyle activityIndicatorViewStyle;
 
+#pragma mark - Empty Image
+/**
+ An optional image that will be displayed if the remote image URL is nil.
+ */
+@property (nonatomic, strong) UIImage *emptyImage;
+
+/**
+ The content mode that should be used for displaying empty images.
+ 
+ Defaults to UIViewContentModeScaleAspectFit.
+ */
+@property (nonatomic) UIViewContentMode emptyImageContentMode;
+
 #pragma mark - Failure Image
 /**
  An optional image that will be displayed if the remote image fails to load.
