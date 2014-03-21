@@ -187,7 +187,7 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
     [self handleCompletionWithData:_data response:_response];
     _connection = nil;
     
-    [[self.class networkActivityIndicatorDelegate] increaseNetworkActivityIndicatorCount];
+    [[self.class networkActivityIndicatorDelegate] decreaseNetworkActivityIndicatorCount];
     
     if (_delegate) CFRelease((__bridge CFTypeRef)_delegate);
 }
@@ -197,7 +197,7 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
     [_delegate request:self failedWithError:error];
     _connection = nil;
     
-    [[self.class networkActivityIndicatorDelegate] increaseNetworkActivityIndicatorCount];
+    [[self.class networkActivityIndicatorDelegate] decreaseNetworkActivityIndicatorCount];
 }
 
 #pragma mark - Subclass Implementation
