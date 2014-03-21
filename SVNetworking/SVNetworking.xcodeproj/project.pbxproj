@@ -25,7 +25,6 @@
 		41B38E3318D7A1BB000064D3 /* SVRemoteDataRequestResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 41B38E1218D756AA000064D3 /* SVRemoteDataRequestResource.h */; };
 		41B38E3518D7A1BB000064D3 /* SVRemoteRetainedProxyResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 41B38E1F18D77DE0000064D3 /* SVRemoteRetainedProxyResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		41B38E3618D7A1BB000064D3 /* SVRemoteRetainedScaledImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 41B38E2218D7879A000064D3 /* SVRemoteRetainedScaledImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		41B38E3718D7A1BB000064D3 /* SVRemoteDataRequestResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 41B38E1218D756AA000064D3 /* SVRemoteDataRequestResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		41B38E3918D7A1BB000064D3 /* SVRemoteDataResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 41B38E2718D79C98000064D3 /* SVRemoteDataResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		41B38E3A18D7A1BB000064D3 /* SVRemoteJSONResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 41B38E2A18D79DA8000064D3 /* SVRemoteJSONResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		41B38E3B18D7A1BB000064D3 /* SVDataRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 43D2A21618D39438002CFE55 /* SVDataRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -356,7 +355,6 @@
 				41B38E3E18D7A1BB000064D3 /* SVFunctional.h in Headers */,
 				430C17E618D8A79100070925 /* SVRemoteScaledImageProtocol.h in Headers */,
 				41B38E3F18D7A1BB000064D3 /* SVNetworking.h in Headers */,
-				41B38E3718D7A1BB000064D3 /* SVRemoteDataRequestResource.h in Headers */,
 				430C17E418D8A78300070925 /* SVRemoteImageProtocol.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
