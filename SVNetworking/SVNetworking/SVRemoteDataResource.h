@@ -8,6 +8,12 @@
 
 #import "SVRemoteDataRequestResource.h"
 
+/**
+ SVRemoteDataResource loads a chunk of data over the network, with a specified URL.
+ 
+ If your data is an image, you should use SVRemoteImage (or one of the scaled variants). Additionally, you should
+ consider using SVImageView - it probably does everything that you need.
+ */
 @interface SVRemoteDataResource : SVRemoteDataRequestResource
 
 #pragma mark - Access
