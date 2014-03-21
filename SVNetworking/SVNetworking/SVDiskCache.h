@@ -2,11 +2,9 @@
 
 @interface SVDiskCache : NSObject
 
--(id)initWithPath:(NSString*)path;
+-(instancetype)initWithFileURL:(NSURL *)fileURL;
 
--(NSData*)dataForKey:(NSString*)key;
--(void)writeData:(NSData*)data forKey:(NSString*)key;
-
--(BOOL)hasDataForKey:(NSString*)key;
+-(NSData*)dataForKey:(NSString*)key error:(NSError **)error;
+-(BOOL)writeData:(NSData*)data forKey:(NSString*)key error:(NSError **)error;
 
 @end
