@@ -41,7 +41,7 @@
 {
     NSURL *fileURL = [_fileURL URLByAppendingPathComponent:key isDirectory:NO];
     
-    return [data writeToURL:fileURL options:NSDataWritingFileProtectionComplete error:error];
+    return [data writeToURL:fileURL options:(NSDataWritingAtomic|NSDataWritingFileProtectionComplete) error:error];
 }
 
 @end
