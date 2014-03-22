@@ -34,7 +34,7 @@
 {
     NSURL *fileURL = [_fileURL URLByAppendingPathComponent:key isDirectory:NO];
     
-    return [[NSData alloc] initWithContentsOfURL:fileURL options:0 error:error];
+    return [[NSData alloc] initWithContentsOfURL:fileURL options:NSDataReadingUncached error:error];
 }
 
 -(BOOL)writeData:(NSData*)data forKey:(NSString*)key error:(NSError **)error
