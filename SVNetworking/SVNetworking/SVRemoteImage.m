@@ -10,6 +10,10 @@
 #import "SVRemoteImage.h"
 
 @interface SVRemoteImage ()
+{
+@private
+    BOOL _loadingViaNetwork;
+}
 
 #pragma mark - URL
 @property (nonatomic, strong) NSURL *URL;
@@ -74,10 +78,12 @@
     
     if (data)
     {
+        _loadingViaNetwork = NO;
         [self finishLoadingWithData:data];
     }
     else
     {
+        _loadingViaNetwork = YES;
         [super beginLoading];
     }
 }
@@ -96,9 +102,12 @@
     {
         self.image = image;
         
-        SVDiskCache *cache = [self.class diskCache];
-        
-        [cache writeData:data forKey:self.uniqueKeyHash error:0];
+        if (_loadingViaNetwork)
+        {
+            SVDiskCache *cache = [self.class diskCache];
+            
+            [cache writeData:data forKey:self.uniqueKeyHash error:0];
+        }
     }
     else if (error)
     {
