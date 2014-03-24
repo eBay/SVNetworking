@@ -10,7 +10,7 @@
 
 @implementation SVDiskCache
 
--(id)initWithPath:(NSString*)path
+-(instancetype)initWithPath:(NSString*)path
 {
     self = [self init];
     

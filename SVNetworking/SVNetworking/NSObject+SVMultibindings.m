@@ -20,7 +20,7 @@
 
 @implementation SVMultibindArray
 
-+(id)arrayWithValues:(id __autoreleasing *)values count:(NSUInteger)count
++(instancetype)arrayWithValues:(id __autoreleasing *)values count:(NSUInteger)count
 {
     SVMultibindArray* array = [SVMultibindArray new];
     
@@ -86,13 +86,13 @@ id SVMultibindPair(id object, NSString* keyPath)
     SVMultibindBlock block;
 }
 
--(id)initWithTargetObject:(id)object keyPath:(NSString*)keyPath pairs:(NSArray*)pairs block:(SVMultibindBlock)block;
+-(instancetype)initWithTargetObject:(id)object keyPath:(NSString*)keyPath pairs:(NSArray*)pairs block:(SVMultibindBlock)block;
 
 @end
 
 @implementation SVMultibinding
 
--(id)initWithTargetObject:(id)_object keyPath:(NSString*)_keyPath pairs:(NSArray*)_pairs block:(SVMultibindBlock)_block
+-(instancetype)initWithTargetObject:(id)_object keyPath:(NSString*)_keyPath pairs:(NSArray*)_pairs block:(SVMultibindBlock)_block
 {
     self = [self init];
     
