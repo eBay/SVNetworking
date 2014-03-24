@@ -220,11 +220,7 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
     
     if (_bodyData)
     {
-#if TARGET_OS_IPHONE
-        NSString* length = [NSString stringWithFormat:@"%lu", (long)_bodyData.length];
-#else
-        NSString* length = [NSString stringWithFormat:@"%lu", _bodyData.length];
-#endif
+        NSString* length = [NSString stringWithFormat:@"%lu", (unsigned long)_bodyData.length];
         
         [request setValue:length forHTTPHeaderField:@"Content-Length"];
         [request setHTTPBody:_bodyData];
@@ -238,11 +234,7 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
         NSString* bodyString = [pairs componentsJoinedByString:@"&"];
         NSData* body = [bodyString dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
         
-#if TARGET_OS_IPHONE
-        NSString* length = [NSString stringWithFormat:@"%lu", (long)body.length];
-#else
-        NSString* length = [NSString stringWithFormat:@"%lu", body.length];
-#endif
+        NSString* length = [NSString stringWithFormat:@"%lu", (unsigned long)body.length];
         
         [request setValue:length forHTTPHeaderField:@"Content-Length"];
         [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
