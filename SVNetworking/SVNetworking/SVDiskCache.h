@@ -5,7 +5,7 @@
 -(instancetype)initWithFileURL:(NSURL *)fileURL;
 
 #pragma mark - IO Queue
-@property (nonatomic) dispatch_queue_t IOQueue;
+@property (nonatomic, strong) dispatch_queue_t IOQueue;
 
 #pragma mark - IO
 -(void)dataForKey:(NSString*)key completion:(void(^)(NSData *data))completion failure:(void(^)(NSError *error))failure;
