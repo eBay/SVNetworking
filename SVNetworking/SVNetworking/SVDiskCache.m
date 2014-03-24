@@ -3,25 +3,25 @@
 @interface SVDiskCache ()
 {
 @private
-    NSString *_path;
+    NSURL *_fileURL;
 }
 
 @end
 
 @implementation SVDiskCache
 
--(instancetype)initWithPath:(NSString*)path
+-(instancetype)initWithFileURL:(NSURL *)fileURL
 {
     self = [self init];
     
     if (self)
     {
-        _path = path;
+        _fileURL = fileURL;
         
         NSError *error = nil;
-        [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
+        BOOL success = [[NSFileManager defaultManager] createDirectoryAtURL:fileURL withIntermediateDirectories:YES attributes:nil error:&error];
         
-        if (error)
+        if (success == NO)
         {
             NSLog(@"Error creating cache directory: %@", error);
         }
@@ -30,31 +30,18 @@
     return self;
 }
 
--(NSData*)dataForKey:(NSString*)key
+-(NSData*)dataForKey:(NSString*)key error:(NSError **)error
 {
-    NSString *filePath = [_path stringByAppendingPathComponent:key];
+    NSURL *fileURL = [_fileURL URLByAppendingPathComponent:key isDirectory:NO];
     
-    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath isDirectory:NULL])
-    {
-        return [[NSData alloc] initWithContentsOfFile:filePath];
-    }
-    else
-    {
-        return nil;
-    }
+    return [[NSData alloc] initWithContentsOfURL:fileURL options:NSDataReadingUncached error:error];
 }
 
--(void)writeData:(NSData*)data forKey:(NSString*)key
+-(BOOL)writeData:(NSData*)data forKey:(NSString*)key error:(NSError **)error
 {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [data writeToFile:[_path stringByAppendingPathComponent:key] atomically:YES];
-    });
-}
-
--(BOOL)hasDataForKey:(NSString*)key
-{
-    NSString *filePath = [_path stringByAppendingPathComponent:key];
-    return [[NSFileManager defaultManager] fileExistsAtPath:filePath isDirectory:NULL];
+    NSURL *fileURL = [_fileURL URLByAppendingPathComponent:key isDirectory:NO];
+    
+    return [data writeToURL:fileURL options:(NSDataWritingAtomic|NSDataWritingFileProtectionComplete) error:error];
 }
 
 @end

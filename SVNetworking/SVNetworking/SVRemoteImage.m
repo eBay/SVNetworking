@@ -30,9 +30,8 @@
     static SVDiskCache *cache;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSArray* caches = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-        NSString* path = [caches.firstObject stringByAppendingPathComponent:@"SVRemoteImage"];
-        cache = [[SVDiskCache alloc] initWithPath:path];
+        NSURL *fileURL = [[[[NSFileManager defaultManager] URLsForDirectory: NSCachesDirectory inDomains: NSUserDomainMask] lastObject] URLByAppendingPathComponent:@"SVRemoteImage" isDirectory:YES];
+        cache = [[SVDiskCache alloc] initWithFileURL:fileURL];
     });
     
     return cache;
@@ -71,9 +70,11 @@
 {
     SVDiskCache *cache = [self.class diskCache];
     
-    if ([cache hasDataForKey:self.uniqueKeyHash])
+    NSData *data = [cache dataForKey:self.uniqueKeyHash error:0];
+    
+    if (data)
     {
-        [self finishLoadingWithData:[cache dataForKey:self.uniqueKeyHash]];
+        [self finishLoadingWithData:data];
     }
     else
     {
@@ -97,10 +98,7 @@
         
         SVDiskCache *cache = [self.class diskCache];
         
-        if (![cache hasDataForKey:self.uniqueKeyHash])
-        {
-            [cache writeData:data forKey:self.uniqueKeyHash];
-        }
+        [cache writeData:data forKey:self.uniqueKeyHash error:0];
     }
     else if (error)
     {
