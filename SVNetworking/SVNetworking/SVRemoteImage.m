@@ -74,18 +74,13 @@
 {
     SVDiskCache *cache = [self.class diskCache];
     
-    NSData *data = [cache dataForKey:self.uniqueKeyHash error:0];
-    
-    if (data)
-    {
+    [cache dataForKey:self.uniqueKeyHash completion:^(NSData *data) {
         _loadingViaNetwork = NO;
         [self finishLoadingWithData:data];
-    }
-    else
-    {
+    } failure:^(NSError *error) {
         _loadingViaNetwork = YES;
         [super beginLoading];
-    }
+    }];
 }
 
 #pragma mark - Implementation - Network Loading
@@ -105,8 +100,7 @@
         if (_loadingViaNetwork)
         {
             SVDiskCache *cache = [self.class diskCache];
-            
-            [cache writeData:data forKey:self.uniqueKeyHash error:0];
+            [cache writeData:data forKey:self.uniqueKeyHash completion:nil failure:nil];
         }
     }
     else if (error)

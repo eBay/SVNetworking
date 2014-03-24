@@ -25,23 +25,65 @@
         {
             NSLog(@"Error creating cache directory: %@", error);
         }
+        
+        _IOQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     }
     
     return self;
 }
 
--(NSData*)dataForKey:(NSString*)key error:(NSError **)error
+-(void)dataForKey:(NSString*)key completion:(void(^)(NSData *data))completion failure:(void(^)(NSError *error))failure
 {
     NSURL *fileURL = [_fileURL URLByAppendingPathComponent:key isDirectory:NO];
     
-    return [[NSData alloc] initWithContentsOfURL:fileURL options:NSDataReadingUncached error:error];
+    dispatch_async(_IOQueue, ^{
+        NSError *error = nil;
+        NSData *data = [[NSData alloc] initWithContentsOfURL:fileURL options:NSDataReadingUncached error:&error];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (data)
+            {
+                if (completion)
+                {
+                    completion(data);
+                }
+            }
+            else
+            {
+                if (failure)
+                {
+                    failure(error);
+                }
+            }
+        });
+    });
 }
 
--(BOOL)writeData:(NSData*)data forKey:(NSString*)key error:(NSError **)error
+-(void)writeData:(NSData*)data forKey:(NSString*)key completion:(void(^)())completion failure:(void(^)(NSError *error))failure;
 {
     NSURL *fileURL = [_fileURL URLByAppendingPathComponent:key isDirectory:NO];
     
-    return [data writeToURL:fileURL options:(NSDataWritingAtomic|NSDataWritingFileProtectionComplete) error:error];
+    dispatch_async(_IOQueue, ^{
+        NSError *error = nil;
+        BOOL success = [data writeToURL:fileURL options:(NSDataWritingAtomic|NSDataWritingFileProtectionComplete) error:&error];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (success)
+            {
+                if (completion)
+                {
+                    completion();
+                }
+            }
+            else
+            {
+                if (failure)
+                {
+                    failure(error);
+                }
+            }
+        });
+    });
 }
 
 @end

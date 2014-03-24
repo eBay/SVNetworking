@@ -4,7 +4,11 @@
 
 -(instancetype)initWithFileURL:(NSURL *)fileURL;
 
--(NSData*)dataForKey:(NSString*)key error:(NSError **)error;
--(BOOL)writeData:(NSData*)data forKey:(NSString*)key error:(NSError **)error;
+#pragma mark - IO Queue
+@property (nonatomic) dispatch_queue_t IOQueue;
+
+#pragma mark - IO
+-(void)dataForKey:(NSString*)key completion:(void(^)(NSData *data))completion failure:(void(^)(NSError *error))failure;
+-(void)writeData:(NSData*)data forKey:(NSString*)key completion:(void(^)())completion failure:(void(^)(NSError *error))failure;
 
 @end
