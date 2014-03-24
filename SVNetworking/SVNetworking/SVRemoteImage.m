@@ -75,11 +75,15 @@
     SVDiskCache *cache = [self.class diskCache];
     
     [cache dataForKey:self.uniqueKeyHash completion:^(NSData *data) {
-        _loadingViaNetwork = NO;
-        [self finishLoadingWithData:data];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _loadingViaNetwork = NO;
+            [self finishLoadingWithData:data];
+        });
     } failure:^(NSError *error) {
-        _loadingViaNetwork = YES;
-        [super beginLoading];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _loadingViaNetwork = YES;
+            [super beginLoading];
+        });
     }];
 }
 

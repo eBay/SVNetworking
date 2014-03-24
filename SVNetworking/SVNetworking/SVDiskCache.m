@@ -40,22 +40,20 @@
         NSError *error = nil;
         NSData *data = [[NSData alloc] initWithContentsOfURL:fileURL options:NSDataReadingUncached error:&error];
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (data)
+        if (data)
+        {
+            if (completion)
             {
-                if (completion)
-                {
-                    completion(data);
-                }
+                completion(data);
             }
-            else
+        }
+        else
+        {
+            if (failure)
             {
-                if (failure)
-                {
-                    failure(error);
-                }
+                failure(error);
             }
-        });
+        }
     });
 }
 
@@ -67,22 +65,20 @@
         NSError *error = nil;
         BOOL success = [data writeToURL:fileURL options:(NSDataWritingAtomic|NSDataWritingFileProtectionComplete) error:&error];
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (success)
+        if (success)
+        {
+            if (completion)
             {
-                if (completion)
-                {
-                    completion();
-                }
+                completion();
             }
-            else
+        }
+        else
+        {
+            if (failure)
             {
-                if (failure)
-                {
-                    failure(error);
-                }
+                failure(error);
             }
-        });
+        }
     });
 }
 
