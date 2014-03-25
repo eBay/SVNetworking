@@ -76,12 +76,12 @@
     
     [cache dataForKey:self.uniqueKeyHash completion:^(NSData *data) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            _loadingViaNetwork = NO;
+            self->_loadingViaNetwork = NO;
             [self finishLoadingWithData:data];
         });
     } failure:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            _loadingViaNetwork = YES;
+            self->_loadingViaNetwork = YES;
             [super beginLoading];
         });
     }];

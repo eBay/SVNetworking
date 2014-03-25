@@ -208,7 +208,7 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
     if (_values && _method == SVRequestMethodGET)
     {
         NSArray* pairs = SVMap(_values.allKeys, ^id(NSString* key) {
-            return [NSString stringWithFormat:@"%@=%@", key, SVURLEncode(SVStringify([_values objectForKey:key]))];
+            return [NSString stringWithFormat:@"%@=%@", key, SVURLEncode(SVStringify([self->_values objectForKey:key]))];
         });
         
         NSString* queryString = [@"?" stringByAppendingString:[pairs componentsJoinedByString:@"&"]];
@@ -228,7 +228,7 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
     else if (_values && _method != SVRequestMethodGET)
     {
         NSArray* pairs = SVMap(_values.allKeys, ^id(NSString* key) {
-            return [NSString stringWithFormat:@"%@=%@", key, SVURLEncode(SVStringify([_values objectForKey:key]))];
+            return [NSString stringWithFormat:@"%@=%@", key, SVURLEncode(SVStringify([self->_values objectForKey:key]))];
         });
         
         NSString* bodyString = [pairs componentsJoinedByString:@"&"];
