@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Svpply. All rights reserved.
 //
 
+#import "NSObject+SVBindings.h"
+#import "NSObject+SVMultibindings.h"
 #import "SVRemoteScaledImage.h"
 #import "SVRemoteRetainedScaledImage.h"
 #import "SVImageView.h"
