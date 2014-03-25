@@ -93,7 +93,7 @@
     return [SVDataRequest GETRequestWithURL:_URL];
 }
 
--(BOOL)parseFinishedData:(NSData*)data error:(NSError**)error
+-(BOOL)parseFinishedData:(NSData*)data error:(__autoreleasing NSError**)error
 {
     UIImage *image = [[UIImage alloc] initWithData:data scale:_scale];
     

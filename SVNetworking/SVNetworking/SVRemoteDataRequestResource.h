@@ -37,6 +37,6 @@
  
  The default implementation throws an exception.
  */
--(BOOL)parseFinishedData:(NSData*)data error:(NSError**)error;
+-(BOOL)parseFinishedData:(NSData*)data error:(__autoreleasing NSError**)error;
 
 @end

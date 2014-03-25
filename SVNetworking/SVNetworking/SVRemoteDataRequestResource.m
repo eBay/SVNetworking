@@ -63,7 +63,7 @@
 }
 
 #pragma mark - Implementation
--(BOOL)parseFinishedData:(NSData*)data error:(NSError**)error;
+-(BOOL)parseFinishedData:(NSData*)data error:(__autoreleasing NSError**)error;
 {
     [self doesNotRecognizeSelector:_cmd];
     return NO;
