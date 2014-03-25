@@ -6,7 +6,8 @@
 //  Copyright (c) 2014 Svpply. All rights reserved.
 //
 
-#import <SVNetworking/SVNetworking.h>
+#import "SVRemoteScaledImage.h"
+#import "SVRemoteRetainedScaledImage.h"
 #import "SVImageView.h"
 
 @interface SVImageView ()
