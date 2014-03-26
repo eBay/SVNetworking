@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Svpply. All rights reserved.
 //
 
+#import "SVDiskCache.h"
 #import "SVRemoteDataRequestResource.h"
 #import "SVRemoteScaledImageProtocol.h"
 
