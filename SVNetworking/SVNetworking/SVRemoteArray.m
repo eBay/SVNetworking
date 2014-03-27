@@ -20,8 +20,8 @@
 @property (nonatomic, strong) NSArray *contents;
 
 #pragma mark - Loading State
-@property (nonatomic) BOOL isLoadingNextPage;
-@property (nonatomic) BOOL isRefreshing;
+@property (nonatomic) SVRemoteArrayLoadingState nextPageLoadingState;
+@property (nonatomic) SVRemoteArrayLoadingState refreshLoadingState;
 @property (nonatomic) BOOL hasNextPage;
 
 #pragma mark - Loading Errors
@@ -69,6 +69,9 @@
             self.nextPageError = nil;
         }
         
+        // change loading state
+        self.nextPageLoadingState = SVRemoteArrayLoadingStateLoading;
+        
         // load the next page
         [self beginLoadingNextPage];
     }
@@ -85,9 +88,33 @@
             self.refreshError = nil;
         }
         
+        // change loading state
+        self.refreshLoadingState = SVRemoteArrayLoadingStateLoading;
+        
         // refresh
         [self beginRefreshing];
     }
+}
+
+#pragma mark - Loading State
++(NSSet*)keyPathsForValuesAffectingIsLoadingNextPage
+{
+    return [NSSet setWithObject:SV_KEYPATH([SVRemoteArray new], nextPageLoadingState)];
+}
+
+-(BOOL)isLoadingNextPage
+{
+    return self.nextPageLoadingState == SVRemoteArrayLoadingStateLoading;
+}
+
++(NSSet*)keyPathsForValuesAffectingIsRefreshing
+{
+    return [NSSet setWithObject:SV_KEYPATH([SVRemoteArray new], refreshLoadingState)];
+}
+
+-(BOOL)isRefreshing
+{
+    return self.refreshLoadingState == SVRemoteArrayLoadingStateLoading;
 }
 
 #pragma mark - Refreshability
@@ -133,6 +160,8 @@
     self.contents = [self.contents arrayByAddingObjectsFromArray:items];
     [self didChangeValueForKey:SV_KEYPATH(self, count)];
     
+    self.nextPageLoadingState = SVRemoteArrayLoadingStateNotLoading;
+    
     if (_hasNextPage != hasNextPage)
     {
         self.hasNextPage = hasNextPage;
@@ -149,7 +178,7 @@
 -(void)failLoadingNextPageWithError:(NSError*)error
 {
     self.nextPageError = error;
-    self.isLoadingNextPage = NO;
+    self.nextPageLoadingState = SVRemoteArrayLoadingStateError;
     
     [self enumeratePaginationObservers:^(id<SVRemoteArrayPaginationObserver> paginationObserver) {
         if ([paginationObserver respondsToSelector:@selector(remoteArray:didFailToLoadNextPageWithError:)])
@@ -166,7 +195,7 @@
     self.contents = [items arrayByAddingObjectsFromArray:self.contents];
     [self didChangeValueForKey:SV_KEYPATH(self, count)];
     
-    self.isRefreshing = NO;
+    self.refreshLoadingState = SVRemoteArrayLoadingStateNotLoading;
     
     [self enumeratePaginationObservers:^(id<SVRemoteArrayPaginationObserver> paginationObserver) {
         if ([paginationObserver respondsToSelector:@selector(remoteArray:didRefreshWithItems:)])
@@ -179,7 +208,7 @@
 -(void)failRefreshingWithError:(NSError*)error
 {
     self.refreshError = error;
-    self.isRefreshing = NO;
+    self.refreshLoadingState = SVRemoteArrayLoadingStateError;
     
     [self enumeratePaginationObservers:^(id<SVRemoteArrayPaginationObserver> paginationObserver) {
         if ([paginationObserver respondsToSelector:@selector(remoteArray:didFailToRefreshWithError:)])

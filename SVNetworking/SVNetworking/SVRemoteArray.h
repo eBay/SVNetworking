@@ -10,6 +10,13 @@
 
 @class SVRemoteArray;
 
+typedef enum
+{
+    SVRemoteArrayLoadingStateNotLoading,
+    SVRemoteArrayLoadingStateError,
+    SVRemoteArrayLoadingStateLoading
+} SVRemoteArrayLoadingState;
+
 @protocol SVRemoteArrayPaginationObserver <NSObject>
 
 @optional
@@ -73,11 +80,25 @@
 @property (nonatomic, readonly) BOOL isLoadingNextPage;
 
 /**
+ The current next page loading state.
+ 
+ This property is observable.
+ */
+@property (nonatomic, readonly) SVRemoteArrayLoadingState nextPageLoadingState;
+
+/**
  Returns YES if the array is currently refreshing.
  
  This property is observable.
  */
 @property (nonatomic, readonly) BOOL isRefreshing;
+
+/**
+ The current refresh loading state.
+ 
+ This property is observable.
+ */
+@property (nonatomic, readonly) SVRemoteArrayLoadingState refreshLoadingState;
 
 /**
  Returns YES if the array has a next page to load.
