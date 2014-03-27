@@ -43,7 +43,7 @@
 {
     NSMapTable *resourceTable = [self uniqueTable];
     NSString *hash = [self uniqueKeyHashForString:uniqueKey];
-    SVRemoteResource *resource = [resourceTable objectForKey:uniqueKey];
+    SVRemoteResource *resource = [resourceTable objectForKey:hash];
     
     if (!resource)
     {
@@ -58,7 +58,7 @@
                 block(resource);
             }
             
-            [resourceTable setObject:resource forKey:uniqueKey];
+            [resourceTable setObject:resource forKey:hash];
         }
     }
     
