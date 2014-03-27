@@ -38,12 +38,11 @@ static NSString* SVURLEncode(NSString* string)
     NSURLConnection* _connection;
     NSHTTPURLResponse* _response;
     
-    // Connection ivars (iOS 7)
-    NSURLSessionTask *_sessionTask;
-    
     // body data
     NSMutableDictionary* _values;
 }
+
+@property (nonatomic, strong) NSURLSessionTask *sessionTask;
 
 @end
 
@@ -110,11 +109,30 @@ static NSString* SVURLEncode(NSString* string)
 {
     [[self.class networkActivityIndicatorDelegate] increaseNetworkActivityIndicatorCount];
     
-    if (NSClassFromString(@"NSURLSession") && NO)
+    if ([NSURLSession class])
     {
-        _sessionTask = [[NSURLSession sharedSession] dataTaskWithRequest:[self constructRequest] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-            
+        NSURLRequest *request = [self constructRequest];
+        
+        __weak SVRequest *weakSelf = self;
+        
+        _sessionTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (data)
+                {
+                    [weakSelf handleCompletionWithData:data response:(NSHTTPURLResponse*)response];
+                }
+                else
+                {
+                    [weakSelf.delegate request:self failedWithError:error];
+                }
+                
+                weakSelf.sessionTask = nil;
+                
+                [[weakSelf.class networkActivityIndicatorDelegate] decreaseNetworkActivityIndicatorCount];
+            });
         }];
+        
+        [_sessionTask resume];
     }
     else
     {
@@ -138,6 +156,9 @@ static NSString* SVURLEncode(NSString* string)
     else if (_sessionTask)
     {
         [_sessionTask cancel];
+        _sessionTask = nil;
+        
+        [[self.class networkActivityIndicatorDelegate] decreaseNetworkActivityIndicatorCount];
     }
 }
 
