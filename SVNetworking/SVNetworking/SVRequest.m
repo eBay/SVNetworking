@@ -181,15 +181,10 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
 
 -(void)connectionDidFinishLoading:(NSURLConnection*)connection
 {
-    // retain self temporarily
-    if (_delegate) CFRetain((__bridge CFTypeRef)_delegate);
-    
     [self handleCompletionWithData:_data response:_response];
     _connection = nil;
     
     [[self.class networkActivityIndicatorDelegate] decreaseNetworkActivityIndicatorCount];
-    
-    if (_delegate) CFRelease((__bridge CFTypeRef)_delegate);
 }
 
 -(void)connection:(NSURLConnection*)connection didFailWithError:(NSError*)error
