@@ -77,7 +77,7 @@
 -(void)refresh
 {
     // we can only refresh if we've loaded the first page, or loaded an empty first page
-    if ((self.count > 0 || !self.hasNextPage) && !self.isRefreshing)
+    if (self.refreshable && (self.count > 0 || !self.hasNextPage) && !self.isRefreshing)
     {
         // clear refresh error if necessary
         if (_refreshError)
@@ -88,6 +88,12 @@
         // refresh
         [self beginRefreshing];
     }
+}
+
+#pragma mark - Refreshability
+-(BOOL)refreshable
+{
+    return YES;
 }
 
 #pragma mark - Pagination Observers
