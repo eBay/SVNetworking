@@ -19,6 +19,7 @@
 		430C17FF18DA0E2A00070925 /* SVImageScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 430C17FD18DA0E2A00070925 /* SVImageScaler.m */; };
 		430C180318DA117800070925 /* SVRemoteScaledImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 430C180118DA117800070925 /* SVRemoteScaledImage.m */; };
 		431591E418E4E29E008CE9A5 /* SVRemoteArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 431591E318E4E29E008CE9A5 /* SVRemoteArray.m */; };
+		431591E718E4EAA9008CE9A5 /* SVRemoteJSONArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 431591E618E4EAA9008CE9A5 /* SVRemoteJSONArray.m */; };
 		43C9137218D8A0BB000718E7 /* SVRemoteProxyResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C9137018D8A0BB000718E7 /* SVRemoteProxyResource.m */; };
 		43D2A1F018D39363002CFE55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D2A1EF18D39363002CFE55 /* Foundation.framework */; };
 		43D2A1FE18D39363002CFE55 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D2A1FD18D39363002CFE55 /* XCTest.framework */; };
@@ -73,6 +74,8 @@
 		430C180118DA117800070925 /* SVRemoteScaledImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRemoteScaledImage.m; sourceTree = "<group>"; };
 		431591E218E4E29E008CE9A5 /* SVRemoteArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRemoteArray.h; sourceTree = "<group>"; };
 		431591E318E4E29E008CE9A5 /* SVRemoteArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRemoteArray.m; sourceTree = "<group>"; };
+		431591E518E4EAA9008CE9A5 /* SVRemoteJSONArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRemoteJSONArray.h; sourceTree = "<group>"; };
+		431591E618E4EAA9008CE9A5 /* SVRemoteJSONArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRemoteJSONArray.m; sourceTree = "<group>"; };
 		43C9136F18D8A0BB000718E7 /* SVRemoteProxyResource.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = SVRemoteProxyResource.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		43C9137018D8A0BB000718E7 /* SVRemoteProxyResource.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = SVRemoteProxyResource.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		43D2A1EC18D39363002CFE55 /* libSVNetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSVNetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,6 +152,8 @@
 			children = (
 				431591E218E4E29E008CE9A5 /* SVRemoteArray.h */,
 				431591E318E4E29E008CE9A5 /* SVRemoteArray.m */,
+				431591E518E4EAA9008CE9A5 /* SVRemoteJSONArray.h */,
+				431591E618E4EAA9008CE9A5 /* SVRemoteJSONArray.m */,
 			);
 			name = "Remote Array";
 			sourceTree = "<group>";
@@ -409,6 +414,7 @@
 				430C180318DA117800070925 /* SVRemoteScaledImage.m in Sources */,
 				41B38E2C18D79DA8000064D3 /* SVRemoteJSONResource.m in Sources */,
 				41B38E2918D79C98000064D3 /* SVRemoteDataResource.m in Sources */,
+				431591E718E4EAA9008CE9A5 /* SVRemoteJSONArray.m in Sources */,
 				41B38E1D18D7752E000064D3 /* NSObject+SVBindings.m in Sources */,
 				41B38E1718D761C5000064D3 /* SVRemoteJSONRequestResource.m in Sources */,
 				43D2A22218D39485002CFE55 /* SVFunctional.m in Sources */,
