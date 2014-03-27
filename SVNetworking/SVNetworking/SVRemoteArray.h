@@ -26,6 +26,13 @@
 
 @interface SVRemoteArray : NSObject
 
+#pragma mark - Contents
+@property (nonatomic, readonly, strong) NSArray *contents;
+
+#pragma mark - Element Access
+-(id)objectAtIndexedSubscript:(NSUInteger)index;
+@property (nonatomic, readonly) NSUInteger count;
+
 #pragma mark - Pagination Observers
 -(void)addPaginationObserver:(id<SVRemoteArrayPaginationObserver>)paginationObserver;
 -(void)removePaginationObserver:(id<SVRemoteArrayPaginationObserver>)paginationObserver;

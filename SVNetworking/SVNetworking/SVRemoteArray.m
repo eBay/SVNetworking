@@ -25,10 +25,22 @@
     
     if (self)
     {
+        _contents = @[];
         _paginationObservers = [NSHashTable weakObjectsHashTable];
     }
     
     return self;
+}
+
+#pragma mark - Element Access
+-(id)objectAtIndexedSubscript:(NSUInteger)index
+{
+    return _contents[index];
+}
+
+-(NSUInteger)count
+{
+    return _contents.count;
 }
 
 #pragma mark - Pagination Observers
