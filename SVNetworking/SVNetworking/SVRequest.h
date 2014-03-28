@@ -8,9 +8,19 @@ typedef enum
     SVRequestMethodDELETE
 } SVRequestMethod;
 
+/**
+ A protocol for an object that keeps track of the current number of active request objects.
+ */
 @protocol SVRequestNetworkActivityIndicatorDelegate <NSObject>
 
+/**
+ Sent when the number of active requests increases.
+ */
 -(void)increaseNetworkActivityIndicatorCount;
+
+/**
+ Sent when the number of active requests decreases.
+ */
 -(void)decreaseNetworkActivityIndicatorCount;
 
 @end
