@@ -7,6 +7,10 @@ typedef id(^SVBindingBlock)(id value);
 
 /**
  A minimal KVO-based property binding system for NSObject subclasses.
+ 
+ @warning While this category has a similar API to NSObject(SVMultibindings), the two categories do not explicitly
+ interact. It is possible to set both a binding and a multibinding for a single key path, the results of which are
+ undefined and depend on the internal implementation of KVO.
  */
 @interface NSObject (SVBindings)
 
