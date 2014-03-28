@@ -14,23 +14,33 @@
 @interface SVRemoteJSONResource : SVRemoteJSONRequestResource
 
 #pragma mark - Access
+/** @name Access */
+
 /**
  Returns an (in-memory) cached remote JSON resource for the specified URL.
+ 
+ @param URL The URL for the JSON resource.
  */
 +(instancetype)cachedRemoteJSONForURL:(NSURL*)URL;
 
 /**
  Returns a remote JSON resource for the specified URL.
+ 
+ @param URL The URL for the JSON resource.
  */
 +(instancetype)remoteJSONForURL:(NSURL*)URL;
 
 #pragma mark - URL
+/** @name URL */
+
 /**
  The URL to load JSON from.
  */
 @property (nonatomic, readonly, strong) NSURL *URL;
 
 #pragma mark - Data
+/** @name Data */
+
 /**
  The loaded JSON object. This property is observable.
  */
