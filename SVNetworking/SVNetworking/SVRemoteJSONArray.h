@@ -18,6 +18,8 @@ typedef enum
 @interface SVRemoteJSONArray : SVRemoteArray
 
 #pragma mark - Requests - Abstract
+/** @name Requests - Abstract */
+
 /**
  Subclasses must override this message (or override both -buildNextPageRequest and -buildRefreshRequest) to provide a
  default request object.
@@ -38,6 +40,8 @@ typedef enum
 -(SVJSONRequest*)buildRefreshRequest;
 
 #pragma mark - Parsing
+/** @name Parsing */
+
 /**
  Allow subclasses to find errors in JSON. If the JSON is valid, returns YES.
  
@@ -49,6 +53,8 @@ typedef enum
 -(BOOL)checkJSON:(id)JSON error:(__autoreleasing NSError**)error;
 
 #pragma mark - Parsing - Abstract
+/** @name Parsing - Abstract */
+
 /**
  Subclasses must override this message to parse JSON data into items.
  */

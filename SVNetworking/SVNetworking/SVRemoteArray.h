@@ -34,6 +34,8 @@ typedef enum
 @interface SVRemoteArray : NSObject <NSFastEnumeration>
 
 #pragma mark - Contents
+/** @name Contents */
+
 /**
  The current contents of the remote array.
  
@@ -42,6 +44,8 @@ typedef enum
 @property (nonatomic, readonly, strong) NSArray *contents;
 
 #pragma mark - Element Access
+/** @name Element Access */
+
 /**
  Returns the object at the specified index in the array.
  
@@ -59,6 +63,8 @@ typedef enum
 @property (nonatomic, readonly) NSUInteger count;
 
 #pragma mark - Loading Instructions
+/** @name Loading Instructions */
+
 /**
  Instructs the array to load its next page. This will only be performed if it makes sense (i.e. there is a next page,
  and the array isn't already loading it).
@@ -72,6 +78,8 @@ typedef enum
 -(void)refresh;
 
 #pragma mark - Loading State
+/** @name Loading State */
+
 /**
  Returns YES if the array is currently loading its next page.
  
@@ -108,12 +116,16 @@ typedef enum
 @property (nonatomic, readonly) BOOL hasNextPage;
 
 #pragma mark - Refreshability
+/** @name Refreshability */
+
 /**
  Subclasses should override to return NO if the remote array is not refreshable.
  */
 -(BOOL)refreshable;
 
 #pragma mark - Loading Errors
+/** @name Loading Errors */
+
 /**
  The error that was encountered while failing to load the next page, or nil if an error was not encountered. This
  property will be cleared to nil when -loadNextPage is sent to the array.
@@ -131,6 +143,8 @@ typedef enum
 @property (nonatomic, readonly, strong) NSError *refreshError;
 
 #pragma mark - Pagination Observers
+/** @name Pagination Observers */
+
 /**
  Adds a pagination observer to the array.
  
@@ -149,6 +163,8 @@ typedef enum
 -(void)enumeratePaginationObservers:(void(^)(id<SVRemoteArrayPaginationObserver> paginationObserver))block;
 
 #pragma mark - Implementation - Abstract (Subclasses)
+/** @name Implementation - Abstract (Subclasses) */
+
 /**
  Subclasses must override this message to provide a loading implementation for the next page.
  */
@@ -162,6 +178,8 @@ typedef enum
 -(void)beginRefreshing;
 
 #pragma mark - Implementation - Next Page
+/** @name Implementation - Next Page */
+
 /**
  Subclasses should pass this message to themselves once they have successfully finished loading data for the next page
  of the remote array.
@@ -178,6 +196,8 @@ typedef enum
 -(void)failLoadingNextPageWithError:(NSError*)error;
 
 #pragma mark - Implementation - Refresh
+/** @name Implementation - Refresh */
+
 /**
  Subclasses should pass this message to themselves once they have successfully finished loading data for refreshing the
  remote array.
