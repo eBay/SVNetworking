@@ -63,6 +63,9 @@ typedef enum
 
 @end
 
+/**
+ This class provides a base implementation of an ordered, paginated collection of objects, loaded from a remote source.
+ */ 
 @interface SVRemoteArray : NSObject <NSFastEnumeration>
 
 #pragma mark - Contents
@@ -82,6 +85,8 @@ typedef enum
  Returns the object at the specified index in the array.
  
  This is a convenience passthrough to the "contents" array.
+ 
+ @param index The index.
  */
 -(id)objectAtIndexedSubscript:(NSUInteger)index;
 
@@ -181,16 +186,22 @@ typedef enum
  Adds a pagination observer to the array.
  
  Pagination observers are stored as weak references.
+ 
+ @param paginationObserver The pagination observer to add.
  */
 -(void)addPaginationObserver:(id<SVRemoteArrayPaginationObserver>)paginationObserver;
 
 /**
  Removes a pagination observer from the array.
+ 
+ @param paginationObserver The pagination observer to remove.
  */
 -(void)removePaginationObserver:(id<SVRemoteArrayPaginationObserver>)paginationObserver;
 
 /**
  Passes each pagination observer currently attached to the array to the block.
+ 
+ @param block The block to pass each pagination observer to.
  */
 -(void)enumeratePaginationObservers:(void(^)(id<SVRemoteArrayPaginationObserver> paginationObserver))block;
 
@@ -217,6 +228,9 @@ typedef enum
  of the remote array.
  
  Overriding this message should not be necessary to implement a subclass of SVRemoteArray.
+ 
+ @param items The items to append to the remote array.
+ @param hasNextPage `YES` if the remote array has an additional page after this one, otherwise `NO`.
  */
 -(void)finishLoadingNextPageWithItems:(NSArray*)items hasNextPage:(BOOL)hasNextPage;
 
@@ -224,6 +238,8 @@ typedef enum
  Subclasses should pass this message to themselves if they fail to load data for the next page of the remote array.
  
  Overriding this message should not be necessary to implement a subclass of SVRemoteArray.
+ 
+ @param error The error that caused the failure. This parameter is optional.
  */
 -(void)failLoadingNextPageWithError:(NSError*)error;
 
@@ -235,6 +251,8 @@ typedef enum
  remote array.
  
  Overriding this message should not be necessary to implement a subclass of SVRemoteArray.
+ 
+ @param items The items to prepend to the remote array.
  */
 -(void)finishRefreshingWithItems:(NSArray*)items;
 
@@ -242,6 +260,8 @@ typedef enum
  Subclasses should pass this message to themselves if they fail to load data for refreshing the remote array.
  
  Overriding this message should not be necessary to implement a subclass of SVRemoteArray.
+ 
+ @param error The error that caused the failure. This parameter is optional.
  */
 -(void)failRefreshingWithError:(NSError*)error;
 
