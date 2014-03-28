@@ -30,12 +30,7 @@ profile
 # appcode
 .idea
 
-# doxygen
-Source/Documentation
-
-Website/style.css
 DerivedData
-Documentation
 
 *.save
 iOSInjectionProject
@@ -78,3 +73,6 @@ local.properties
 *.ipr
 *~
 *.swp
+
+# documentation
+Documentation/html
