@@ -26,6 +26,8 @@
  If parsing fails, pass this message to the completion listener with an appropriate error object.
  
  This message must be passed on the main thread.
+ 
+ @param error The error that caused the parsing to fail. This parameter is optional.
  */
 -(void)remoteProxyResourceFailedToFinishWithError:(NSError*)error;
 
@@ -40,6 +42,8 @@
 @interface SVRemoteProxyResource : SVRemoteResource
 
 #pragma mark - Subclass Implementation
+/** @name Subclass Implementation */
+
 /**
  Subclasses must override this message to provide a resource to load and proxy.
  
@@ -51,7 +55,7 @@
  SVRemoteRetainedProxyResource provides an implementation that specifies the resource to proxy at initialization time,
  and returns it automatically.
  
- The default implementation throws an exception.
+ @warning The default implementation throws an exception.
  */
 -(SVRemoteResource*)acquireProxiedResource;
 
@@ -61,7 +65,9 @@
  Messages to the listener object may be passed synchronously or asynchronously, but they must be passed on the main
  thread.
  
- The default implementation throws an exception.
+ @warning The default implementation throws an exception.
+ @param proxiedResource The finished proxied resource.
+ @param listener A completion listener.
  */
 -(void)parseFinishedProxiedResource:(id)proxiedResource
                        withListener:(id<SVRemoteProxyResourceCompletionListener>)listener;

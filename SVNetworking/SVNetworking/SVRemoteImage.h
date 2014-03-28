@@ -18,29 +18,47 @@
 @interface SVRemoteImage : SVRemoteDataRequestResource <SVRemoteImageProtocol>
 
 #pragma mark - Disk Cache
+/** @name Disk Cache */
+
 /**
  The cache for downloaded image data.
  */
 +(SVDiskCache*)diskCache;
 
 #pragma mark - Access
+/** @name Access */
+
 /**
  Returns an (in-memory) cached remote image for the specified URL.
+ 
+ This image will have a `scale` value of 1.
+ 
+ @param URL The URL for the image.
  */
 +(instancetype)cachedRemoteImageForURL:(NSURL*)URL;
 
 /**
  Returns a remote image for the specified URL.
+ 
+ This image will have a `scale` value of 1.
+ 
+ @param URL The URL for the image.
  */
 +(instancetype)remoteImageForURL:(NSURL*)URL;
 
 /**
  Returns an (in-memory) cached remote image for the specified URL, with the specified scale.
+ 
+ @param URL The URL for the image.
+ @param scale The scale for the image.
  */
 +(instancetype)cachedRemoteImageForURL:(NSURL*)URL withScale:(CGFloat)scale;
 
 /**
  Returns a remote image for the specified URL, with the specified scale.
+ 
+ @param URL The URL for the image.
+ @param scale The scale for the image.
  */
 +(instancetype)remoteImageForURL:(NSURL*)URL withScale:(CGFloat)scale;
 

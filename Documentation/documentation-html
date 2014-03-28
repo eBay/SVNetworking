@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+appledoc --project-name SVNetworking --project-company eBay --company-id com.ebay --create-html --no-create-docset --keep-undocumented-objects --keep-undocumented-members --no-repeat-first-par ../SVNetworking/SVNetworking/*.h

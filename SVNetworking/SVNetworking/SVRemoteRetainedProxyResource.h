@@ -27,6 +27,9 @@
  
  Subclasses should provide their own accessors, as additional key generation for each remote proxy resource subclass
  should be an implementation detail of that class, and not externally visible.
+ 
+ @param proxiedResource The resource to use for proxy loading.
+ @param additionalKey A key to uniquely identify the proxy resource.
  */
 +(instancetype)cachedResourceProxyingResource:(SVRemoteResource*)proxiedResource
                             withAdditionalKey:(NSString*)additionalKey;
@@ -44,6 +47,10 @@
  
  Subclasses should provide their own accessors, as additional key generation for each remote proxy resource subclass
  should be an implementation detail of that class, and not externally visible.
+ 
+ @param proxiedResource The resource to use for proxy loading.
+ @param additionalKey A key to uniquely identify the proxy resource.
+ @param initializationBlock A block to initialize the newly created proxy resource.
  */
 +(instancetype)resourceProxyingResource:(SVRemoteResource*)proxiedResource
                       withAdditionalKey:(NSString*)additionalKey

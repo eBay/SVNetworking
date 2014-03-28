@@ -35,11 +35,16 @@ typedef enum {
 @interface SVRemoteResource : NSObject
 
 #pragma mark - Unique Resources
+/** @name Unique Resources */
+
 /**
  Retrieves a cached remote resource with the given unique key, if one exists. Otherwise, returns nil.
  
  Subclasses should provide their own accessors, as unique key generation for each remote resource subclass should be an
  implementation detail of that class, and not externally visible.
+ 
+ @param uniqueKey The unique key of the resource to retrieve.
+ @returns A retrieved resource of the reciever class with the specified unique key, or `nil`.
  */
 +(instancetype)cachedResourceWithUniqueKey:(NSString*)uniqueKey;
 
@@ -51,6 +56,10 @@ typedef enum {
  
  Subclasses should provide their own accessors, as unique key generation for each remote resource subclass should be an
  implementation detail of that class, and not externally visible.
+ 
+ @param uniqueKey The unique key of the resource to retrieve or create.
+ @param block An initialization block that will be passed if the resource is newly created.
+ @returns A retrieved or newly created resource of the receiver class, with the specified unique key.
  */
 +(instancetype)resourceWithUniqueKey:(NSString*)uniqueKey withInitializationBlock:(void(^)(id resource))block;
 
@@ -61,6 +70,8 @@ typedef enum {
 @property (nonatomic, readonly) NSString *uniqueKeyHash;
 
 #pragma mark - State
+/** @name State */
+
 /**
  The current loading state of the remote resource. This property is observable, and will automatically be updated
  throughout the loading process.
@@ -68,6 +79,8 @@ typedef enum {
 @property (nonatomic, readonly) SVRemoteResourceState state;
 
 #pragma mark - Error
+/** @name Error */
+
 /**
  If the current state is SVRemoteResourceError, the error that caused the failure. Otherwise, nil. This property is
  observable.
@@ -75,6 +88,8 @@ typedef enum {
 @property (nonatomic, readonly) NSError *error;
 
 #pragma mark - Loading
+/** @name Loading */
+
 /**
  Instructs a remote resource to load itself, if it is not or has not already done so.
  
@@ -87,10 +102,14 @@ typedef enum {
  Passes -load to the resource, then returns the resource. Somewhat based on the style of -autorelease.
  
  Generally used to simplifying binding blocks from three lines to one.
+ 
+ @returns The reciever.
  */
 -(instancetype)autoload;
 
 #pragma mark - Implementation
+/** Implementation */
+
 /**
  Subclasses should pass this message to self when the loading process is complete. This will update the -state
  property to SVRemoteResourceStateFinished.
@@ -100,10 +119,15 @@ typedef enum {
 /**
  Subclasses should pass this message to self if the loading process fails. This will update the -state and -error
  properties.
+ 
+ @param error The error that caused the failure. This parameter is optional - if `nil`, the resource's `state` will
+ still be set to `SVRemoteResourceStateError`.
  */
 -(void)failLoadingWithError:(NSError*)error;
 
 #pragma mark - Subclass Implementation
+/** Subclass Implementation */
+
 /**
  Subclasses must override this message, to begin their loading implementation.
  

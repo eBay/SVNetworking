@@ -17,23 +17,33 @@
 @interface SVRemoteDataResource : SVRemoteDataRequestResource
 
 #pragma mark - Access
+/** @name Access */
+
 /**
  Returns an (in-memory) cached remote data for the specified URL.
+ 
+ @param URL The URL to load data from.
  */
 +(instancetype)cachedRemoteDataForURL:(NSURL*)URL;
 
 /**
  Returns a remote data for the specified URL.
+ 
+ @param URL The URL to load data from.
  */
 +(instancetype)remoteDataForURL:(NSURL*)URL;
 
 #pragma mark - URL
+/** @name URL */
+
 /**
  The URL to load data from.
  */
 @property (nonatomic, readonly, strong) NSURL *URL;
 
 #pragma mark - Data
+/** @name Data */
+
 /**
  The loaded data. This property is observable.
  */
