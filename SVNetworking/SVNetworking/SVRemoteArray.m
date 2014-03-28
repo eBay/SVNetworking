@@ -218,4 +218,10 @@
     }];
 }
 
+#pragma mark - Fast Enumeration
+-(NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(__unsafe_unretained id [])buffer count:(NSUInteger)len
+{
+    return [_contents countByEnumeratingWithState:state objects:buffer count:len];
+}
+
 @end

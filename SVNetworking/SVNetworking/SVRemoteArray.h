@@ -31,7 +31,7 @@ typedef enum
 
 @end
 
-@interface SVRemoteArray : NSObject
+@interface SVRemoteArray : NSObject <NSFastEnumeration>
 
 #pragma mark - Contents
 /**
