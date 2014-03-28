@@ -17,16 +17,48 @@ typedef enum
     SVRemoteArrayLoadingStateLoading
 } SVRemoteArrayLoadingState;
 
+/**
+ An observer for remote array page loading.
+ 
+ This protocol is ideal for implementing a table view or collection view.
+ */
 @protocol SVRemoteArrayPaginationObserver <NSObject>
 
 @optional
 
-// page loading
+/** @name Page Loading */
+/**
+ Sent when a remote array finishes refreshing.
+ 
+ @param remoteArray The remote array.
+ @param items The newly loaded items, which are at the front of the array.
+ */
 -(void)remoteArray:(SVRemoteArray*)remoteArray didRefreshWithItems:(NSArray*)items;
+
+/**
+ Sent when a remote array finishes loading its next page.
+ 
+ @param remoteArray The remote array.
+ @param items The newly loaded items, which are at the end of the array.
+ @param hasNextPage `YES` if the remote array has a next page, otherwise `NO`.
+ */
 -(void)remoteArray:(SVRemoteArray*)remoteArray didLoadNextPageWithItems:(NSArray*)items hasNextPage:(BOOL)hasNextPage;
 
-// error handling
+/** @name Error Handling */
+/**
+ Sent when a remote array fails to refresh.
+ 
+ @param remoteArray The remote array.
+ @param error The error that caused the remote array to fail to refresh. This parameter may be `nil`.
+ */
 -(void)remoteArray:(SVRemoteArray*)remoteArray didFailToRefreshWithError:(NSError*)error;
+
+/**
+ Sent when a remote array fails to load its next page.
+ 
+ @param remoteArray The remote array.
+ @param error The error that caused the remote array to fail to load its next page. This parameter may be `nil`.
+ */
 -(void)remoteArray:(SVRemoteArray*)remoteArray didFailToLoadNextPageWithError:(NSError*)error;
 
 @end
