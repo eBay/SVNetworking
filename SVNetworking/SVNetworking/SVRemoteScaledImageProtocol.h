@@ -57,4 +57,10 @@
  */
 +(instancetype)remoteScaledImageForURL:(NSURL*)URL withScale:(CGFloat)scale size:(CGSize)size;
 
+#pragma mark - Size
+/** @name Size */
+
+/** The size that the resource will scale its image to fit within. */
+@property (nonatomic, readonly) CGSize size;
+
 @end
