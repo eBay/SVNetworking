@@ -24,6 +24,8 @@
  
  If subclasses provide an alternative loading implementation in -beginLoading (i.e. from a disk cache), they should
  pass this message once the JSON has been loaded.
+ 
+ @param JSON The loaded JSON.
  */
 -(void)finishLoadingWithJSON:(id)JSON;
 
