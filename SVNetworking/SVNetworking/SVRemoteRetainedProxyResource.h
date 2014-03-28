@@ -50,6 +50,7 @@
  
  @param proxiedResource The resource to use for proxy loading.
  @param additionalKey A key to uniquely identify the proxy resource.
+ @param initializationBlock A block to initialize the newly created proxy resource.
  */
 +(instancetype)resourceProxyingResource:(SVRemoteResource*)proxiedResource
                       withAdditionalKey:(NSString*)additionalKey
