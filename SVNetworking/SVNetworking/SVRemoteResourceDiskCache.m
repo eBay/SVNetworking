@@ -32,7 +32,9 @@
     return self;
 }
 
--(void)dataForKey:(NSString*)key completion:(void(^)(NSData *data))completion failure:(void(^)(NSError *error))failure
+-(void)dataForKey:(NSString*)key
+       completion:(SVRemoteResourceCacheReadCompletionBlock)completion
+          failure:(SVRemoteResourceCacheFailureBlock)failure
 {
     NSURL *fileURL = [_fileURL URLByAppendingPathComponent:key isDirectory:NO];
     
@@ -57,7 +59,10 @@
     });
 }
 
--(void)writeData:(NSData*)data forKey:(NSString*)key completion:(void(^)())completion failure:(void(^)(NSError *error))failure;
+-(void)writeData:(NSData*)data
+          forKey:(NSString*)key
+      completion:(SVRemoteResourceCacheWriteCompletionBlock)completion
+         failure:(SVRemoteResourceCacheFailureBlock)failure;
 {
     NSURL *fileURL = [_fileURL URLByAppendingPathComponent:key isDirectory:NO];
     
