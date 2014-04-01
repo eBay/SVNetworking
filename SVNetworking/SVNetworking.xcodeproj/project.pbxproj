@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4110270E18DB5B730030EE6F /* SVImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4110270C18DB5B730030EE6F /* SVImageView.m */; };
+		41A7CE8B18EB57EF002C73A0 /* SVNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A7CE8A18EB57EF002C73A0 /* SVNetworkActivityIndicatorManager.m */; };
 		41B38E1418D756AA000064D3 /* SVRemoteDataRequestResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B38E1318D756AA000064D3 /* SVRemoteDataRequestResource.m */; };
 		41B38E1718D761C5000064D3 /* SVRemoteJSONRequestResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B38E1618D761C5000064D3 /* SVRemoteJSONRequestResource.m */; };
 		41B38E1D18D7752E000064D3 /* NSObject+SVBindings.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B38E1A18D7752E000064D3 /* NSObject+SVBindings.m */; };
@@ -48,6 +49,8 @@
 /* Begin PBXFileReference section */
 		4110270B18DB5B730030EE6F /* SVImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVImageView.h; sourceTree = "<group>"; };
 		4110270C18DB5B730030EE6F /* SVImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVImageView.m; sourceTree = "<group>"; };
+		41A7CE8918EB57EF002C73A0 /* SVNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
+		41A7CE8A18EB57EF002C73A0 /* SVNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
 		41B38E1218D756AA000064D3 /* SVRemoteDataRequestResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRemoteDataRequestResource.h; sourceTree = "<group>"; };
 		41B38E1318D756AA000064D3 /* SVRemoteDataRequestResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRemoteDataRequestResource.m; sourceTree = "<group>"; };
 		41B38E1518D761C5000064D3 /* SVRemoteJSONRequestResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRemoteJSONRequestResource.h; sourceTree = "<group>"; };
@@ -128,6 +131,15 @@
 				4110270C18DB5B730030EE6F /* SVImageView.m */,
 			);
 			name = "Image View";
+			sourceTree = "<group>";
+		};
+		41A7CE8818EB57CB002C73A0 /* Network Activity Indicator */ = {
+			isa = PBXGroup;
+			children = (
+				41A7CE8918EB57EF002C73A0 /* SVNetworkActivityIndicatorManager.h */,
+				41A7CE8A18EB57EF002C73A0 /* SVNetworkActivityIndicatorManager.m */,
+			);
+			name = "Network Activity Indicator";
 			sourceTree = "<group>";
 		};
 		41B38E1818D77527000064D3 /* Bindings */ = {
@@ -226,6 +238,7 @@
 				41B38E1818D77527000064D3 /* Bindings */,
 				43D2A22F18D3AA69002CFE55 /* Cache */,
 				4110270A18DB5B640030EE6F /* Image View */,
+				41A7CE8818EB57CB002C73A0 /* Network Activity Indicator */,
 				43D2A22318D39536002CFE55 /* Resources */,
 				43D2A21518D3942C002CFE55 /* Requests */,
 				43D2A21F18D3947E002CFE55 /* Utility */,
@@ -387,6 +400,7 @@
 			files = (
 				4110270E18DB5B730030EE6F /* SVImageView.m in Sources */,
 				41B38E1418D756AA000064D3 /* SVRemoteDataRequestResource.m in Sources */,
+				41A7CE8B18EB57EF002C73A0 /* SVNetworkActivityIndicatorManager.m in Sources */,
 				43C9137218D8A0BB000718E7 /* SVRemoteProxyResource.m in Sources */,
 				43D2A21E18D39438002CFE55 /* SVRequest.m in Sources */,
 				43D2A21C18D39438002CFE55 /* SVDataRequest.m in Sources */,
