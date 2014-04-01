@@ -9,7 +9,6 @@
 #import "NSObject+SVBindings.h"
 #import "NSObject+SVMultibindings.h"
 #import "SVDataRequest.h"
-#import "SVDiskCache.h"
 #import "SVFunctional.h"
 #import "SVImageView.h"
 #import "SVJSONRequest.h"
