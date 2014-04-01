@@ -74,7 +74,7 @@
 {
     SVRemoteResourceDiskCache *cache = [self.class diskCache];
     
-    [cache dataForKey:self.uniqueKeyHash completion:^(NSData *data) {
+    [cache dataForResource:self completion:^(NSData *data) {
         dispatch_async(dispatch_get_main_queue(), ^{
             self->_loadingViaNetwork = NO;
             [self finishLoadingWithData:data];
@@ -104,7 +104,7 @@
         if (_loadingViaNetwork)
         {
             SVRemoteResourceDiskCache *cache = [self.class diskCache];
-            [cache writeData:data forKey:self.uniqueKeyHash completion:nil failure:nil];
+            [cache writeData:data forResource:self completion:nil failure:nil];
         }
     }
     else if (error)

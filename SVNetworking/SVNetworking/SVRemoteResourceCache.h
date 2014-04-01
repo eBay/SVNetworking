@@ -12,6 +12,8 @@ typedef void(^SVRemoteResourceCacheReadCompletionBlock)(NSData *data);
 typedef void(^SVRemoteResourceCacheFailureBlock)(NSError *error);
 typedef void(^SVRemoteResourceCacheWriteCompletionBlock)(void);
 
+@class SVRemoteResource;
+
 /**
  Defines messages for a cached keyed by remote objects.
  */
@@ -19,14 +21,14 @@ typedef void(^SVRemoteResourceCacheWriteCompletionBlock)(void);
 
 #pragma mark - Reading
 /** @name Reading */
--(void)dataForKey:(NSString*)key
-       completion:(SVRemoteResourceCacheReadCompletionBlock)completion
-          failure:(SVRemoteResourceCacheFailureBlock)failure;
+-(void)dataForResource:(SVRemoteResource*)remoteResource
+            completion:(SVRemoteResourceCacheReadCompletionBlock)completion
+               failure:(SVRemoteResourceCacheFailureBlock)failure;
 
 #pragma mark - Writing
 /** @name Writing */
 -(void)writeData:(NSData*)data
-          forKey:(NSString*)key
+     forResource:(SVRemoteResource*)remoteResource
       completion:(SVRemoteResourceCacheWriteCompletionBlock)completion
          failure:(SVRemoteResourceCacheFailureBlock)failure;
 
