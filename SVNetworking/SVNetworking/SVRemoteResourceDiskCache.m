@@ -1,6 +1,6 @@
-#import "SVDiskCache.h"
+#import "SVRemoteResourceDiskCache.h"
 
-@interface SVDiskCache ()
+@interface SVRemoteResourceDiskCache ()
 {
 @private
     NSURL *_fileURL;
@@ -8,7 +8,7 @@
 
 @end
 
-@implementation SVDiskCache
+@implementation SVRemoteResourceDiskCache
 
 -(instancetype)initWithFileURL:(NSURL *)fileURL
 {

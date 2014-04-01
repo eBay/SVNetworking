@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Svpply. All rights reserved.
 //
 
-#import "SVDiskCache.h"
+#import "SVRemoteResourceDiskCache.h"
 #import "SVRemoteDataRequestResource.h"
 #import "SVRemoteScaledImageProtocol.h"
 
@@ -23,7 +23,7 @@
 /**
  The cache for downloaded image data.
  */
-+(SVDiskCache*)diskCache;
++(SVRemoteResourceDiskCache*)diskCache;
 
 #pragma mark - Access
 /** @name Access */

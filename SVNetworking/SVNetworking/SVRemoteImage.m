@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Svpply. All rights reserved.
 //
 
-#import "SVDiskCache.h"
+#import "SVRemoteResourceDiskCache.h"
 #import "SVRemoteImage.h"
 
 @interface SVRemoteImage ()
@@ -29,13 +29,13 @@
 @implementation SVRemoteImage
 
 #pragma mark - Disk Cache
-+(SVDiskCache*)diskCache
++(SVRemoteResourceDiskCache*)diskCache
 {
-    static SVDiskCache *cache;
+    static SVRemoteResourceDiskCache *cache;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         NSURL *fileURL = [[[[NSFileManager defaultManager] URLsForDirectory: NSCachesDirectory inDomains: NSUserDomainMask] lastObject] URLByAppendingPathComponent:@"SVRemoteImage" isDirectory:YES];
-        cache = [[SVDiskCache alloc] initWithFileURL:fileURL];
+        cache = [[SVRemoteResourceDiskCache alloc] initWithFileURL:fileURL];
     });
     
     return cache;
@@ -72,7 +72,7 @@
 #pragma mark - Implementation - Custom Loading
 -(void)beginLoading
 {
-    SVDiskCache *cache = [self.class diskCache];
+    SVRemoteResourceDiskCache *cache = [self.class diskCache];
     
     [cache dataForKey:self.uniqueKeyHash completion:^(NSData *data) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -103,7 +103,7 @@
         
         if (_loadingViaNetwork)
         {
-            SVDiskCache *cache = [self.class diskCache];
+            SVRemoteResourceDiskCache *cache = [self.class diskCache];
             [cache writeData:data forKey:self.uniqueKeyHash completion:nil failure:nil];
         }
     }

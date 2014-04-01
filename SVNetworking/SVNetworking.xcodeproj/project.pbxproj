@@ -33,7 +33,7 @@
 		43D2A22218D39485002CFE55 /* SVFunctional.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D2A22118D39485002CFE55 /* SVFunctional.m */; };
 		43D2A22918D39572002CFE55 /* SVRemoteResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D2A22818D39572002CFE55 /* SVRemoteResource.m */; };
 		43D2A22C18D3987C002CFE55 /* SVRemoteImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D2A22B18D3987C002CFE55 /* SVRemoteImage.m */; };
-		43D2A23218D3AA6E002CFE55 /* SVDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D2A23118D3AA6E002CFE55 /* SVDiskCache.m */; };
+		43D2A23218D3AA6E002CFE55 /* SVRemoteResourceDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D2A23118D3AA6E002CFE55 /* SVRemoteResourceDiskCache.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +51,7 @@
 		4110270C18DB5B730030EE6F /* SVImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVImageView.m; sourceTree = "<group>"; };
 		41A7CE8918EB57EF002C73A0 /* SVNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
 		41A7CE8A18EB57EF002C73A0 /* SVNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
+		41A7CE8F18EB60AE002C73A0 /* SVRemoteResourceCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVRemoteResourceCache.h; sourceTree = "<group>"; };
 		41B38E1218D756AA000064D3 /* SVRemoteDataRequestResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRemoteDataRequestResource.h; sourceTree = "<group>"; };
 		41B38E1318D756AA000064D3 /* SVRemoteDataRequestResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRemoteDataRequestResource.m; sourceTree = "<group>"; };
 		41B38E1518D761C5000064D3 /* SVRemoteJSONRequestResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRemoteJSONRequestResource.h; sourceTree = "<group>"; };
@@ -97,8 +98,8 @@
 		43D2A22818D39572002CFE55 /* SVRemoteResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRemoteResource.m; sourceTree = "<group>"; };
 		43D2A22A18D3987C002CFE55 /* SVRemoteImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRemoteImage.h; sourceTree = "<group>"; };
 		43D2A22B18D3987C002CFE55 /* SVRemoteImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRemoteImage.m; sourceTree = "<group>"; };
-		43D2A23018D3AA6E002CFE55 /* SVDiskCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVDiskCache.h; sourceTree = "<group>"; };
-		43D2A23118D3AA6E002CFE55 /* SVDiskCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVDiskCache.m; sourceTree = "<group>"; };
+		43D2A23018D3AA6E002CFE55 /* SVRemoteResourceDiskCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRemoteResourceDiskCache.h; sourceTree = "<group>"; };
+		43D2A23118D3AA6E002CFE55 /* SVRemoteResourceDiskCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRemoteResourceDiskCache.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -312,8 +313,9 @@
 		43D2A22F18D3AA69002CFE55 /* Cache */ = {
 			isa = PBXGroup;
 			children = (
-				43D2A23018D3AA6E002CFE55 /* SVDiskCache.h */,
-				43D2A23118D3AA6E002CFE55 /* SVDiskCache.m */,
+				41A7CE8F18EB60AE002C73A0 /* SVRemoteResourceCache.h */,
+				43D2A23018D3AA6E002CFE55 /* SVRemoteResourceDiskCache.h */,
+				43D2A23118D3AA6E002CFE55 /* SVRemoteResourceDiskCache.m */,
 			);
 			name = Cache;
 			sourceTree = "<group>";
@@ -405,7 +407,7 @@
 				43D2A21E18D39438002CFE55 /* SVRequest.m in Sources */,
 				43D2A21C18D39438002CFE55 /* SVDataRequest.m in Sources */,
 				430C17FF18DA0E2A00070925 /* SVImageScaler.m in Sources */,
-				43D2A23218D3AA6E002CFE55 /* SVDiskCache.m in Sources */,
+				43D2A23218D3AA6E002CFE55 /* SVRemoteResourceDiskCache.m in Sources */,
 				430C180318DA117800070925 /* SVRemoteScaledImage.m in Sources */,
 				41B38E2C18D79DA8000064D3 /* SVRemoteJSONResource.m in Sources */,
 				41B38E2918D79C98000064D3 /* SVRemoteDataResource.m in Sources */,
