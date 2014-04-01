@@ -17,14 +17,6 @@
  */
 @interface SVRemoteImage : SVRemoteDataRequestResource <SVRemoteImageProtocol>
 
-#pragma mark - Disk Cache
-/** @name Disk Cache */
-
-/**
- The cache for downloaded image data.
- */
-+(SVRemoteResourceDiskCache*)diskCache;
-
 #pragma mark - Access
 /** @name Access */
 

@@ -122,4 +122,17 @@
     [self doesNotRecognizeSelector:_cmd];
 }
 
+#pragma mark - Disk Cache
++(SVRemoteResourceDiskCache*)diskCache
+{
+    static SVRemoteResourceDiskCache *cache;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSURL *fileURL = [[[[NSFileManager defaultManager] URLsForDirectory: NSCachesDirectory inDomains: NSUserDomainMask] lastObject] URLByAppendingPathComponent:@"SVRemoteResource" isDirectory:YES];
+        cache = [[SVRemoteResourceDiskCache alloc] initWithFileURL:fileURL];
+    });
+    
+    return cache;
+}
+
 @end

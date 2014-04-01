@@ -7,6 +7,7 @@
 //
 
 #import "SVDataRequest.h"
+#import "SVRemoteResourceDiskCache.h"
 
 typedef enum {
     SVRemoteResourceStateNotLoaded,
@@ -134,5 +135,13 @@ typedef enum {
  The default implementation of this message throws an exception.
  */
 -(void)beginLoading;
+
+#pragma mark - Disk Cache
+/** @name Disk Cache */
+
+/**
+ A disk cache for subclasses to store downloaded data in.
+ */
++(SVRemoteResourceDiskCache*)diskCache;
 
 @end
