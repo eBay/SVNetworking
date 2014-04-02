@@ -7,6 +7,7 @@
 //
 
 #import "SVDataRequest.h"
+#import "SVRemoteResourceDiskCache.h"
 
 typedef enum {
     SVRemoteResourceStateNotLoaded,
@@ -23,6 +24,10 @@ typedef enum {
  sending the -load message. Subclasses provide various properties that will be set on a successful load, the
  -error property of the base class is used to communicate failure. The -state property will automatically update
  as the loading process begins, completes, or fails.
+ 
+ Strictly speaking, uniquing is entirely optional. However, SVNetworking encourages it, and the built-in resource
+ subclasses are only accessible via uniqued instances. Despite this, remote resource subclasses are free to have mutable
+ properties or public instance initializers. This is discouraged, especially mutability.
  
  Consumers of the class should use KVO or bindings to observe changes.
  
@@ -107,6 +112,18 @@ typedef enum {
  */
 -(instancetype)autoload;
 
+/**
+ Instructs a remote resource to reload itself, even if it has already finished loading.
+ 
+ Properties set by a completed resource will not be cleared to `nil` (or an equivalent 0 value) before reloading.
+ 
+ Passing this message to a remote resource that has failed to load will clear the -error property and retry the loading
+ process.
+ 
+ This message has no effect on resources that are currently in the process of loading.
+ */
+-(void)reload;
+
 #pragma mark - Implementation
 /** Implementation */
 
@@ -134,5 +151,13 @@ typedef enum {
  The default implementation of this message throws an exception.
  */
 -(void)beginLoading;
+
+#pragma mark - Disk Cache
+/** @name Disk Cache */
+
+/**
+ A disk cache for subclasses to store downloaded data in.
+ */
++(SVRemoteResourceDiskCache*)diskCache;
 
 @end

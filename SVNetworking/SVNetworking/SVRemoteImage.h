@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Svpply. All rights reserved.
 //
 
-#import "SVDiskCache.h"
+#import "SVRemoteResourceDiskCache.h"
 #import "SVRemoteDataRequestResource.h"
 #import "SVRemoteScaledImageProtocol.h"
 
@@ -16,14 +16,6 @@
  Images are cached to disk once loaded, and will be loaded from the cache if available.
  */
 @interface SVRemoteImage : SVRemoteDataRequestResource <SVRemoteImageProtocol>
-
-#pragma mark - Disk Cache
-/** @name Disk Cache */
-
-/**
- The cache for downloaded image data.
- */
-+(SVDiskCache*)diskCache;
 
 #pragma mark - Access
 /** @name Access */

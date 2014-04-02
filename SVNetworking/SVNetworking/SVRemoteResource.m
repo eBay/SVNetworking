@@ -104,6 +104,24 @@
     return self;
 }
 
+-(void)reload
+{
+    if (_state != SVRemoteResourceStateLoading)
+    {
+        // clear error if applicable
+        if (_error)
+        {
+            self.error = nil;
+        }
+        
+        // update state
+        self.state = SVRemoteResourceStateLoading;
+        
+        // custom or network loading
+        [self beginLoading];
+    }
+}
+
 #pragma mark - Implementation
 -(void)finishLoading
 {
@@ -120,6 +138,19 @@
 -(void)beginLoading
 {
     [self doesNotRecognizeSelector:_cmd];
+}
+
+#pragma mark - Disk Cache
++(SVRemoteResourceDiskCache*)diskCache
+{
+    static SVRemoteResourceDiskCache *cache;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSURL *fileURL = [[[[NSFileManager defaultManager] URLsForDirectory: NSCachesDirectory inDomains: NSUserDomainMask] lastObject] URLByAppendingPathComponent:@"SVRemoteResource" isDirectory:YES];
+        cache = [[SVRemoteResourceDiskCache alloc] initWithFileURL:fileURL];
+    });
+    
+    return cache;
 }
 
 @end

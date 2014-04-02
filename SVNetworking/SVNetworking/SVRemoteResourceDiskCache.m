@@ -1,6 +1,7 @@
-#import "SVDiskCache.h"
+#import "SVRemoteResource.h"
+#import "SVRemoteResourceDiskCache.h"
 
-@interface SVDiskCache ()
+@interface SVRemoteResourceDiskCache ()
 {
 @private
     NSURL *_fileURL;
@@ -8,7 +9,7 @@
 
 @end
 
-@implementation SVDiskCache
+@implementation SVRemoteResourceDiskCache
 
 -(instancetype)initWithFileURL:(NSURL *)fileURL
 {
@@ -32,9 +33,11 @@
     return self;
 }
 
--(void)dataForKey:(NSString*)key completion:(void(^)(NSData *data))completion failure:(void(^)(NSError *error))failure
+-(void)dataForResource:(SVRemoteResource *)remoteResource
+            completion:(SVRemoteResourceCacheReadCompletionBlock)completion
+               failure:(SVRemoteResourceCacheFailureBlock)failure
 {
-    NSURL *fileURL = [_fileURL URLByAppendingPathComponent:key isDirectory:NO];
+    NSURL *fileURL = [_fileURL URLByAppendingPathComponent:remoteResource.uniqueKeyHash isDirectory:NO];
     
     dispatch_async(_IOQueue, ^{
         NSError *error = nil;
@@ -57,9 +60,12 @@
     });
 }
 
--(void)writeData:(NSData*)data forKey:(NSString*)key completion:(void(^)())completion failure:(void(^)(NSError *error))failure;
+-(void)writeData:(NSData*)data
+     forResource:(SVRemoteResource *)remoteResource
+      completion:(SVRemoteResourceCacheWriteCompletionBlock)completion
+         failure:(SVRemoteResourceCacheFailureBlock)failure;
 {
-    NSURL *fileURL = [_fileURL URLByAppendingPathComponent:key isDirectory:NO];
+    NSURL *fileURL = [_fileURL URLByAppendingPathComponent:remoteResource.uniqueKeyHash isDirectory:NO];
     
     dispatch_async(_IOQueue, ^{
         NSError *error = nil;
