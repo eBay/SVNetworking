@@ -25,6 +25,10 @@ typedef enum {
  -error property of the base class is used to communicate failure. The -state property will automatically update
  as the loading process begins, completes, or fails.
  
+ Strictly speaking, uniquing is entirely optional. However, SVNetworking encourages it, and the built-in resource
+ subclasses are only accessible via uniqued instances. Despite this, remote resource subclasses are free to have mutable
+ properties or public instance initializers. This is discouraged, especially mutability.
+ 
  Consumers of the class should use KVO or bindings to observe changes.
  
  This class does not provide any actual networking support (as the network is an implementation detail of subclasses,
