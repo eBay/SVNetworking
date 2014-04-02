@@ -104,6 +104,24 @@
     return self;
 }
 
+-(void)reload
+{
+    if (_state != SVRemoteResourceStateLoading)
+    {
+        // clear error if applicable
+        if (_error)
+        {
+            self.error = nil;
+        }
+        
+        // update state
+        self.state = SVRemoteResourceStateLoading;
+        
+        // custom or network loading
+        [self beginLoading];
+    }
+}
+
 #pragma mark - Implementation
 -(void)finishLoading
 {

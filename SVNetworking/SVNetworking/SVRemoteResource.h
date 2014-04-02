@@ -108,6 +108,18 @@ typedef enum {
  */
 -(instancetype)autoload;
 
+/**
+ Instructs a remote resource to reload itself, even if it has already finished loading.
+ 
+ Properties set by a completed resource will not be cleared to `nil` (or an equivalent 0 value) before reloading.
+ 
+ Passing this message to a remote resource that has failed to load will clear the -error property and retry the loading
+ process.
+ 
+ This message has no effect on resources that are currently in the process of loading.
+ */
+-(void)reload;
+
 #pragma mark - Implementation
 /** Implementation */
 
