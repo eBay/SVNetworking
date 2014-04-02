@@ -22,6 +22,11 @@
 @implementation SVRemoteRetainedScaledImage
 
 #pragma mark - Access
++(NSString*)additionalKeyForSize:(CGSize)size withScale:(CGFloat)scale
+{
+    return [NSString stringWithFormat:@"%f,%f,%f", size.width, size.height, scale];
+}
+
 +(instancetype)cachedRemoteScaledImageForURL:(NSURL*)URL withSize:(CGSize)size
 {
     return [self cachedRemoteScaledImageForURL:URL withScale:1 size:size];
@@ -38,7 +43,8 @@
     
     if (image)
     {
-        return [self cachedResourceProxyingResource:image withAdditionalKey:NSStringFromCGSize(size)];
+        NSString *key = [self additionalKeyForSize:size withScale:scale];
+        return [self cachedResourceProxyingResource:image withAdditionalKey:key];
     }
     else
     {
@@ -51,7 +57,7 @@
     SVRemoteImage *image = [SVRemoteImage remoteImageForURL:URL withScale:scale];
     
     return [self resourceProxyingResource:image
-                        withAdditionalKey:NSStringFromCGSize(size)
+                        withAdditionalKey:[self additionalKeyForSize:size withScale:scale]
                       initializationBlock:^(SVRemoteRetainedScaledImage *resource) {
         resource.size = size;
         resource.URL = URL;
