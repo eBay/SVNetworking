@@ -1,6 +1,14 @@
 #import "SVRemoteResourceCache.h"
 
+/**
+ A disk cache for remote resources.
+ 
+ The resource's -[SVRemoteResource uniqueKeyHash] is used as a filename for items in the cache.
+ */
 @interface SVRemoteResourceDiskCache : NSObject <SVRemoteResourceCache>
+
+#pragma mark - Initialization
+/** @name Initialization */
 
 /**
  Initializes a disk cache instance.
@@ -10,6 +18,8 @@
 -(instancetype)initWithFileURL:(NSURL *)fileURL;
 
 #pragma mark - IO Queue
+/** @name IO Queue */
+
 /**
  The IO queue to perform data reads and writes on.
  
