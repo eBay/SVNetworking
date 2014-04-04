@@ -7,34 +7,34 @@
 //
 
 typedef id(^SVMapToIntegerBlock)(NSUInteger i);
-FOUNDATION_EXTERN  __attribute((pure)) NSArray* SVMapToInteger(NSUInteger integer, SVMapToIntegerBlock block);
-FOUNDATION_EXTERN  __attribute((pure)) NSArray* SVFilterMapToInteger(NSUInteger integer, SVMapToIntegerBlock block);
+FOUNDATION_EXTERN NSArray* SVMapToInteger(NSUInteger integer, SVMapToIntegerBlock block);
+FOUNDATION_EXTERN NSArray* SVFilterMapToInteger(NSUInteger integer, SVMapToIntegerBlock block);
 
 typedef id(^SVMapBlock)(id object);
-FOUNDATION_EXTERN  __attribute((pure)) NSArray* SVMap(NSArray* array, SVMapBlock block);
-FOUNDATION_EXTERN  __attribute((pure)) NSArray* SVFilterMap(NSArray* array, SVMapBlock block);
-FOUNDATION_EXTERN  __attribute((pure)) NSSet* SVMapSet(NSSet* set, SVMapBlock block);
-FOUNDATION_EXTERN  __attribute((pure)) NSDictionary* SVMapToDictionaryObjects(NSArray *array, SVMapBlock block);
-FOUNDATION_EXTERN  __attribute((pure)) NSDictionary* SVMapToDictionaryKeys(NSArray *array, SVMapBlock block);
+FOUNDATION_EXTERN NSArray* SVMap(NSArray* array, SVMapBlock block);
+FOUNDATION_EXTERN NSArray* SVFilterMap(NSArray* array, SVMapBlock block);
+FOUNDATION_EXTERN NSSet* SVMapSet(NSSet* set, SVMapBlock block);
+FOUNDATION_EXTERN NSDictionary* SVMapToDictionaryObjects(NSArray *array, SVMapBlock block);
+FOUNDATION_EXTERN NSDictionary* SVMapToDictionaryKeys(NSArray *array, SVMapBlock block);
 
 typedef void(^SVDoubleMapToDictionaryBlock)(id object, id *key, id *value);
-FOUNDATION_EXTERN  __attribute((pure)) NSDictionary* SVDoubleMapToDictionary(NSArray *array, SVDoubleMapToDictionaryBlock block);
+FOUNDATION_EXTERN NSDictionary* SVDoubleMapToDictionary(NSArray *array, SVDoubleMapToDictionaryBlock block);
 
 typedef id(^SVMapDictionaryBlock)(id key, id object);
-FOUNDATION_EXTERN __attribute((pure)) NSDictionary* SVMapDictionary(NSDictionary *dictionary, SVMapDictionaryBlock block);
+FOUNDATION_EXTERN NSDictionary* SVMapDictionary(NSDictionary *dictionary, SVMapDictionaryBlock block);
 
 typedef BOOL(^SVFilterBlock)(id object);
-FOUNDATION_EXTERN  __attribute((pure)) NSArray* SVFilter(NSArray* array, SVFilterBlock block);
+FOUNDATION_EXTERN NSArray* SVFilter(NSArray* array, SVFilterBlock block);
 
 typedef BOOL(^SVAllBlock)(id object);
-FOUNDATION_EXTERN  __attribute((pure)) BOOL SVAll(id<NSFastEnumeration> enumerable, SVAllBlock block);
+FOUNDATION_EXTERN BOOL SVAll(id<NSFastEnumeration> enumerable, SVAllBlock block);
 
 typedef BOOL(^SVAnyBlock)(id object);
-FOUNDATION_EXTERN  __attribute((pure)) BOOL SVAny(id<NSFastEnumeration> enumerable, SVAnyBlock block);
+FOUNDATION_EXTERN BOOL SVAny(id<NSFastEnumeration> enumerable, SVAnyBlock block);
 
 typedef BOOL(^SVFindBlock)(id object);
-FOUNDATION_EXTERN  __attribute((pure)) id SVFind(id<NSFastEnumeration> enumerable, SVFindBlock block);
-FOUNDATION_EXTERN  __attribute((pure)) NSUInteger SVFindIndex(id<NSFastEnumeration> enumerable, SVFindBlock block);
+FOUNDATION_EXTERN id SVFind(id<NSFastEnumeration> enumerable, SVFindBlock block);
+FOUNDATION_EXTERN NSUInteger SVFindIndex(id<NSFastEnumeration> enumerable, SVFindBlock block);
 
 typedef void(^SVDoubleIterateBlock)(id object1, id object2);
 FOUNDATION_EXTERN void SVDoubleIterate(NSArray *array1, NSArray *array2, SVDoubleIterateBlock block);
