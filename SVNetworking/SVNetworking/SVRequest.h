@@ -90,11 +90,6 @@ FOUNDATION_EXTERN NSString* SVStringForRequestMethod(SVRequestMethod method);
  */
 @property (readwrite, strong) NSData* bodyData;
 
-/**
- The content type header for the request.
- */
-@property (readwrite, strong) NSString* contentType;
-
 #pragma mark - Keyed Data
 /** @name Keyed Data */
 
@@ -115,6 +110,24 @@ FOUNDATION_EXTERN NSString* SVStringForRequestMethod(SVRequestMethod method);
  @param key The parameter name.
  */
 -(void)setObject:(id)value forKeyedSubscript:(id<NSCopying>)key;
+
+#pragma mark - HTTP Headers
+/** @name HTTP Headers */
+
+/**
+ Sets an HTTP header field.
+ 
+ @param value The value to set for the field.
+ @param HTTPHeaderField The header field to set.
+ */
+-(void)setValue:(id)value forHTTPHeaderField:(id<NSCopying>)HTTPHeaderField;
+
+/**
+ Returns the value currently set for the specified header field.
+ 
+ @name HTTPHeaderField The header field to return the value of.
+ */
+-(id)valueForHTTPHeaderField:(id<NSCopying>)HTTPHeaderField;
 
 #pragma mark - Delegation
 /** @name Delegation */

@@ -40,6 +40,9 @@ static NSString* SVURLEncode(NSString* string)
     
     // body data
     NSMutableDictionary* _values;
+    
+    // headers
+    NSMutableDictionary* _headers;
 }
 
 @property (nonatomic, strong) NSURLSessionTask *sessionTask;
@@ -102,6 +105,22 @@ static NSString* SVURLEncode(NSString* string)
 {
     if (!_values) _values = [[NSMutableDictionary alloc] initWithCapacity:1];
     [_values setObject:value forKeyedSubscript:key];
+}
+
+#pragma mark - HTTP Headers
+-(void)setValue:(id)value forHTTPHeaderField:(id<NSCopying>)HTTPHeaderField
+{
+    if (!_headers)
+    {
+        _headers = [[NSMutableDictionary alloc] initWithCapacity:1];
+    }
+    
+    _headers[HTTPHeaderField] = value;
+}
+
+-(id)valueForHTTPHeaderField:(id<NSCopying>)HTTPHeaderField
+{
+    return _headers[HTTPHeaderField];
 }
 
 #pragma mark - Sending
@@ -257,10 +276,10 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
         [request setHTTPBody:body];
     }
     
-    if (_contentType)
-    {
-        [request setValue:_contentType forHTTPHeaderField:@"Content-Type"];
-    }
+    
+    [_headers enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        [request setValue:SVStringify(obj) forHTTPHeaderField:key];
+    }];
     
     return request;
 }
