@@ -33,6 +33,8 @@
  A convenience message for subclasses using a data-based alternative loading method (i.e. a disk cache). This message
  will parse the passed data and pass -finishLoadingWithJSON: or -failLoadingWithError: as is appropriate.
  
+ Note that using this message will bypass any validation performed in a JSON request subclass.
+ 
  @param JSONData A data object to be parsed as JSON.
  */
 -(void)finishLoadingWithJSONData:(NSData*)JSONData;
