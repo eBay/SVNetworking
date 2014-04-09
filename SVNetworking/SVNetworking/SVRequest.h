@@ -25,7 +25,18 @@ typedef enum
 
 @end
 
+/**
+ Converts a request method enumeration to a HTTP method string.
+ 
+ @param method The request method to convert.
+ */
 FOUNDATION_EXTERN NSString* SVStringForRequestMethod(SVRequestMethod method);
+
+/**
+ Converts an HTTP method string to a request method enumeration.
+ 
+ @param string The string to convert.
+ */
 FOUNDATION_EXTERN SVRequestMethod SVRequestMethodForString(NSString *string);
 
 @class SVRequest;
