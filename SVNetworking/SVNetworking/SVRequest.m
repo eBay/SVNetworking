@@ -239,20 +239,20 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
 -(NSMutableURLRequest*)constructRequest
 {
     NSURL* requestURL = _URL;
+    NSString *parameterString = [self constructParameterString];
     
-    if (_values && _method == SVRequestMethodGET)
+    // adjust GET URLs to include query string
+    if (parameterString.length > 0 && _method == SVRequestMethodGET)
     {
-        NSArray* pairs = SVMap(_values.allKeys, ^id(NSString* key) {
-            return [NSString stringWithFormat:@"%@=%@", key, SVURLEncode(SVStringify([self->_values objectForKey:key]))];
-        });
-        
-        NSString* queryString = [@"?" stringByAppendingString:[pairs componentsJoinedByString:@"&"]];
+        NSString* queryString = [@"?" stringByAppendingString:parameterString];
         requestURL = [NSURL URLWithString:queryString relativeToURL:requestURL];
     }
     
+    // create request
     NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:requestURL];
     request.HTTPMethod = SVStringForRequestMethod(_method);
     
+    // explicit body data
     if (_bodyData)
     {
         NSString* length = [NSString stringWithFormat:@"%lu", (unsigned long)_bodyData.length];
@@ -260,14 +260,9 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
         [request setValue:length forHTTPHeaderField:@"Content-Length"];
         [request setHTTPBody:_bodyData];
     }
-    else if (_values && _method != SVRequestMethodGET)
+    else if (_values && _method != SVRequestMethodGET) // parameter-based body data for non-GET requests
     {
-        NSArray* pairs = SVMap(_values.allKeys, ^id(NSString* key) {
-            return [NSString stringWithFormat:@"%@=%@", key, SVURLEncode(SVStringify([self->_values objectForKey:key]))];
-        });
-        
-        NSString* bodyString = [pairs componentsJoinedByString:@"&"];
-        NSData* body = [bodyString dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
+        NSData* body = [parameterString dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
         
         NSString* length = [NSString stringWithFormat:@"%lu", (unsigned long)body.length];
         
@@ -276,7 +271,7 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
         [request setHTTPBody:body];
     }
     
-    
+    // add headers to the request
     [_headers enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         [request setValue:SVStringify(obj) forHTTPHeaderField:key];
     }];
@@ -284,6 +279,20 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
     return request;
 }
 
+-(NSArray*)constructParameterPairs
+{
+    return SVMap(_values.allKeys, ^id(NSString* key) {
+        return [NSString stringWithFormat:@"%@=%@", key, SVURLEncode(SVStringify([self->_values objectForKey:key]))];
+    });
+}
+
+-(NSString*)constructParameterString
+{
+    NSArray* pairs = [self constructParameterPairs];
+    return [pairs componentsJoinedByString:@"&"];
+}
+
+#pragma mark - Subclass Implementation
 -(void)handleCompletionWithData:(NSData*)data response:(NSHTTPURLResponse*)response
 {
     [self doesNotRecognizeSelector:_cmd];

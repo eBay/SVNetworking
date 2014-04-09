@@ -218,6 +218,16 @@ FOUNDATION_EXTERN NSString* SVStringForRequestMethod(SVRequestMethod method);
  Subclasses may override this message to customize behavior, although that should not be necessary.
  */
 -(NSMutableURLRequest*)constructRequest;
+
+/**
+ Returns an array of URL-encoded pairs for constructing the parameter string.
+ */
+-(NSArray*)constructParameterPairs;
+
+/**
+ Returns the parameter string for the request.
+ */
+-(NSString*)constructParameterString;
  
 #pragma mark - Subclass Implementation
 /** @name Subclass Implementation */
