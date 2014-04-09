@@ -82,11 +82,14 @@ FOUNDATION_EXTERN NSString* SVStringForRequestMethod(SVRequestMethod method);
  */
 @interface SVRequest : NSObject
 
-#pragma mark - Raw Data
-/** @name Raw Data */
+#pragma mark - Body Data
+/** @name Body Data */
 
 /**
  Body data for the request.
+ 
+ If set, this data will override any parameters added to the request. If `nil`, the parameters will be used to create
+ an HTTP body for non-`GET` requests.
  */
 @property (readwrite, strong) NSData* bodyData;
 
