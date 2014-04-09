@@ -327,3 +327,25 @@ NSString* SVStringForRequestMethod(SVRequestMethod method)
             return @"PUT";
     }
 }
+
+SVRequestMethod SVRequestMethodForString(NSString *string)
+{
+    if ([string isEqualToString:@"GET"])
+    {
+        return SVRequestMethodGET;
+    }
+    else if ([string isEqualToString:@"POST"])
+    {
+        return SVRequestMethodPOST;
+    }
+    else if ([string isEqualToString:@"DELETE"])
+    {
+        return SVRequestMethodDELETE;
+    }
+    else if ([string isEqualToString:@"PUT"])
+    {
+        return SVRequestMethodPUT;
+    }
+    
+    return SVRequestMethodGET;
+}

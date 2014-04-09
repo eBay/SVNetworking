@@ -26,6 +26,7 @@ typedef enum
 @end
 
 FOUNDATION_EXTERN NSString* SVStringForRequestMethod(SVRequestMethod method);
+FOUNDATION_EXTERN SVRequestMethod SVRequestMethodForString(NSString *string);
 
 @class SVRequest;
 
