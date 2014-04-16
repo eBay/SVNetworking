@@ -539,6 +539,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = /tmp/SVNetworking.dst;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SVNetworking/SVNetworking-Prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
