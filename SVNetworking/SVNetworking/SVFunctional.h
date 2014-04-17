@@ -36,9 +36,6 @@ typedef BOOL(^SVFindBlock)(id object);
 FOUNDATION_EXTERN id SVFind(id<NSFastEnumeration> enumerable, SVFindBlock block);
 FOUNDATION_EXTERN NSUInteger SVFindIndex(id<NSFastEnumeration> enumerable, SVFindBlock block);
 
-typedef void(^SVDoubleIterateBlock)(id object1, id object2);
-FOUNDATION_EXTERN void SVDoubleIterate(NSArray *array1, NSArray *array2, SVDoubleIterateBlock block);
-
 typedef id(^SVInterleaveBlock)(void);
 FOUNDATION_EXTERN NSArray* SVInterleave(NSArray *array, SVInterleaveBlock block);
 

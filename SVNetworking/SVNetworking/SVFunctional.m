@@ -263,16 +263,6 @@ NSUInteger SVFindIndex(id<NSFastEnumeration> enumerable, SVFindBlock block)
     return NSNotFound;
 }
 
-void SVDoubleIterate(NSArray *array1, NSArray *array2, SVDoubleIterateBlock block)
-{
-    NSUInteger count = MIN(array1.count, array2.count);
-    
-    for (NSUInteger i = 0; i < count; i++)
-    {
-        block(array1[i], array2[i]);
-    }
-}
-
 NSArray *SVInterleave(NSArray *array, SVInterleaveBlock block)
 {
     NSUInteger count = array.count;
