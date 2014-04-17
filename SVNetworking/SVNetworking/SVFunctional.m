@@ -322,6 +322,27 @@ NSArray *SVGroup(NSArray *array, SVGroupBlock block)
     return [NSArray arrayWithArray:grouped];
 }
 
+NSDictionary *SVGroupToDictionary(id<NSFastEnumeration> enumerable, SVGroupToDictionaryBlock block)
+{
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+    
+    for (id object in enumerable)
+    {
+        id key = block(object);
+        NSMutableArray *array = dictionary[key];
+        
+        if (!array)
+        {
+            array = [NSMutableArray arrayWithCapacity:1];
+            dictionary[key] = array;
+        }
+        
+        [array addObject:object];
+    }
+    
+    return dictionary;
+}
+
 id SVMinObjectDouble(id<NSFastEnumeration> enumerable, SVDoubleComparisonBlock block)
 {
     id minObject = nil;
@@ -356,25 +377,4 @@ double SVMinDouble(id<NSFastEnumeration> enumerable, SVDoubleComparisonBlock blo
     }
     
     return minDouble;
-}
-
-NSDictionary *SVBucketToDictionary(id<NSFastEnumeration> enumerable, SVMapBlock block)
-{
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    
-    for (id object in enumerable)
-    {
-        id key = block(object);
-        NSMutableArray *array = dictionary[key];
-        
-        if (!array)
-        {
-            array = [NSMutableArray arrayWithCapacity:1];
-            dictionary[key] = array;
-        }
-        
-        [array addObject:object];
-    }
-    
-    return dictionary;
 }
