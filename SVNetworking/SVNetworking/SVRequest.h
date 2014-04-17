@@ -140,7 +140,7 @@ FOUNDATION_EXTERN SVRequestMethod SVRequestMethodForString(NSString *string);
 /**
  Returns the value currently set for the specified header field.
  
- @name HTTPHeaderField The header field to return the value of.
+ @param HTTPHeaderField The header field to return the value of.
  */
 -(id)valueForHTTPHeaderField:(id<NSCopying>)HTTPHeaderField;
 
