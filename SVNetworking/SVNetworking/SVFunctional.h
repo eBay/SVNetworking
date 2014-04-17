@@ -51,8 +51,8 @@ FOUNDATION_EXTERN double SVMinDouble(id<NSFastEnumeration> enumerable, SVDoubleC
 
 FOUNDATION_EXTERN NSDictionary *SVBucketToDictionary(id<NSFastEnumeration> enumerable, SVMapBlock block);
 
-typedef id(^SVIfNotNilBlock)(id object);
-FOUNDATION_STATIC_INLINE id SVIfNotNil(id object, SVIfNotNilBlock block)
+typedef id(^SVMaybeBlock)(id object);
+FOUNDATION_STATIC_INLINE id SVMaybe(id object, SVMaybeBlock block)
 {
     return object ? block(object) : nil;
 }
