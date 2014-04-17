@@ -18,7 +18,7 @@ static NSString* SVStringify(id object)
     return [object description];
 }
 
-static NSString* SVURLEncode(NSString* string)
+NSString* SVURLEncode(NSString* string)
 {
     return (__bridge_transfer id)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
                                                                          (__bridge CFStringRef)string,

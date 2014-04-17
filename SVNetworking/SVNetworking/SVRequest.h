@@ -39,6 +39,13 @@ FOUNDATION_EXTERN NSString* SVStringForRequestMethod(SVRequestMethod method);
  */
 FOUNDATION_EXTERN SVRequestMethod SVRequestMethodForString(NSString *string);
 
+/**
+ URL-encodes a string.
+ 
+ @param string The string to URL encode.
+ */
+FOUNDATION_EXTERN NSString* SVURLEncode(NSString* string);
+
 @class SVRequest;
 
 /**
