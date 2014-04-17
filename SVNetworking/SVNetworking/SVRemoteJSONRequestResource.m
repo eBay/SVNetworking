@@ -21,14 +21,14 @@
 #pragma mark - JSON Request Delegate
 -(void)request:(SVDataRequest *)request finishedWithJSON:(id)JSON response:(NSHTTPURLResponse *)response
 {
-    [self finishLoadingWithJSON:JSON];
     _request = nil;
+    [self finishLoadingWithJSON:JSON];
 }
 
 -(void)request:(SVRequest *)request failedWithError:(NSError *)error
 {
-    [self failLoadingWithError:error];
     _request = nil;
+    [self failLoadingWithError:error];
 }
 
 #pragma mark - Implementation
