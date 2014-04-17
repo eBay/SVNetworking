@@ -87,8 +87,11 @@ typedef enum {
 /** @name Error */
 
 /**
- If the current state is SVRemoteResourceError, the error that caused the failure. Otherwise, nil. This property is
- observable.
+ The error that caused loading to fail.
+ 
+ This property will be `nil` unless the current `state` value is `SVRemoteResourceStateError`. However, resources are
+ not required to report an error when failing to load, so the value may still be `nil` even if the `state` value is
+ `SVRemoteResourceStateError`. Do not use this property to determine failure state, use `state` directly.
  */
 @property (nonatomic, readonly) NSError *error;
 
