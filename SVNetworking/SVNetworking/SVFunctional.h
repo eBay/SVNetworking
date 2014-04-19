@@ -251,6 +251,48 @@ FOUNDATION_EXTERN id SVMinObjectDouble(id<NSFastEnumeration> enumerable, SVDoubl
  */
 FOUNDATION_EXTERN double SVMinDouble(id<NSFastEnumeration> enumerable, SVDoubleComparisonBlock block);
 
+#pragma mark - Generator
+/** @name Generator */
+
+/** Block type definition for a generator yield block. */
+typedef void(^SVGenerateYieldBlock)(id object);
+
+/** Block type definition for a generator block. */
+typedef void(^SVGenerateBlock)(SVGenerateYieldBlock yield);
+
+/**
+ Generates an array.
+ 
+ Pass items to `yield` to include in the result array.
+ 
+ @param block A generator block.
+ */
+FOUNDATION_EXTERN NSArray* SVGenerateArray(SVGenerateBlock block);
+
+/**
+ Generates a set.
+ 
+ Pass items to `yield` to include in the result set.
+ 
+ @param block A generator block.
+ */
+FOUNDATION_EXTERN NSSet* SVGenerateSet(SVGenerateBlock block);
+
+/** Block type definition for a dictionary generator yield block. */
+typedef void(^SVGenerateDictionaryYieldBlock)(id<NSCopying> key, id object);
+
+/** Block type definition for a dictionary generator block. */
+typedef void(^SVGenerateDictionaryBlock)(SVGenerateDictionaryYieldBlock yield);
+
+/**
+ Generates a dictionary.
+ 
+ Pass object and key pairs to `yield` to include in the result dictionary.
+ 
+ @param block A dictionary generator block.
+ */
+FOUNDATION_EXTERN NSDictionary* SVGenerateDictionary(SVGenerateDictionaryBlock block);
+
 #pragma mark - Maybe
 /** @name Maybe */
 

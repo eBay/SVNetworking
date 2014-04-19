@@ -378,3 +378,37 @@ double SVMinDouble(id<NSFastEnumeration> enumerable, SVDoubleComparisonBlock blo
     
     return minDouble;
 }
+
+#pragma mark - Generator
+NSArray* SVGenerateArray(SVGenerateBlock block)
+{
+    NSMutableArray *array = [NSMutableArray array];
+    
+    block(^(id object) {
+        [array addObject:object];
+    });
+    
+    return array;
+}
+
+NSSet* SVGenerateSet(SVGenerateBlock block)
+{
+    NSMutableSet *set = [NSMutableSet set];
+    
+    block(^(id object) {
+        [set addObject:object];
+    });
+    
+    return set;
+}
+
+NSDictionary* SVGenerateDictionary(SVGenerateDictionaryBlock block)
+{
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+    
+    block(^(id<NSCopying> key, id object) {
+        [dictionary setObject:object forKey:key];
+    });
+    
+    return dictionary;
+}
