@@ -413,7 +413,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(BUILT_PRODUCTS_DIR)/usr/local/include",
+					"$(SOURCE_ROOT)/../../SVNetworking",
 				);
 				INFOPLIST_FILE = "ImageLoadingExample/ImageLoadingExample-Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -436,7 +436,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(BUILT_PRODUCTS_DIR)/usr/local/include",
+					"$(SOURCE_ROOT)/../../SVNetworking",
 				);
 				INFOPLIST_FILE = "ImageLoadingExample/ImageLoadingExample-Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
