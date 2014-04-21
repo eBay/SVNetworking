@@ -91,7 +91,12 @@ typedef enum {
  
  This property will be `nil` unless the current `state` value is `SVRemoteResourceStateError`. However, resources are
  not required to report an error when failing to load, so the value may still be `nil` even if the `state` value is
- `SVRemoteResourceStateError`. Do not use this property to determine failure state, use `state` directly.
+ `SVRemoteResourceStateError`.
+ 
+ While all SVNetworking-provided resources attempt to provide proper error messages, this depends on the backing
+ frameworks ability to do so. Also, non-built-in resources are not guaranteed to report an error message.
+ 
+ @warning Do not use this property to determine failure state, use `state` directly.
  */
 @property (nonatomic, readonly) NSError *error;
 
