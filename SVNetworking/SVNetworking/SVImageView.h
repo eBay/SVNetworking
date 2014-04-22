@@ -15,7 +15,15 @@
  
  Images are automatically scaled to fit within the image view, and will be rescaled if the image view changes size.
  */
-@interface SVImageView : UIImageView
+@interface SVImageView : UIView
+
+#pragma mark - Image
+/** @name Image */
+
+/**
+ The current image, or `nil`.
+ */
+@property (nonatomic, readonly, strong) UIImage *image;
 
 #pragma mark - Image URL
 /** @name Image URL */
