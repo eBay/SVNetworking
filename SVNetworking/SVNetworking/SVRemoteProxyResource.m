@@ -35,17 +35,28 @@
         _acquiredProxyResource = [self acquireProxiedResource];
     }
     
+    // keep the current resource around - it's possible that completion could cause the ivar to be changed
+    SVRemoteResource *resource = _acquiredProxyResource;
+    
     if (_acquiredProxyResource.state == SVRemoteResourceStateFinished)
     {
         // if the resource has already finished, we can proceed directly to completion
         [self finishLoadingProxiedResource];
-        _acquiredProxyResource = nil;
+        
+        if (resource == _acquiredProxyResource)
+        {
+            _acquiredProxyResource = nil;
+        }
     }
     else if (_acquiredProxyResource.state == SVRemoteResourceStateError)
     {
         // if the resource has already failed, we can proceed direectly to failure
         [self failLoadingWithError:_acquiredProxyResource.error];
-        _acquiredProxyResource = nil;
+        
+        if (resource == _acquiredProxyResource)
+        {
+            _acquiredProxyResource = nil;
+        }
     }
     else
     {
@@ -72,8 +83,13 @@
                 [self failLoadingWithError:_acquiredProxyResource.error];
                 
                 // clean up KVO
-                [_acquiredProxyResource removeObserver:self forKeyPath:keyPath];
-                _acquiredProxyResource = nil;
+                [object removeObserver:self forKeyPath:keyPath];
+                
+                // we need to confirm the ivar still points to the same object before clearing
+                if (object == _acquiredProxyResource)
+                {
+                    _acquiredProxyResource = nil;
+                }
                 
                 break;
                 
@@ -82,8 +98,13 @@
                 [self finishLoadingProxiedResource];
                 
                 // clean up KVO
-                [_acquiredProxyResource removeObserver:self forKeyPath:keyPath];
-                _acquiredProxyResource = nil;
+                [object removeObserver:self forKeyPath:keyPath];
+                
+                // we need to confirm the ivar still points to the same object before clearing
+                if (object == _acquiredProxyResource)
+                {
+                    _acquiredProxyResource = nil;
+                }
                 
                 break;
                 

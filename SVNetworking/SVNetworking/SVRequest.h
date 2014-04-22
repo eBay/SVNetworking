@@ -25,7 +25,26 @@ typedef enum
 
 @end
 
+/**
+ Converts a request method enumeration to a HTTP method string.
+ 
+ @param method The request method to convert.
+ */
 FOUNDATION_EXTERN NSString* SVStringForRequestMethod(SVRequestMethod method);
+
+/**
+ Converts an HTTP method string to a request method enumeration.
+ 
+ @param string The string to convert.
+ */
+FOUNDATION_EXTERN SVRequestMethod SVRequestMethodForString(NSString *string);
+
+/**
+ URL-encodes a string.
+ 
+ @param string The string to URL encode.
+ */
+FOUNDATION_EXTERN NSString* SVURLEncode(NSString* string);
 
 @class SVRequest;
 
@@ -82,18 +101,16 @@ FOUNDATION_EXTERN NSString* SVStringForRequestMethod(SVRequestMethod method);
  */
 @interface SVRequest : NSObject
 
-#pragma mark - Raw Data
-/** @name Raw Data */
+#pragma mark - Body Data
+/** @name Body Data */
 
 /**
  Body data for the request.
+ 
+ If set, this data will override any parameters added to the request. If `nil`, the parameters will be used to create
+ an HTTP body for non-`GET` requests.
  */
 @property (readwrite, strong) NSData* bodyData;
-
-/**
- The content type header for the request.
- */
-@property (readwrite, strong) NSString* contentType;
 
 #pragma mark - Keyed Data
 /** @name Keyed Data */
@@ -115,6 +132,24 @@ FOUNDATION_EXTERN NSString* SVStringForRequestMethod(SVRequestMethod method);
  @param key The parameter name.
  */
 -(void)setObject:(id)value forKeyedSubscript:(id<NSCopying>)key;
+
+#pragma mark - HTTP Headers
+/** @name HTTP Headers */
+
+/**
+ Sets an HTTP header field.
+ 
+ @param value The value to set for the field.
+ @param HTTPHeaderField The header field to set.
+ */
+-(void)setValue:(id)value forHTTPHeaderField:(id<NSCopying>)HTTPHeaderField;
+
+/**
+ Returns the value currently set for the specified header field.
+ 
+ @param HTTPHeaderField The header field to return the value of.
+ */
+-(id)valueForHTTPHeaderField:(id<NSCopying>)HTTPHeaderField;
 
 #pragma mark - Delegation
 /** @name Delegation */
@@ -205,6 +240,16 @@ FOUNDATION_EXTERN NSString* SVStringForRequestMethod(SVRequestMethod method);
  Subclasses may override this message to customize behavior, although that should not be necessary.
  */
 -(NSMutableURLRequest*)constructRequest;
+
+/**
+ Returns an array of URL-encoded pairs for constructing the parameter string.
+ */
+-(NSArray*)constructParameterPairs;
+
+/**
+ Returns the parameter string for the request.
+ */
+-(NSString*)constructParameterString;
  
 #pragma mark - Subclass Implementation
 /** @name Subclass Implementation */

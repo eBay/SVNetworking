@@ -8,7 +8,7 @@
 
 #import "SVFunctional.h"
 
-__attribute((pure)) NSArray* SVMapToInteger(NSUInteger integer, SVMapToIntegerBlock block)
+NSArray* SVMapToInteger(NSUInteger integer, SVMapToIntegerBlock block)
 {
     if (integer > 0)
     {
@@ -24,7 +24,7 @@ __attribute((pure)) NSArray* SVMapToInteger(NSUInteger integer, SVMapToIntegerBl
     else return @[];
 }
 
-__attribute((pure)) NSArray* SVFilterMapToInteger(NSUInteger integer, SVMapToIntegerBlock block)
+NSArray* SVFilterMapToInteger(NSUInteger integer, SVMapToIntegerBlock block)
 {
     if (integer > 0)
     {
@@ -44,7 +44,7 @@ __attribute((pure)) NSArray* SVFilterMapToInteger(NSUInteger integer, SVMapToInt
     else return @[];
 }
 
-__attribute((pure)) NSArray* SVMap(NSArray* array, SVMapBlock block)
+NSArray* SVMap(NSArray* array, SVMapBlock block)
 {
     NSUInteger count = array.count;
     
@@ -66,7 +66,7 @@ __attribute((pure)) NSArray* SVMap(NSArray* array, SVMapBlock block)
     else return @[];
 }
 
-__attribute((pure)) NSArray* SVFilterMap(NSArray* array, SVMapBlock block)
+NSArray* SVFilterMap(NSArray* array, SVMapBlock block)
 {
     NSUInteger count = array.count;
     
@@ -88,7 +88,7 @@ __attribute((pure)) NSArray* SVFilterMap(NSArray* array, SVMapBlock block)
     else return @[];
 }
 
-__attribute((pure)) NSSet* SVMapSet(NSSet* set, SVMapBlock block)
+NSSet* SVMapSet(NSSet* set, SVMapBlock block)
 {
     NSMutableSet *mapped = [NSMutableSet setWithCapacity:set.count];
     
@@ -100,7 +100,7 @@ __attribute((pure)) NSSet* SVMapSet(NSSet* set, SVMapBlock block)
     return mapped;
 }
 
-__attribute((pure)) NSDictionary* SVMapToDictionaryObjects(NSArray *array, SVMapBlock block)
+NSDictionary* SVMapToDictionaryObjects(NSArray *array, SVMapBlock block)
 {
     NSUInteger count = array.count;
     
@@ -125,7 +125,7 @@ __attribute((pure)) NSDictionary* SVMapToDictionaryObjects(NSArray *array, SVMap
     else return @{};
 }
 
-__attribute((pure)) NSDictionary* SVMapToDictionaryKeys(NSArray *array, SVMapBlock block)
+NSDictionary* SVMapToDictionaryKeys(NSArray *array, SVMapBlock block)
 {
     NSUInteger count = array.count;
     
@@ -150,7 +150,7 @@ __attribute((pure)) NSDictionary* SVMapToDictionaryKeys(NSArray *array, SVMapBlo
     else return @{};
 }
 
-__attribute((pure)) NSDictionary* SVDoubleMapToDictionary(NSArray *array, SVDoubleMapToDictionaryBlock block)
+NSDictionary* SVDoubleMapToDictionary(NSArray *array, SVDoubleMapToDictionaryBlock block)
 {
     NSUInteger count = array.count;
     
@@ -174,7 +174,7 @@ __attribute((pure)) NSDictionary* SVDoubleMapToDictionary(NSArray *array, SVDoub
     else return @{};
 }
 
-__attribute((pure)) NSDictionary* SVMapDictionary(NSDictionary *dictionary, SVMapDictionaryBlock block)
+NSDictionary* SVMapDictionary(NSDictionary *dictionary, SVMapDictionaryBlock block)
 {
     NSUInteger count = dictionary.count;
     __unsafe_unretained id keys[count], objects[count], mappedObjects[count];
@@ -188,7 +188,7 @@ __attribute((pure)) NSDictionary* SVMapDictionary(NSDictionary *dictionary, SVMa
     return [NSDictionary dictionaryWithObjects:mappedObjects forKeys:keys count:count];
 }
 
-__attribute((pure)) NSArray* SVFilter(NSArray* array, SVFilterBlock block)
+NSArray* SVFilter(NSArray* array, SVFilterBlock block)
 {
     NSUInteger count = array.count;
     
@@ -213,7 +213,7 @@ __attribute((pure)) NSArray* SVFilter(NSArray* array, SVFilterBlock block)
     else return @[];
 }
 
-__attribute((pure)) BOOL SVAll(id<NSFastEnumeration> enumerable, SVAllBlock block)
+BOOL SVAll(id<NSFastEnumeration> enumerable, SVAllBlock block)
 {
     for (id object in enumerable)
     {
@@ -223,7 +223,7 @@ __attribute((pure)) BOOL SVAll(id<NSFastEnumeration> enumerable, SVAllBlock bloc
     return YES;
 }
 
-__attribute((pure)) BOOL SVAny(id<NSFastEnumeration> enumerable, SVAnyBlock block)
+BOOL SVAny(id<NSFastEnumeration> enumerable, SVAnyBlock block)
 {
     for (id object in enumerable)
     {
@@ -233,7 +233,7 @@ __attribute((pure)) BOOL SVAny(id<NSFastEnumeration> enumerable, SVAnyBlock bloc
     return NO;
 }
 
-__attribute((pure)) id SVFind(id<NSFastEnumeration> enumerable, SVFindBlock block)
+id SVFind(id<NSFastEnumeration> enumerable, SVFindBlock block)
 {
     for (id object in enumerable)
     {
@@ -246,7 +246,7 @@ __attribute((pure)) id SVFind(id<NSFastEnumeration> enumerable, SVFindBlock bloc
     return nil;
 }
 
-__attribute((pure)) NSUInteger SVFindIndex(id<NSFastEnumeration> enumerable, SVFindBlock block)
+NSUInteger SVFindIndex(id<NSFastEnumeration> enumerable, SVFindBlock block)
 {
     NSUInteger index = 0;
     
@@ -261,16 +261,6 @@ __attribute((pure)) NSUInteger SVFindIndex(id<NSFastEnumeration> enumerable, SVF
     }
     
     return NSNotFound;
-}
-
-void SVDoubleIterate(NSArray *array1, NSArray *array2, SVDoubleIterateBlock block)
-{
-    NSUInteger count = MIN(array1.count, array2.count);
-    
-    for (NSUInteger i = 0; i < count; i++)
-    {
-        block(array1[i], array2[i]);
-    }
 }
 
 NSArray *SVInterleave(NSArray *array, SVInterleaveBlock block)
@@ -332,6 +322,27 @@ NSArray *SVGroup(NSArray *array, SVGroupBlock block)
     return [NSArray arrayWithArray:grouped];
 }
 
+NSDictionary *SVGroupToDictionary(id<NSFastEnumeration> enumerable, SVGroupToDictionaryBlock block)
+{
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+    
+    for (id object in enumerable)
+    {
+        id key = block(object);
+        NSMutableArray *array = dictionary[key];
+        
+        if (!array)
+        {
+            array = [NSMutableArray arrayWithCapacity:1];
+            dictionary[key] = array;
+        }
+        
+        [array addObject:object];
+    }
+    
+    return dictionary;
+}
+
 id SVMinObjectDouble(id<NSFastEnumeration> enumerable, SVDoubleComparisonBlock block)
 {
     id minObject = nil;
@@ -368,23 +379,36 @@ double SVMinDouble(id<NSFastEnumeration> enumerable, SVDoubleComparisonBlock blo
     return minDouble;
 }
 
-NSDictionary *SVBucketToDictionary(id<NSFastEnumeration> enumerable, SVMapBlock block)
+#pragma mark - Generator
+NSArray* SVGenerateArray(SVGenerateBlock block)
+{
+    NSMutableArray *array = [NSMutableArray array];
+    
+    block(^(id object) {
+        [array addObject:object];
+    });
+    
+    return array;
+}
+
+NSSet* SVGenerateSet(SVGenerateBlock block)
+{
+    NSMutableSet *set = [NSMutableSet set];
+    
+    block(^(id object) {
+        [set addObject:object];
+    });
+    
+    return set;
+}
+
+NSDictionary* SVGenerateDictionary(SVGenerateDictionaryBlock block)
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     
-    for (id object in enumerable)
-    {
-        id key = block(object);
-        NSMutableArray *array = dictionary[key];
-        
-        if (!array)
-        {
-            array = [NSMutableArray arrayWithCapacity:1];
-            dictionary[key] = array;
-        }
-        
-        [array addObject:object];
-    }
+    block(^(id<NSCopying> key, id object) {
+        [dictionary setObject:object forKey:key];
+    });
     
     return dictionary;
 }

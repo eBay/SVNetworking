@@ -21,14 +21,14 @@
 #pragma mark - Data Request Delegate
 -(void)request:(SVDataRequest *)request finishedWithData:(NSData *)data response:(NSHTTPURLResponse *)response
 {
-    [self finishLoadingWithData:data];
     _request = nil;
+    [self finishLoadingWithData:data];
 }
 
 -(void)request:(SVRequest *)request failedWithError:(NSError *)error
 {
-    [self failLoadingWithError:error];
     _request = nil;
+    [self failLoadingWithError:error];
 }
 
 #pragma mark - Implementation
