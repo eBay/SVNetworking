@@ -15,9 +15,11 @@
 @interface SVImageView ()
 {
 @private
+    UIImageView *_imageView;
     UIActivityIndicatorView *_activityIndicatorView;
 }
 
+@property (nonatomic, strong) UIImage *image;
 @property (nonatomic) BOOL activityIndicatorAnimating;
 @property (nonatomic) CGSize boundsSize;
 @property (nonatomic, strong) SVRemoteResource<SVRemoteImageProtocol> *remoteImage;
@@ -31,6 +33,11 @@
     // default content mode is center
     _imageContentMode = UIViewContentModeCenter;
     _failureImageContentMode = UIViewContentModeCenter;
+    
+    // add image view
+    _imageView = [[UIImageView alloc] initWithFrame:self.bounds];
+    _imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self addSubview:_imageView];
     
     // add loading indicator
     _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame:self.bounds];
@@ -97,7 +104,7 @@
               SVMultibindPair(self, SV_KEYPATH(self, failureImageContentMode)),
               SVMultibindPair(self, SV_KEYPATH(self, emptyImageContentMode))];
     
-    [self sv_multibind:SV_KEYPATH(self, contentMode) toObjectAndKeyPathPairs:pairs withBlock:^id(SVMultibindArray *values) {
+    [_imageView sv_multibind:SV_KEYPATH(_imageView, contentMode) toObjectAndKeyPathPairs:pairs withBlock:^id(SVMultibindArray *values) {
         if (values[0]) // if the image view has a URL, check for error state
         {
             SVRemoteResourceState state = (SVRemoteResourceState)[values[0] intValue];
@@ -143,6 +150,7 @@
 {
     [self sv_unmultibindAll];
     [self sv_unbindAll];
+    [_imageView sv_unmultibindAll];
 }
 
 -(void)layoutSubviews
@@ -155,6 +163,13 @@
     {
         self.boundsSize = bounds.size;
     }
+}
+
+#pragma mark - Image
+-(void)setImage:(UIImage *)image
+{
+    _image = image;
+    _imageView.image = image;
 }
 
 #pragma mark - Activity Indicator View

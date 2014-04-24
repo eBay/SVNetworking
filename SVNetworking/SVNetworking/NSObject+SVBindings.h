@@ -1,7 +1,8 @@
 /**
  A compile-time checker for key path generation. Goodbye, magic strings!
  */
-#define SV_KEYPATH(object, path) ({ typedef __typeof(object.path) foo; @ #path; })
+#define SV_KEYPATH(object, path) ({ typedef __typeof((object).path) foo; @ #path; })
+#define SV_CLASS_KEYPATH(class, path) SV_KEYPATH((class*)nil, path)
 
 typedef id(^SVBindingBlock)(id value);
 
