@@ -7,7 +7,6 @@
 //
 
 #import "NSObject+SVBindings.h"
-#import "NSObject+SVMultibindings.h"
 #import "SVDataRequest.h"
 #import "SVFunctional.h"
 #import "SVImageView.h"
