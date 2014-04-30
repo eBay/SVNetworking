@@ -73,6 +73,13 @@
         self.nextPageLoadingState = SVRemoteArrayLoadingStateLoading;
         
         // load the next page
+        [self enumeratePaginationObservers:^(id<SVRemoteArrayPaginationObserver> paginationObserver) {
+            if ([self respondsToSelector:@selector(remoteArrayWillBeginLoadingNextPage:)])
+            {
+                [paginationObserver remoteArrayWillBeginLoadingNextPage:self];
+            }
+        }];
+        
         [self beginLoadingNextPage];
     }
 }
@@ -92,6 +99,13 @@
         self.refreshLoadingState = SVRemoteArrayLoadingStateLoading;
         
         // refresh
+        [self enumeratePaginationObservers:^(id<SVRemoteArrayPaginationObserver> paginationObserver) {
+            if ([self respondsToSelector:@selector(remoteArrayWillBeginRefreshing:)])
+            {
+                [paginationObserver remoteArrayWillBeginRefreshing:self];
+            }
+        }];
+        
         [self beginRefreshing];
     }
 }

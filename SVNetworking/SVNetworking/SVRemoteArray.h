@@ -26,7 +26,25 @@ typedef enum
 
 @optional
 
-/** @name Page Loading */
+#pragma mark - Load Start
+/** @name Load Start */
+
+/**
+ Notifies the receiver that the remote array will begin to refresh.
+ 
+ @param remoteArray The remote array.
+ */
+-(void)remoteArrayWillBeginRefreshing:(SVRemoteArray*)remoteArray;
+
+/**
+ Notifies the receiver that the remote array will begin to load the next page.
+ 
+ @param remoteArray The remote array.
+ */
+-(void)remoteArrayWillBeginLoadingNextPage:(SVRemoteArray*)remoteArray;
+
+#pragma mark - Load Success
+/** @name Load Success */
 /**
  Sent when a remote array finishes refreshing.
  
@@ -44,6 +62,7 @@ typedef enum
  */
 -(void)remoteArray:(SVRemoteArray*)remoteArray didLoadNextPageWithItems:(NSArray*)items hasNextPage:(BOOL)hasNextPage;
 
+#pragma mark - Error Handling
 /** @name Error Handling */
 /**
  Sent when a remote array fails to refresh.
