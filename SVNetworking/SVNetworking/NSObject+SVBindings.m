@@ -1,7 +1,83 @@
 #import <objc/runtime.h>
 #import "NSObject+SVBindings.h"
 
-@interface SVBindingInternal : NSObject
+#pragma mark - Multibind Supporting Classes
+@interface SVMultibindArray ()
+{
+@private
+    NSUInteger _count;
+    __strong id* _values;
+}
+
+@end
+
+@implementation SVMultibindArray
+
++(instancetype)arrayWithValues:(id __autoreleasing *)values count:(NSUInteger)count
+{
+    SVMultibindArray* array = [SVMultibindArray new];
+    
+    if (array)
+    {
+        array->_count = count;
+        array->_values = (__strong id*)calloc(count, sizeof(id));
+        
+        for (NSUInteger i = 0; i < count; i++)
+        {
+            array->_values[i] = values[i];
+        }
+    }
+    
+    return array;
+}
+
+-(void)dealloc
+{
+    for (NSUInteger i = 0; i < _count; i++)
+    {
+        _values[i] = nil;
+    }
+    
+    free(_values);
+}
+
+-(id)objectAtIndexedSubscript:(NSUInteger)subscript
+{
+    return _values[subscript];
+}
+
+@end
+
+@interface SVMultibindingPair : NSObject
+
+@property (readwrite, unsafe_unretained) id object;
+@property (readwrite, strong) NSString* keyPath;
+
+@end
+
+@implementation SVMultibindingPair
+
+-(NSString*)description
+{
+    return [[super description] stringByAppendingFormat:@" (%@ -> %@)", _object, _keyPath];
+}
+
+@end
+
+id SVMultibindPair(id object, NSString* keyPath)
+{
+    SVMultibindingPair* pair = [SVMultibindingPair new];
+    pair.object = object;
+    pair.keyPath = [keyPath copy];
+    return pair;
+}
+
+#pragma mark - Binding Class Interfaces
+@interface SVBinding : NSObject
+
+@end
+
+@interface SVSingleBinding : SVBinding
 {
 @private
     // objects
@@ -17,20 +93,42 @@
 }
 
 -(instancetype)initWithObject:(id)object
-            keyPath:(NSString*)keyPath
-            boundTo:(id)boundObject
-            keyPath:(NSString*)boundKeyPath
-              block:(SVBindingBlock)block;
+                      keyPath:(NSString*)keyPath
+                      boundTo:(id)boundObject
+                      keyPath:(NSString*)boundKeyPath
+                        block:(SVBindingBlock)block;
 
 @end
 
-@implementation SVBindingInternal
+@interface SVMultibinding : SVBinding
+{
+@private
+    __unsafe_unretained id _object;
+    NSString* _keyPath;
+    NSArray* _pairs;
+    SVMultibindBlock _block;
+}
 
 -(instancetype)initWithObject:(id)object
-            keyPath:(NSString*)keyPath
-            boundTo:(id)boundObject
-            keyPath:(NSString*)boundKeyPath
-              block:(SVBindingBlock)block
+                      keyPath:(NSString*)keyPath
+                        pairs:(NSArray*)pairs
+                        block:(SVMultibindBlock)block;
+
+@end
+
+#pragma mark - Binding Class Implementations
+
+@implementation SVBinding
+
+@end
+
+@implementation SVSingleBinding
+
+-(instancetype)initWithObject:(id)object
+                      keyPath:(NSString*)keyPath
+                      boundTo:(id)boundObject
+                      keyPath:(NSString*)boundKeyPath
+                        block:(SVBindingBlock)block;
 {
     self = [self init];
     
@@ -62,17 +160,69 @@
 
 @end
 
+@implementation SVMultibinding
+
+-(instancetype)initWithObject:(id)object
+                      keyPath:(NSString *)keyPath
+                        pairs:(NSArray *)pairs
+                        block:(SVMultibindBlock)block
+{
+    self = [self init];
+    
+    if (self)
+    {
+        _pairs = pairs;
+        _object = object;
+        _keyPath = [keyPath copy];
+        _block = [block copy];
+        
+        for (SVMultibindingPair* pair in pairs)
+        {
+            [pair.object addObserver:self forKeyPath:pair.keyPath options:0 context:NULL];
+        }
+        
+        [self observeValueForKeyPath:nil ofObject:nil change:nil context:NULL];
+    }
+    
+    return self;
+}
+
+-(void)dealloc
+{
+    for (SVMultibindingPair* pair in _pairs)
+    {
+        [pair.object removeObserver:self forKeyPath:pair.keyPath];
+    }
+}
+
+-(void)observeValueForKeyPath:(NSString*)path ofObject:(id)obj change:(NSDictionary*)change context:(void*)context
+{
+    NSUInteger count = _pairs.count;
+    
+    if (count > 0)
+    {
+        __autoreleasing id values[count];
+        
+        for (NSUInteger i = 0; i < count; i++)
+        {
+            SVMultibindingPair* pair = _pairs[i];
+            values[i] = [pair.object valueForKeyPath:pair.keyPath];
+        }
+        
+        SVMultibindArray* array = [SVMultibindArray arrayWithValues:values count:count];
+        [_object setValue:_block(array) forKeyPath:_keyPath];
+    }
+}
+
+@end
+
+#pragma mark - Category Implementation
 @implementation NSObject (SVBindings)
 
 static char SVAssociatedKey;
 
 #pragma mark - Binding
--(void)sv_bind:(NSString*)keyPath toObject:(id)object withKeyPath:(NSString*)boundKeyPath
-{
-    [self sv_bind:keyPath toObject:object withKeyPath:boundKeyPath block:nil];
-}
-
--(void)sv_bind:(NSString*)keyPath toObject:(id)object withKeyPath:(NSString*)boundKeyPath block:(SVBindingBlock)block
+-(void)sv_bind:(NSString *)keyPath withBindingObject:(SVBinding*)binding
 {
     // create bindings dictionary if necessary
     NSMutableDictionary* bindings = objc_getAssociatedObject(self, &SVAssociatedKey);
@@ -83,12 +233,31 @@ static char SVAssociatedKey;
     }
     
     // add new binding
-    SVBindingInternal* binding = [[SVBindingInternal alloc] initWithObject:self
-                                                                   keyPath:keyPath
-                                                                   boundTo:object
-                                                                   keyPath:boundKeyPath
-                                                                     block:block];
     bindings[keyPath] = binding;
+}
+
+-(void)sv_bind:(NSString*)keyPath toObject:(id)object withKeyPath:(NSString*)boundKeyPath
+{
+    [self sv_bind:keyPath toObject:object withKeyPath:boundKeyPath block:nil];
+}
+
+-(void)sv_bind:(NSString*)keyPath toObject:(id)object withKeyPath:(NSString*)boundKeyPath block:(SVBindingBlock)block
+{
+    SVSingleBinding* binding = [[SVSingleBinding alloc] initWithObject:self
+                                                               keyPath:keyPath
+                                                               boundTo:object
+                                                               keyPath:boundKeyPath
+                                                                 block:block];
+    [self sv_bind:keyPath withBindingObject:binding];
+}
+
+-(void)sv_multibind:(NSString*)keyPath toObjectAndKeyPathPairs:(NSArray*)pairs withBlock:(SVMultibindBlock)block
+{
+    SVMultibinding* binding = [[SVMultibinding alloc] initWithObject:self
+                                                             keyPath:keyPath
+                                                               pairs:pairs
+                                                               block:block];
+    [self sv_bind:keyPath withBindingObject:binding];
 }
 
 #pragma mark - Unbinding

@@ -7,7 +7,6 @@
 //
 
 #import "NSObject+SVBindings.h"
-#import "NSObject+SVMultibindings.h"
 #import "SVRemoteScaledImage.h"
 #import "SVRemoteRetainedScaledImage.h"
 #import "SVImageView.h"
@@ -148,9 +147,8 @@
 
 -(void)dealloc
 {
-    [self sv_unmultibindAll];
     [self sv_unbindAll];
-    [_imageView sv_unmultibindAll];
+    [_imageView sv_unbindAll];
 }
 
 -(void)layoutSubviews
