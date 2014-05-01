@@ -103,8 +103,19 @@ NSString* SVURLEncode(NSString* string)
 
 -(void)setObject:(id)value forKeyedSubscript:(id<NSCopying>)key
 {
-    if (!_values) _values = [[NSMutableDictionary alloc] initWithCapacity:1];
-    [_values setObject:value forKeyedSubscript:key];
+    if (!_values)
+    {
+        _values = [[NSMutableDictionary alloc] initWithCapacity:1];
+    }
+    
+    if (value)
+    {
+        _values[key] = value;
+    }
+    else
+    {
+        [_values removeObjectForKey:value];
+    }
 }
 
 #pragma mark - HTTP Headers
@@ -115,7 +126,14 @@ NSString* SVURLEncode(NSString* string)
         _headers = [[NSMutableDictionary alloc] initWithCapacity:1];
     }
     
-    _headers[HTTPHeaderField] = value;
+    if (value)
+    {
+        _headers[HTTPHeaderField] = value;
+    }
+    else
+    {
+        [_headers removeObjectForKey:HTTPHeaderField];
+    }
 }
 
 -(id)valueForHTTPHeaderField:(id<NSCopying>)HTTPHeaderField
