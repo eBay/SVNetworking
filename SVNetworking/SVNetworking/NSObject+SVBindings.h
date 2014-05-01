@@ -106,4 +106,14 @@ FOUNDATION_EXTERN id SVMultibindPair(id object, NSString* keyPath);
  */
 -(void)sv_unbindAll;
 
+#pragma mark - Suspended Bindings
+/** @name Suspended Bindings */
+
+/**
+ Executes `block`, while holding all binding actions on the receiver and executing them after the block completes.
+ 
+ @param block A block to execute.
+ */
+-(void)sv_suspendBindings:(void(^)(void))block;
+
 @end

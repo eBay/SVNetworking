@@ -75,6 +75,10 @@ id SVMultibindPair(id object, NSString* keyPath)
 #pragma mark - Binding Class Interfaces
 @interface SVBinding : NSObject
 
+@property (nonatomic) BOOL suspended;
+
+-(void)apply;
+
 @end
 
 @interface SVSingleBinding : SVBinding
@@ -116,9 +120,51 @@ id SVMultibindPair(id object, NSString* keyPath)
 
 @end
 
-#pragma mark - Binding Class Implementations
+#pragma mark - Private NSObject Additions
+@interface NSObject (SVBindingsPrivate)
 
+-(void)sv_addSuspendedBinding:(SVBinding*)binding;
+-(void)sv_drainSuspendedBindings;
+
+@end
+
+@implementation NSObject (SVBindingsPrivate)
+
+static char SVSuspendedBindingsKey;
+
+-(void)sv_addSuspendedBinding:(SVBinding *)binding
+{
+    NSMutableSet* bindings = objc_getAssociatedObject(self, &SVSuspendedBindingsKey);
+    
+    if (!bindings)
+    {
+        bindings = [NSMutableSet setWithObject:binding];
+        objc_setAssociatedObject(self, &SVSuspendedBindingsKey, bindings, OBJC_ASSOCIATION_RETAIN);
+    }
+    else
+    {
+        [bindings addObject:binding];
+    }
+}
+
+-(void)sv_drainSuspendedBindings
+{
+    NSSet *set = objc_getAssociatedObject(self, &SVSuspendedBindingsKey);
+    objc_setAssociatedObject(self, &SVSuspendedBindingsKey, nil, OBJC_ASSOCIATION_RETAIN);
+    
+    for (SVBinding *binding in set)
+    {
+        binding.suspended = NO;
+        [binding apply];
+    }
+}
+
+@end
+
+#pragma mark - Binding Class Implementations
 @implementation SVBinding
+
+-(void)apply {}
 
 @end
 
@@ -153,6 +199,18 @@ id SVMultibindPair(id object, NSString* keyPath)
 }
 
 -(void)observeValueForKeyPath:(NSString*)path ofObject:(id)obj change:(NSDictionary*)change context:(void*)context
+{
+    if (self.suspended)
+    {
+        [_object sv_addSuspendedBinding:self];
+    }
+    else
+    {
+        [self apply];
+    }
+}
+
+-(void)apply
 {
     id value = [_boundObject valueForKeyPath:_boundKeyPath];
     [_object setValue:_block ? _block(value) : value forKeyPath:_keyPath];
@@ -196,6 +254,18 @@ id SVMultibindPair(id object, NSString* keyPath)
 }
 
 -(void)observeValueForKeyPath:(NSString*)path ofObject:(id)obj change:(NSDictionary*)change context:(void*)context
+{
+    if (self.suspended)
+    {
+        [_object sv_addSuspendedBinding:self];
+    }
+    else
+    {
+        [self apply];
+    }
+}
+
+-(void)apply
 {
     NSUInteger count = _pairs.count;
     
@@ -286,6 +356,21 @@ static char SVAssociatedKey;
         [dictionary removeAllObjects];
         objc_setAssociatedObject(self, &SVAssociatedKey, nil, OBJC_ASSOCIATION_RETAIN);
     }
+}
+
+#pragma mark - Suspended Bindings
+-(void)sv_suspendBindings:(void(^)(void))block
+{
+    NSMutableDictionary* bindings = objc_getAssociatedObject(self, &SVAssociatedKey);
+    
+    for (SVBinding *binding in bindings.allValues)
+    {
+        binding.suspended = YES;
+    }
+    
+    block();
+    
+    [self sv_drainSuspendedBindings];
 }
 
 @end
