@@ -36,45 +36,28 @@
 @interface SVMultibindArray ()
 {
 @private
-    NSUInteger _count;
-    __strong id* _values;
+    NSPointerArray *_values;
 }
 
 @end
 
 @implementation SVMultibindArray
 
-+(instancetype)arrayWithValues:(id __autoreleasing *)values count:(NSUInteger)count
++(instancetype)arrayWithPointerArray:(NSPointerArray*)pointerArray
 {
     SVMultibindArray* array = [SVMultibindArray new];
     
     if (array)
     {
-        array->_count = count;
-        array->_values = (__strong id*)calloc(count, sizeof(id));
-        
-        for (NSUInteger i = 0; i < count; i++)
-        {
-            array->_values[i] = values[i];
-        }
+        array->_values = pointerArray;
     }
     
     return array;
 }
 
--(void)dealloc
-{
-    for (NSUInteger i = 0; i < _count; i++)
-    {
-        _values[i] = nil;
-    }
-    
-    free(_values);
-}
-
 -(id)objectAtIndexedSubscript:(NSUInteger)subscript
 {
-    return _values[subscript];
+    return [_values pointerAtIndex:subscript];
 }
 
 @end
@@ -302,15 +285,15 @@ static char SVSuspendedBindingsKey;
     
     if (count > 0)
     {
-        __autoreleasing id values[count];
+        NSPointerArray *pointerArray = [NSPointerArray strongObjectsPointerArray];
         
         for (NSUInteger i = 0; i < count; i++)
         {
             SVMultibindingPair* pair = _pairs[i];
-            values[i] = [pair.object valueForKeyPath:pair.keyPath];
+            [pointerArray addPointer:(__bridge void*)([pair.object valueForKeyPath:pair.keyPath])];
         }
         
-        SVMultibindArray* array = [SVMultibindArray arrayWithValues:values count:count];
+        SVMultibindArray* array = [SVMultibindArray arrayWithPointerArray:pointerArray];
         [_object setValue:_block(array) forKeyPath:_keyPath];
     }
 }
