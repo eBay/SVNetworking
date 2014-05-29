@@ -145,7 +145,7 @@ NSString* SVURLEncode(NSString* string)
     }
     else
     {
-        [_values removeObjectForKey:value];
+        [_values removeObjectForKey:key];
     }
 }
 
