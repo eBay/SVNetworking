@@ -143,6 +143,9 @@ FOUNDATION_EXTERN id SVMultibindPair(id object, NSString* keyPath);
 /**
  Executes `block`, while holding all binding actions on the receiver and executing them after the block completes.
  
+ @warning The order of binding execution is not specified. Therefore, after bindings are unsuspended, the state may be
+ in error if there are dependencies between bindings on the same object.
+ 
  @param block A block to execute.
  */
 -(void)sv_suspendBindings:(void(^)(void))block;
