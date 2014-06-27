@@ -11,6 +11,8 @@ Pod::Spec.new do |s|
   s.license      = { :type => "BSD", :file => "LICENSE" }
   s.author             = { "Nate Stedman" => "nate@natestedman.com" }
   s.social_media_url   = "http://twitter.com/natestedman"
+  s.ios.deployment_target = '6.0'
+  s.osx.deployment_target = '10.9'
   s.source       = { :git => "https://github.com/eBay/SVNetworking.git", :tag => "0.1" }
   s.source_files  = "SVNetworking/SVNetworking"
   s.frameworks = "UIKit", "CommonCrypto"
