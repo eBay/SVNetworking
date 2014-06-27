@@ -29,8 +29,6 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <UIKit/UIKit.h>
-
 #import "SVRemoteRetainedProxyResource.h"
 #import "SVRemoteScaledImageProtocol.h"
 

@@ -29,6 +29,8 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
+
 #import "SVRemoteImageProtocol.h"
 #import "SVRemoteResource.h"
 
@@ -125,3 +127,5 @@
 @property (nonatomic) UIViewContentMode failureImageContentMode;
 
 @end
+
+#endif

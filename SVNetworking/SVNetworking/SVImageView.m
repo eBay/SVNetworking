@@ -29,6 +29,8 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
+
 #import "NSObject+SVBindings.h"
 #import "SVRemoteScaledImage.h"
 #import "SVRemoteRetainedScaledImage.h"
@@ -222,3 +224,5 @@
 }
 
 @end
+
+#endif

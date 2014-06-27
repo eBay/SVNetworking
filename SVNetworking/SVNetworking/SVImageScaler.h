@@ -29,7 +29,7 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <UIKit/UIKit.h>
+#import "SVImageClass.h"
 
 /**
  Provides image scaling class methods.
@@ -44,7 +44,7 @@
  @param scale The `scale` of the destination image.
  @returns A scaled image.
  */
-+(UIImage*)scaleImage:(UIImage*)image toSize:(CGSize)size withScale:(CGFloat)scale;
++(SV_IMAGE_CLASS*)scaleImage:(SV_IMAGE_CLASS*)image toSize:(CGSize)size withScale:(CGFloat)scale;
 
 /**
  Asynchronously scales an image to the specified size and scale.
@@ -54,6 +54,6 @@
  @param scale The `scale` of the destination image.
  @param completion A completion handler, which will be called on the main thread.
  */
-+(void)scaleImage:(UIImage*)image toSize:(CGSize)size withScale:(CGFloat)scale completion:(void(^)(UIImage *scaledImage))completion;
++(void)scaleImage:(SV_IMAGE_CLASS*)image toSize:(CGSize)size withScale:(CGFloat)scale completion:(void(^)(SV_IMAGE_CLASS *scaledImage))completion;
 
 @end

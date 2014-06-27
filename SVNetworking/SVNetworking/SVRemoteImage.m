@@ -29,6 +29,7 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#import "SVImageClass.h"
 #import "SVRemoteResourceDiskCache.h"
 #import "SVRemoteImage.h"
 
@@ -45,7 +46,7 @@
 @property (nonatomic) CGFloat scale;
 
 #pragma mark - Image
-@property (nonatomic, strong) UIImage *image;
+@property (nonatomic, strong) SV_IMAGE_CLASS *image;
 
 @end
 
@@ -105,7 +106,11 @@
 
 -(BOOL)parseFinishedData:(NSData*)data error:(__autoreleasing NSError**)error
 {
-    UIImage *image = [[UIImage alloc] initWithData:data scale:_scale];
+    #if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
+    SV_IMAGE_CLASS *image = [[SV_IMAGE_CLASS alloc] initWithData:data scale:_scale];
+    #else
+    SV_IMAGE_CLASS *image = [[SV_IMAGE_CLASS alloc] initWithData:data];
+    #endif
     
     if (image)
     {

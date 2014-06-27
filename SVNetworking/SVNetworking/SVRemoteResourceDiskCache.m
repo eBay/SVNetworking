@@ -98,9 +98,15 @@
 {
     NSURL *fileURL = [_fileURL URLByAppendingPathComponent:remoteResource.uniqueKeyHash isDirectory:NO];
     
+    #if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
+    NSDataWritingOptions const options = NSDataWritingAtomic | NSDataWritingFileProtectionComplete;
+    #else
+    NSDataWritingOptions const options = NSDataWritingAtomic;
+    #endif
+    
     dispatch_async(_IOQueue, ^{
         NSError *error = nil;
-        BOOL success = [data writeToURL:fileURL options:(NSDataWritingAtomic|NSDataWritingFileProtectionComplete) error:&error];
+        BOOL success = [data writeToURL:fileURL options:options error:&error];
         
         if (success)
         {

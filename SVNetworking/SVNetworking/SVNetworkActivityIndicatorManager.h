@@ -31,9 +31,11 @@
 
 #import "SVRequest.h"
 
+#if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
 /**
  Provides an implementation of the network activity indicator for requests.
  */
 @interface SVNetworkActivityIndicatorManager : NSObject <SVRequestNetworkActivityIndicatorDelegate>
 
 @end
+#endif

@@ -29,36 +29,10 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import "SVNetworkActivityIndicatorManager.h"
-
 #if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
-
-@interface SVNetworkActivityIndicatorManager ()
-{
-@private
-    NSUInteger _count;
-}
-
-@end
-
-@implementation SVNetworkActivityIndicatorManager
-
--(void)increaseNetworkActivityIndicatorCount
-{
-    _count++;
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = _count > 0;
-}
-
--(void)decreaseNetworkActivityIndicatorCount
-{
-    if (_count > 0)
-    {
-        _count--;
-    }
-    
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = _count > 0;
-}
-
-@end
+#define SV_IMAGE_CLASS UIImage
+#else
+#import <Cocoa/Cocoa.h>
+#define SV_IMAGE_CLASS NSImage
 #endif

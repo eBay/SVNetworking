@@ -29,7 +29,7 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <UIKit/UIKit.h>
+#import "SVImageClass.h"
 
 /**
  This protocol provides the default shared properties for all networked images.
@@ -52,6 +52,6 @@
 /**
  The loaded image. This property is observable.
  */
-@property (nonatomic, readonly, strong) UIImage *image;
+@property (nonatomic, readonly, strong) SV_IMAGE_CLASS *image;
 
 @end

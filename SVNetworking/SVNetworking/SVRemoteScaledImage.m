@@ -38,7 +38,7 @@
 @property (nonatomic) CGSize size;
 @property (nonatomic) CGFloat scale;
 @property (nonatomic, strong) NSURL *URL;
-@property (nonatomic, strong) UIImage *image;
+@property (nonatomic, strong) SV_IMAGE_CLASS *image;
 
 @end
 
@@ -87,9 +87,9 @@
 -(void)parseFinishedProxiedResource:(SVRemoteImage*)proxiedResource
                        withListener:(id<SVRemoteProxyResourceCompletionListener>)listener
 {
-    UIImage *image = proxiedResource.image;
+    SV_IMAGE_CLASS *image = proxiedResource.image;
     
-    [SVImageScaler scaleImage:image toSize:_size withScale:_scale completion:^(UIImage *scaledImage) {
+    [SVImageScaler scaleImage:image toSize:_size withScale:_scale completion:^(SV_IMAGE_CLASS *scaledImage) {
         // assign image property
         self.image = scaledImage;
         
