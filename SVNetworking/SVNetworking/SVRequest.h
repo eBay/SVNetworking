@@ -31,13 +31,31 @@
 
 #import <TargetConditionals.h>
 
-typedef enum
+/**
+ Specifies HTTP methods as an enumeration.
+ */
+typedef NS_ENUM(NSInteger, SVRequestMethod)
 {
+    /**
+     `GET`
+     */
     SVRequestMethodGET,
+    
+    /**
+     `POST`
+     */
     SVRequestMethodPOST,
+    
+    /**
+     `PUT`
+     */
     SVRequestMethodPUT,
+    
+    /**
+     `DELETE`
+     */
     SVRequestMethodDELETE
-} SVRequestMethod;
+};
 
 /**
  A protocol for an object that keeps track of the current number of active request objects.

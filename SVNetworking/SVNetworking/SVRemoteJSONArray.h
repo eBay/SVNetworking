@@ -32,11 +32,21 @@
 #import "SVJSONRequest.h"
 #import "SVRemoteArray.h"
 
-typedef enum
+/**
+ Specifies the type of loading when parsing JSON items.
+ */
+typedef NS_ENUM(NSInteger, SVRemoteJSONArrayLoadingType)
 {
+    /**
+     The remote array is refreshing.
+     */
     SVRemoteJSONArrayLoadingTypeRefresh,
+    
+    /**
+     The remote array is loading the next page.
+     */
     SVRemoteJSONArrayLoadingTypeNextPage
-} SVRemoteJSONArrayLoadingType;
+};
 
 /**
  An abstract implementation of a remote array, using JSON requests to load its data.

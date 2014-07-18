@@ -33,12 +33,26 @@
 
 @class SVRemoteArray;
 
-typedef enum
+/**
+ Expresses the current loading state for the remote array's two ends.
+ */
+typedef NS_ENUM(NSInteger, SVRemoteArrayLoadingState)
 {
+    /**
+     The remote array is not loading.
+     */
     SVRemoteArrayLoadingStateNotLoading,
+    
+    /**
+     The remote array attempted to load, but encountered an error.
+     */
     SVRemoteArrayLoadingStateError,
+    
+    /**
+     The remote array is loading.
+     */
     SVRemoteArrayLoadingStateLoading
-} SVRemoteArrayLoadingState;
+};
 
 /**
  An observer for remote array page loading.

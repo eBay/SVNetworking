@@ -32,12 +32,31 @@
 #import "SVDataRequest.h"
 #import "SVRemoteResourceDiskCache.h"
 
-typedef enum {
+/**
+ Specifies the current loading state of the remote resource.
+ */
+typedef NS_ENUM(NSInteger, SVRemoteResourceState)
+{
+    /**
+     The remote resource has not loaded.
+     */
     SVRemoteResourceStateNotLoaded,
+    
+    /**
+     The remote resource is loading.
+     */
     SVRemoteResourceStateLoading,
+    
+    /**
+     The remote resource attempted to load, but encountered an error.
+     */
     SVRemoteResourceStateError,
+    
+    /**
+     The remote resource has finished loading successfully.
+     */
     SVRemoteResourceStateFinished
-} SVRemoteResourceState;
+};
 
 /**
  SVRemoteResource is an abstract class to load resources from a remote source, typically over the network.
