@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "SVNetworking"
-  s.version      = "0.1"
+  s.version      = "0.2"
   s.summary      = "Remote resource loading and networking"
   s.description  = <<-DESC
                    SVNetworking is a library for networking and resource loading
