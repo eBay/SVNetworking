@@ -15,6 +15,7 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = '10.9'
   s.source       = { :git => "https://github.com/eBay/SVNetworking.git", :tag => "0.1" }
   s.source_files  = "SVNetworking/SVNetworking"
-  s.ios.frameworks = "UIKit", "CommonCrypto"
+  s.ios.frameworks = "UIKit"
+  s.osx.frameworks = "CommonCrypto"
   s.requires_arc = true
 end
