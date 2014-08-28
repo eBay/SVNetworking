@@ -517,7 +517,7 @@
 		43D2A1E418D39363002CFE55 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = Svpply;
 			};
 			buildConfigurationList = 43D2A1E718D39363002CFE55 /* Build configuration list for PBXProject "SVNetworking" */;
@@ -670,6 +670,7 @@
 		41915330195E02B200CCB777 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -690,6 +691,7 @@
 		41915331195E02B200CCB777 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -890,6 +892,7 @@
 				41915331195E02B200CCB777 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		41915332195E02B200CCB777 /* Build configuration list for PBXNativeTarget "SVNetworking-MacTests" */ = {
 			isa = XCConfigurationList;
@@ -898,6 +901,7 @@
 				41915334195E02B200CCB777 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		43D2A1E718D39363002CFE55 /* Build configuration list for PBXProject "SVNetworking" */ = {
 			isa = XCConfigurationList;
