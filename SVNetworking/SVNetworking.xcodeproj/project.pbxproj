@@ -716,7 +716,7 @@
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SVNetworking-Mac/SVNetworking-Mac-Prefix.pch";
+				GCC_PREFIX_HEADER = "SVNetworking/SVNetworking-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -740,7 +740,7 @@
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SVNetworking-Mac/SVNetworking-Mac-Prefix.pch";
+				GCC_PREFIX_HEADER = "SVNetworking/SVNetworking-Prefix.pch";
 				INFOPLIST_FILE = "SVNetworking-MacTests/SVNetworking-MacTests-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
