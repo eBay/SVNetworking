@@ -199,16 +199,13 @@ NSDictionary* SVDoubleMapToDictionary(NSArray *array, SVDoubleMapToDictionaryBlo
 
 NSDictionary* SVMapDictionary(NSDictionary *dictionary, SVMapDictionaryBlock block)
 {
-    NSUInteger count = dictionary.count;
-    __unsafe_unretained id keys[count], objects[count], mappedObjects[count];
-    [dictionary getObjects:objects andKeys:keys];
+    NSMutableDictionary *result = [NSMutableDictionary dictionary];
     
-    for (NSUInteger i = 0; i < count; i++)
-    {
-        mappedObjects[i] = block(keys[i], objects[i]);
-    }
+    [dictionary enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        result[key] = block(key, obj);
+    }];
     
-    return [NSDictionary dictionaryWithObjects:mappedObjects forKeys:keys count:count];
+    return result;
 }
 
 NSArray* SVFilter(NSArray* array, SVFilterBlock block)
