@@ -102,8 +102,14 @@ FOUNDATION_EXTERN NSString* SVURLEncode(NSString* string);
  */
 @protocol SVRequestDelegate <NSObject>
 
-@required
-/** @name Required */
+/**
+ *  Indicates that the request has finished.
+ *
+ *  @param request  The request.
+ *  @param response The response.
+ *  @param data     The data that the request loaded.
+ */
+-(void)request:(SVRequest*)request finishedWithResponse:(NSURLResponse*)response data:(NSData*)data;
 
 /**
  Indicates that the request has failed.
@@ -269,19 +275,6 @@ FOUNDATION_EXTERN NSString* SVURLEncode(NSString* string);
  Returns the parameter string for the request.
  */
 -(NSString*)constructParameterString;
- 
-#pragma mark - Subclass Implementation
-/** @name Subclass Implementation */
-
-/**
- Subclasses must override this message to provide a completion implementation for the request.
- 
- @warning The default implementation throws an exception.
- 
- @param data The data loaded by the request.
- @param response The HTTP response received for the request.
- */
--(void)handleCompletionWithData:(NSData*)data response:(NSHTTPURLResponse*)response;
 
 #pragma mark - Network Activity Indicator Delegate
 /** @name Network Activity Indicator Delegate */

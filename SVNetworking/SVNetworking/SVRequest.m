@@ -178,7 +178,7 @@ NSString* SVURLEncode(NSString* string)
         dispatch_async(dispatch_get_main_queue(), ^{
             if (data)
             {
-                [weakSelf handleCompletionWithData:data response:(NSHTTPURLResponse*)response];
+                [weakSelf.delegate request:self finishedWithResponse:response data:data];
             }
             else
             {
@@ -260,12 +260,6 @@ NSString* SVURLEncode(NSString* string)
 {
     NSArray* pairs = [self constructParameterPairs];
     return [pairs componentsJoinedByString:@"&"];
-}
-
-#pragma mark - Subclass Implementation
--(void)handleCompletionWithData:(NSData*)data response:(NSHTTPURLResponse*)response
-{
-    [self doesNotRecognizeSelector:_cmd];
 }
 
 #pragma mark - Network Activity Indicator Delegate

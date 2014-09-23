@@ -30,7 +30,7 @@
  */
 
 #import "SVRemoteResource.h"
-#import "SVJSONRequest.h"
+#import "SVJSONRequestHandler.h"
 
 /**
  SVRemoteJSONRequest Resource is an abstract class of SVRemoteResource that loads a resource as JSON data over the
@@ -72,7 +72,7 @@
  
  @returns A valid JSON request for loading this resource.
  */
--(SVJSONRequest*)requestForNetworkLoading;
+-(SVRequest*)requestForNetworkLoading;
 
 /**
  Subclasses must override this message to parse loaded JSON (and set completion properties) or set the error pointer.

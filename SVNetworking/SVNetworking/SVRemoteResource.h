@@ -29,7 +29,6 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import "SVDataRequest.h"
 #import "SVRemoteResourceDiskCache.h"
 
 /**
