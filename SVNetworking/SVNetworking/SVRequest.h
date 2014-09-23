@@ -113,36 +113,6 @@ FOUNDATION_EXTERN NSString* SVURLEncode(NSString* string);
  */
 -(void)request:(SVRequest*)request failedWithError:(NSError*)error;
 
-@optional
-/** @name Optional */
-
-/**
- Indicates that the request has received a response.
- 
- @param request The request.
- @param response The received response.
- @param willUpdateProgress `YES` if the request will provide determinate download progress, otherwise `NO`.
- */
--(void)request:(SVRequest*)request receivedResponse:(NSURLResponse*)response willUpdateProgress:(BOOL)willUpdateProgress;
-
-/**
- Indicates that the request has updated its upload progress.
- 
- @param request The request.
- @param progress The upload progress, a `double` between `0` and `1`.
- */
--(void)request:(SVRequest*)request updatedUploadProgress:(double)progress;
-
-/**
- Indicates that the request has updated its download progress.
- 
- This message may or may not be sent per-request, see -request:receivedResponse:willUpdateProgress:.
- 
- @param request The request.
- @param progress The download progress, a `double` between `0` and `1`.
- */
--(void)request:(SVRequest*)request updatedDownloadProgress:(double)progress;
-
 @end
 
 /**

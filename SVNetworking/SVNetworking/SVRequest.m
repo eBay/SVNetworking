@@ -56,16 +56,11 @@ NSString* SVURLEncode(NSString* string)
                                                                          kCFStringEncodingUTF8);
 }
 
-@interface SVRequest () <NSURLConnectionDelegate, NSURLConnectionDataDelegate>
+@interface SVRequest ()
 {
     // content length
     long long _expectedContentLength;
     long long _currentContentLength;
-    
-    // Connection ivars (iOS 6)
-    NSMutableData* _data;
-    NSURLConnection* _connection;
-    NSHTTPURLResponse* _response;
     
     // body data
     NSMutableDictionary* _values;
@@ -175,111 +170,39 @@ NSString* SVURLEncode(NSString* string)
 {
     [[self.class networkActivityIndicatorDelegate] increaseNetworkActivityIndicatorCount];
     
-    if ([NSURLSession class])
-    {
-        NSURLRequest *request = [self constructRequest];
-        
-        __weak SVRequest *weakSelf = self;
-        
-        _sessionTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (data)
-                {
-                    [weakSelf handleCompletionWithData:data response:(NSHTTPURLResponse*)response];
-                }
-                else
-                {
-                    [weakSelf.delegate request:self failedWithError:error];
-                }
-                
-                weakSelf.sessionTask = nil;
-                
-                [[weakSelf.class networkActivityIndicatorDelegate] decreaseNetworkActivityIndicatorCount];
-            });
-        }];
-        
-        [_sessionTask resume];
-    }
-    else
-    {
-        _data = [[NSMutableData alloc] init];
-        _connection = [[NSURLConnection alloc] initWithRequest:self.constructRequest delegate:self startImmediately:NO];
-        [_connection scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
-        [_connection start];
-    }
+    NSURLRequest *request = [self constructRequest];
+    
+    __weak SVRequest *weakSelf = self;
+    
+    _sessionTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (data)
+            {
+                [weakSelf handleCompletionWithData:data response:(NSHTTPURLResponse*)response];
+            }
+            else
+            {
+                [weakSelf.delegate request:self failedWithError:error];
+            }
+            
+            weakSelf.sessionTask = nil;
+            
+            [[weakSelf.class networkActivityIndicatorDelegate] decreaseNetworkActivityIndicatorCount];
+        });
+    }];
+    
+    [_sessionTask resume];
 }
 
 -(void)cancel
 {
-    if (_connection)
-    {
-        [_connection cancel];
-        _connection = nil;
-        _data = nil;
-        
-        [[self.class networkActivityIndicatorDelegate] decreaseNetworkActivityIndicatorCount];
-    }
-    else if (_sessionTask)
+    if (_sessionTask)
     {
         [_sessionTask cancel];
         _sessionTask = nil;
         
         [[self.class networkActivityIndicatorDelegate] decreaseNetworkActivityIndicatorCount];
     }
-}
-
-#pragma mark - URL Connection Delegate
--(void)connection:(NSURLConnection*)connection didReceiveResponse:(NSHTTPURLResponse*)resp
-{
-    _response = (id)resp;
-    _expectedContentLength = _response.expectedContentLength;
-    
-    if ([_delegate respondsToSelector:@selector(request:receivedResponse:willUpdateProgress:)])
-    {
-        [_delegate request:self receivedResponse:resp willUpdateProgress:_expectedContentLength != NSURLResponseUnknownLength];
-    }
-}
-
--(void)connection:(NSURLConnection*)connection didReceiveData:(NSData*)respData
-{
-    _currentContentLength += respData.length;
-    
-    if (_expectedContentLength != NSURLResponseUnknownLength &&
-        [_delegate respondsToSelector:@selector(request:updatedDownloadProgress:)])
-    {
-        double progress = ((double)MIN(_expectedContentLength, _currentContentLength)) / (double)_expectedContentLength;
-        [_delegate request:self updatedDownloadProgress:progress];
-    }
-    
-    [_data appendData:respData];
-}
-
--(void)connection:(NSURLConnection *)connection
-  didSendBodyData:(NSInteger)bytesWritten
-totalBytesWritten:(NSInteger)totalBytesWritten
-totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
-{
-    if ([_delegate respondsToSelector:@selector(request:updatedUploadProgress:)])
-    {
-        double progress = ((double)totalBytesWritten) / ((double)totalBytesExpectedToWrite);
-        [_delegate request:self updatedUploadProgress:progress];
-    }
-}
-
--(void)connectionDidFinishLoading:(NSURLConnection*)connection
-{
-    [self handleCompletionWithData:_data response:_response];
-    _connection = nil;
-    
-    [[self.class networkActivityIndicatorDelegate] decreaseNetworkActivityIndicatorCount];
-}
-
--(void)connection:(NSURLConnection*)connection didFailWithError:(NSError*)error
-{
-    [_delegate request:self failedWithError:error];
-    _connection = nil;
-    
-    [[self.class networkActivityIndicatorDelegate] decreaseNetworkActivityIndicatorCount];
 }
 
 #pragma mark - Subclass Implementation
