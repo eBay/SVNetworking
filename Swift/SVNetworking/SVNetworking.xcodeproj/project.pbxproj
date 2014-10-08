@@ -10,6 +10,7 @@
 		43BCE8AC19E5A6D000B63321 /* SVNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 43BCE8AB19E5A6D000B63321 /* SVNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43BCE8B219E5A6D000B63321 /* SVNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BCE8A619E5A6D000B63321 /* SVNetworking.framework */; };
 		43BCE8B919E5A6D000B63321 /* SVNetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BCE8B819E5A6D000B63321 /* SVNetworkingTests.swift */; };
+		43BCE8C319E5A77C00B63321 /* SVRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BCE8C219E5A77C00B63321 /* SVRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		43BCE8B119E5A6D000B63321 /* SVNetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SVNetworkingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		43BCE8B719E5A6D000B63321 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43BCE8B819E5A6D000B63321 /* SVNetworkingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVNetworkingTests.swift; sourceTree = "<group>"; };
+		43BCE8C219E5A77C00B63321 /* SVRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			children = (
 				43BCE8AB19E5A6D000B63321 /* SVNetworking.h */,
 				43BCE8A919E5A6D000B63321 /* Supporting Files */,
+				43BCE8C219E5A77C00B63321 /* SVRequest.swift */,
 			);
 			path = SVNetworking;
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43BCE8C319E5A77C00B63321 /* SVRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +319,7 @@
 		43BCE8BD19E5A6D000B63321 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -326,12 +331,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		43BCE8BE19E5A6D000B63321 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
