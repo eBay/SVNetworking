@@ -92,6 +92,7 @@ public class SVRequestBuilder: NSObject
         return createRequest()
     }
     
+    // MARK: - Request Building
     public func createRequest() -> NSMutableURLRequest
     {
         let request = NSMutableURLRequest(URL: createURL())
