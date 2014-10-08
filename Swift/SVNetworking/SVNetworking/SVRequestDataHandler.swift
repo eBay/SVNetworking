@@ -38,3 +38,18 @@ public class SVRequestDataHandler: SVRequestHandler
         }
     }
 }
+
+public extension SVRequest
+{
+    public func data(completion: SVRequestDataHandler.Completion, failure: SVRequestDataHandler.Failure) -> SVRequestDataHandler
+    {
+        let handler = SVRequestDataHandler(request: self)
+        
+        handler.completion = completion
+        handler.failure = failure
+        
+        start()
+        
+        return handler
+    }
+}

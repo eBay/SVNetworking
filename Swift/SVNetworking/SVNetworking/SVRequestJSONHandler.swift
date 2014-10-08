@@ -61,3 +61,18 @@ public class SVRequestJSONHandler: SVRequestHandler
         }
     }
 }
+
+public extension SVRequest
+{
+    public func JSON(completion: SVRequestJSONHandler.Completion, failure: SVRequestJSONHandler.Failure) -> SVRequestJSONHandler
+    {
+        let handler = SVRequestJSONHandler(request: self)
+        
+        handler.completion = completion
+        handler.failure = failure
+        
+        start()
+        
+        return handler
+    }
+}
