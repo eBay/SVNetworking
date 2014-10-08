@@ -21,14 +21,29 @@ public class SVRequest: NSObject
      */
     public let request: NSURLRequest
     
+    /// The URL session to send the request in.
+    public let session: NSURLSession
+    
     /**
     Initializes a request.
     
     :param: request The URL request to send.
     */
-    public init(request: NSURLRequest)
+    public convenience init(request: NSURLRequest)
+    {
+        self.init(request: request, session: NSURLSession.sharedSession())
+    }
+    
+    /**
+    Initializes a request
+    
+    :param: request The URL request to send.
+    :param: session The session to send the request in.
+    */
+    public init(request: NSURLRequest, session: NSURLSession)
     {
         self.request = request
+        self.session = session
     }
     
     deinit
@@ -51,8 +66,6 @@ public class SVRequest: NSObject
     {
         if task == nil
         {
-            let session = NSURLSession.sharedSession()
-            
             let task = session.dataTaskWithRequest(request, completionHandler: { [weak self] (data, response, error) in
                 if let strongSelf = self
                 {
