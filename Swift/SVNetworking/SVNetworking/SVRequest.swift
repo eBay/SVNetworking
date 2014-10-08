@@ -31,12 +31,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import Foundation
 
-@objc public protocol SVRequestDelegate: class
-{
-    func request(request: SVRequest, finishedWithData data: NSData, response: NSURLResponse)
-    func request(request: SVRequest, failedWithError error: NSError?, response: NSURLResponse)
-}
-
 public class SVRequest: NSObject
 {
     /**
@@ -74,10 +68,12 @@ public class SVRequest: NSObject
         task?.cancel()
     }
     
-    /**
-     *  The delegate for this request.
-     */
-    public weak var delegate: SVRequestDelegate?
+    // MARK: - Handlers
+    public typealias Completion = (data: NSData, response: NSURLResponse) -> Void
+    public typealias Failure = (error: NSError?, response: NSURLResponse) -> Void
+    
+    public var completion: Completion?
+    public var failure: Failure?
     
     /// Task property
     private var task: NSURLSessionDataTask?
@@ -94,11 +90,11 @@ public class SVRequest: NSObject
                 {
                     if let strongData = data
                     {
-                        strongSelf.delegate?.request(strongSelf, finishedWithData: strongData, response: response)
+                        strongSelf.completion?(data: data, response: response)
                     }
                     else
                     {
-                        strongSelf.delegate?.request(strongSelf, failedWithError: error, response: response)
+                        strongSelf.failure?(error: error, response: response)
                     }
                     
                     strongSelf.task = nil

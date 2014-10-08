@@ -31,7 +31,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import Foundation
 
-public class SVRequestHandler: NSObject, SVRequestDelegate
+public class SVRequestHandler: NSObject
 {
     // MARK: - Request
     public let request: SVRequest
@@ -40,14 +40,29 @@ public class SVRequestHandler: NSObject, SVRequestDelegate
     public init(request: SVRequest)
     {
         self.request = request
+        
         super.init()
-        self.request.delegate = self
+        
+        self.request.completion = { [weak self] (data, response) in
+            if let strongSelf = self
+            {
+                strongSelf.handleCompletionWithData(data, response: response)
+            }
+        }
+        
+        self.request.failure = { [weak self] (error, response) in
+            if let strongSelf = self
+            {
+                strongSelf.handleFailureWithError(error, response: response)
+            }
+        }
     }
     
     // MARK: - Deinitialization
     deinit
     {
-        request.delegate = nil
+        request.completion = nil
+        request.failure = nil
     }
     
     // MARK: - Subclass Implementation
@@ -59,16 +74,5 @@ public class SVRequestHandler: NSObject, SVRequestDelegate
     public func handleFailureWithError(error: NSError?, response: NSURLResponse)
     {
         fatalError("Subclasses of SVRequestHandler must override handleFailureWithError:response:")
-    }
-    
-    // MARK: - Request Delegate
-    public func request(request: SVRequest, finishedWithData data: NSData, response: NSURLResponse)
-    {
-        handleCompletionWithData(data, response: response)
-    }
-    
-    public func request(request: SVRequest, failedWithError error: NSError?, response: NSURLResponse)
-    {
-        handleFailureWithError(error, response: response)
     }
 }
