@@ -33,9 +33,9 @@ import Foundation
 
 public class SVJSONResource: SVJSONRequestResource
 {
-    public private(set) var JSON: [String:AnyObject]?
+    public private(set) var JSON: SVJSON?
     
-    public override func parseFinishedJSON(JSON: [String:AnyObject], error: NSErrorPointer) -> Bool
+    public override func parseFinishedJSON(JSON: SVJSON, error: NSErrorPointer) -> Bool
     {
         self.JSON = JSON
         return true

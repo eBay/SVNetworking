@@ -34,7 +34,7 @@ import Foundation
 public class SVRequestJSONHandler: SVRequestHandler
 {
     /// Type alias for completion handler
-    public typealias Completion = (JSON: [String:AnyObject], response: NSURLResponse) -> Void
+    public typealias Completion = (JSON: SVJSON, response: NSURLResponse) -> Void
     
     /// Type alias for failure handler
     public typealias Failure = (error: NSError?, response: NSURLResponse) -> Void
@@ -54,7 +54,7 @@ public class SVRequestJSONHandler: SVRequestHandler
     :param: JSON     The parsed JSON object.
     :param: response The URL response from the request.
     */
-    public func handleCompletionWithJSON(JSON: [String:AnyObject], response: NSURLResponse)
+    public func handleCompletionWithJSON(JSON: SVJSON, response: NSURLResponse)
     {
         if let completion = self.completion
         {
@@ -66,9 +66,9 @@ public class SVRequestJSONHandler: SVRequestHandler
     {
         var error: NSError?
         
-        if let JSON = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error) as? [String:AnyObject]
+        if let JSON: AnyObject = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error)
         {
-            handleCompletionWithJSON(JSON, response: response)
+            handleCompletionWithJSON(SVJSON(root: JSON), response: response)
         }
         else
         {
