@@ -33,13 +33,37 @@ import Foundation
 
 public class SVJSON: NSObject
 {
+    // MARK: - Root
     public let root: AnyObject
     
+    // MARK: - Initialization
     public init(root: AnyObject)
     {
         self.root = root
     }
     
+    // MARK: - Checking Values
+    public var isNull: Bool {
+        return root is NSNull
+    }
+    
+    public var isString: Bool {
+        return string != nil
+    }
+    
+    public var isNumber: Bool {
+        return number != nil
+    }
+    
+    public var isObject: Bool {
+        return (root as? [String:AnyObject]) != nil
+    }
+    
+    public var isArray: Bool {
+        return (root as? [AnyObject]) != nil
+    }
+    
+    // MARK: - Values
     public var string: String? {
         return root as? String
     }
