@@ -15,6 +15,7 @@
 		43BCE8CA19E5ADD900B63321 /* SVRequestDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BCE8C919E5ADD900B63321 /* SVRequestDataHandler.swift */; };
 		43BCE8CC19E5AF0600B63321 /* SVRequestJSONHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BCE8CB19E5AF0600B63321 /* SVRequestJSONHandler.swift */; };
 		43BCE8CF19E5B23E00B63321 /* SVRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BCE8CE19E5B23E00B63321 /* SVRequestBuilder.swift */; };
+		43BCE8D119E5B9C300B63321 /* SVRequestParameterBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BCE8D019E5B9C300B63321 /* SVRequestParameterBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +40,7 @@
 		43BCE8C919E5ADD900B63321 /* SVRequestDataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVRequestDataHandler.swift; sourceTree = "<group>"; };
 		43BCE8CB19E5AF0600B63321 /* SVRequestJSONHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVRequestJSONHandler.swift; sourceTree = "<group>"; };
 		43BCE8CE19E5B23E00B63321 /* SVRequestBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVRequestBuilder.swift; sourceTree = "<group>"; };
+		43BCE8D019E5B9C300B63321 /* SVRequestParameterBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVRequestParameterBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				43BCE8CE19E5B23E00B63321 /* SVRequestBuilder.swift */,
+				43BCE8D019E5B9C300B63321 /* SVRequestParameterBuilder.swift */,
 			);
 			name = Builders;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 			files = (
 				43BCE8C319E5A77C00B63321 /* SVRequest.swift in Sources */,
 				43BCE8C819E5AC9C00B63321 /* SVRequestHandler.swift in Sources */,
+				43BCE8D119E5B9C300B63321 /* SVRequestParameterBuilder.swift in Sources */,
 				43BCE8CA19E5ADD900B63321 /* SVRequestDataHandler.swift in Sources */,
 				43BCE8CF19E5B23E00B63321 /* SVRequestBuilder.swift in Sources */,
 				43BCE8CC19E5AF0600B63321 /* SVRequestJSONHandler.swift in Sources */,

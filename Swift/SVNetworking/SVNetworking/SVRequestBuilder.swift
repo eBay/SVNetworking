@@ -39,12 +39,9 @@ public class SVRequestBuilder: NSObject
         case POST = "POST"
         case PUT = "PUT"
         case DELETE = "DELETE"
-        case HEAD = "HEAD"
-        case TRACE = "TRACE"
-        case OPTIONS = "OPTIONS"
-        case CONNECT = "CONNECT"
-        case PATCH = "PATCH"
     }
+    
+    // MARK: - Basic Properties
     
     /// The URL assigned to the builder.
     public let URL: NSURL
@@ -52,13 +49,15 @@ public class SVRequestBuilder: NSObject
     /// The HTTP method assigned to the builder.
     public let method: Method
     
+    // MARK: - Initialization
+    
     /**
     Initializes a request builder.
     
     :param: URL    The URL for the builder.
     :param: method The HTTP method for the builder.
     */
-    public init(URL: NSURL, method: Method)
+    public required init(URL: NSURL, method: Method)
     {
         self.URL = URL
         self.method = method
@@ -74,7 +73,7 @@ public class SVRequestBuilder: NSObject
     {
         if let method = Method(rawValue: methodString)
         {
-            return SVRequestBuilder(URL: URL, method: method)
+            return self(URL: URL, method: method)
         }
         else
         {
@@ -82,25 +81,45 @@ public class SVRequestBuilder: NSObject
         }
     }
     
-    /// The parameters for the request. This dictionary can be accessed directly through subscripting, via an extension.
-    public var parameters: [String:String] = [:]
+    // MARK: - Headers
     
     /// The HTTP headers for the request.
     public var headers: [String:String] = [:]
-}
-
-extension SVRequestBuilder
-{
-    public subscript (parameter: String) -> String?
+    
+    // MARK: - Request
+    public var request: NSURLRequest
     {
-        get
+        return createRequest()
+    }
+    
+    public func createRequest() -> NSMutableURLRequest
+    {
+        let request = NSMutableURLRequest(URL: createURL())
+        
+        request.HTTPMethod = method.rawValue
+        
+        for (header, value) in headers
         {
-            return parameters[parameter]
+            request.setValue(value, forHTTPHeaderField: header)
         }
         
-        set (newValue)
+        if let bodyTuple = self.createBody()
         {
-            parameters[parameter] = newValue
+            request.HTTPBody = bodyTuple.data
+            request.setValue("\(bodyTuple.data.length)", forHTTPHeaderField: "Content-Length")
+            request.setValue(bodyTuple.contentType, forHTTPHeaderField: "Content-Type")
         }
+        
+        return request
+    }
+    
+    public func createURL() -> NSURL
+    {
+        return URL
+    }
+    
+    public func createBody() -> (data: NSData, contentType: String)?
+    {
+        return nil
     }
 }
