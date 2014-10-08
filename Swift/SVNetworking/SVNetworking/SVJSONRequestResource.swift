@@ -33,12 +33,12 @@ import Foundation
 
 public class SVJSONRequestResource: SVRequestResource
 {
-    public func parseFinishedJSON(JSON: [NSObject:AnyObject], error: NSErrorPointer) -> Bool
+    public func parseFinishedJSON(JSON: [String:AnyObject], error: NSErrorPointer) -> Bool
     {
         fatalError("Subclasses of SVJSONRequestResource must override parseFinishedJSON(:error)")
     }
     
-    public func finishLoadingWithJSON(JSON: [NSObject:AnyObject])
+    public func finishLoadingWithJSON(JSON: [String:AnyObject])
     {
         var error: NSError?
         
@@ -59,7 +59,7 @@ public class SVJSONRequestResource: SVRequestResource
         handler.completion = { [weak self] (JSON, response) in
             if let strongSelf = self
             {
-                strongSelf.finishLoadingWithJSON(JSON)
+                strongSelf.finishLoadingWithJSON(JSON as [String:AnyObject])
             }
         }
         
