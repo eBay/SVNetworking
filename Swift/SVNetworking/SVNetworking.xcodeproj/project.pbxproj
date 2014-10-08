@@ -23,6 +23,7 @@
 		43FBBCF619E5F148007313BA /* SVDataResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FBBCF519E5F148007313BA /* SVDataResource.swift */; };
 		43FBBCF919E5F200007313BA /* SVJSONRequestResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FBBCF819E5F200007313BA /* SVJSONRequestResource.swift */; };
 		43FBBCFB19E5F321007313BA /* SVJSONResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FBBCFA19E5F321007313BA /* SVJSONResource.swift */; };
+		43FBBCFE19E5F575007313BA /* SVJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FBBCFD19E5F575007313BA /* SVJSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		43FBBCF519E5F148007313BA /* SVDataResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVDataResource.swift; sourceTree = "<group>"; };
 		43FBBCF819E5F200007313BA /* SVJSONRequestResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVJSONRequestResource.swift; sourceTree = "<group>"; };
 		43FBBCFA19E5F321007313BA /* SVJSONResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVJSONResource.swift; sourceTree = "<group>"; };
+		43FBBCFD19E5F575007313BA /* SVJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVJSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				43BCE8AB19E5A6D000B63321 /* SVNetworking.h */,
+				43FBBCFC19E5F560007313BA /* JSON */,
 				43BCE8C519E5AC6500B63321 /* Networking */,
 				43BCE8D219E5E4A500B63321 /* Resources */,
 				43BCE8D619E5E85E00B63321 /* Resource Client */,
@@ -209,6 +212,14 @@
 			children = (
 				43FBBCF819E5F200007313BA /* SVJSONRequestResource.swift */,
 				43FBBCFA19E5F321007313BA /* SVJSONResource.swift */,
+			);
+			name = JSON;
+			sourceTree = "<group>";
+		};
+		43FBBCFC19E5F560007313BA /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				43FBBCFD19E5F575007313BA /* SVJSON.swift */,
 			);
 			name = JSON;
 			sourceTree = "<group>";
@@ -332,6 +343,7 @@
 				43BCE8D119E5B9C300B63321 /* SVRequestParameterBuilder.swift in Sources */,
 				43BCE8CA19E5ADD900B63321 /* SVRequestDataHandler.swift in Sources */,
 				43BCE8CF19E5B23E00B63321 /* SVRequestBuilder.swift in Sources */,
+				43FBBCFE19E5F575007313BA /* SVJSON.swift in Sources */,
 				43BCE8CC19E5AF0600B63321 /* SVRequestJSONHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
