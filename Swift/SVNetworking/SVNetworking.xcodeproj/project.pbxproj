@@ -13,6 +13,7 @@
 		43BCE8C319E5A77C00B63321 /* SVRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BCE8C219E5A77C00B63321 /* SVRequest.swift */; };
 		43BCE8C819E5AC9C00B63321 /* SVRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BCE8C719E5AC9C00B63321 /* SVRequestHandler.swift */; };
 		43BCE8CA19E5ADD900B63321 /* SVRequestDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BCE8C919E5ADD900B63321 /* SVRequestDataHandler.swift */; };
+		43BCE8CC19E5AF0600B63321 /* SVRequestJSONHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BCE8CB19E5AF0600B63321 /* SVRequestJSONHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,7 @@
 		43BCE8C219E5A77C00B63321 /* SVRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVRequest.swift; sourceTree = "<group>"; };
 		43BCE8C719E5AC9C00B63321 /* SVRequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVRequestHandler.swift; sourceTree = "<group>"; };
 		43BCE8C919E5ADD900B63321 /* SVRequestDataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVRequestDataHandler.swift; sourceTree = "<group>"; };
+		43BCE8CB19E5AF0600B63321 /* SVRequestJSONHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVRequestJSONHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 			children = (
 				43BCE8C719E5AC9C00B63321 /* SVRequestHandler.swift */,
 				43BCE8C919E5ADD900B63321 /* SVRequestDataHandler.swift */,
+				43BCE8CB19E5AF0600B63321 /* SVRequestJSONHandler.swift */,
 			);
 			name = Handlers;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 				43BCE8C319E5A77C00B63321 /* SVRequest.swift in Sources */,
 				43BCE8C819E5AC9C00B63321 /* SVRequestHandler.swift in Sources */,
 				43BCE8CA19E5ADD900B63321 /* SVRequestDataHandler.swift in Sources */,
+				43BCE8CC19E5AF0600B63321 /* SVRequestJSONHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
