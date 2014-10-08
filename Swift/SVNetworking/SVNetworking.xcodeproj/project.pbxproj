@@ -18,6 +18,9 @@
 		43BCE8D119E5B9C300B63321 /* SVRequestParameterBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BCE8D019E5B9C300B63321 /* SVRequestParameterBuilder.swift */; };
 		43BCE8D419E5E4B900B63321 /* SVResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BCE8D319E5E4B900B63321 /* SVResource.swift */; };
 		43BCE8D819E5E86E00B63321 /* SVResourceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BCE8D719E5E86E00B63321 /* SVResourceClient.swift */; };
+		43FBBCF019E5EE1B007313BA /* SVDataRequestResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FBBCEF19E5EE1B007313BA /* SVDataRequestResource.swift */; };
+		43FBBCF419E5EE77007313BA /* SVRequestResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FBBCF319E5EE77007313BA /* SVRequestResource.swift */; };
+		43FBBCF619E5F148007313BA /* SVDataResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FBBCF519E5F148007313BA /* SVDataResource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +48,9 @@
 		43BCE8D019E5B9C300B63321 /* SVRequestParameterBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVRequestParameterBuilder.swift; sourceTree = "<group>"; };
 		43BCE8D319E5E4B900B63321 /* SVResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVResource.swift; sourceTree = "<group>"; };
 		43BCE8D719E5E86E00B63321 /* SVResourceClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVResourceClient.swift; sourceTree = "<group>"; };
+		43FBBCEF19E5EE1B007313BA /* SVDataRequestResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVDataRequestResource.swift; sourceTree = "<group>"; };
+		43FBBCF319E5EE77007313BA /* SVRequestResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVRequestResource.swift; sourceTree = "<group>"; };
+		43FBBCF519E5F148007313BA /* SVDataResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVDataResource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				43BCE8D319E5E4B900B63321 /* SVResource.swift */,
+				43FBBCF119E5EE51007313BA /* Requests */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -172,6 +179,24 @@
 				43BCE8D719E5E86E00B63321 /* SVResourceClient.swift */,
 			);
 			name = "Resource Client";
+			sourceTree = "<group>";
+		};
+		43FBBCEE19E5EDED007313BA /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				43FBBCEF19E5EE1B007313BA /* SVDataRequestResource.swift */,
+				43FBBCF519E5F148007313BA /* SVDataResource.swift */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		43FBBCF119E5EE51007313BA /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				43FBBCF319E5EE77007313BA /* SVRequestResource.swift */,
+				43FBBCEE19E5EDED007313BA /* Data */,
+			);
+			name = Requests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,10 +306,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43FBBCF419E5EE77007313BA /* SVRequestResource.swift in Sources */,
 				43BCE8D419E5E4B900B63321 /* SVResource.swift in Sources */,
 				43BCE8D819E5E86E00B63321 /* SVResourceClient.swift in Sources */,
 				43BCE8C319E5A77C00B63321 /* SVRequest.swift in Sources */,
 				43BCE8C819E5AC9C00B63321 /* SVRequestHandler.swift in Sources */,
+				43FBBCF019E5EE1B007313BA /* SVDataRequestResource.swift in Sources */,
+				43FBBCF619E5F148007313BA /* SVDataResource.swift in Sources */,
 				43BCE8D119E5B9C300B63321 /* SVRequestParameterBuilder.swift in Sources */,
 				43BCE8CA19E5ADD900B63321 /* SVRequestDataHandler.swift in Sources */,
 				43BCE8CF19E5B23E00B63321 /* SVRequestBuilder.swift in Sources */,
