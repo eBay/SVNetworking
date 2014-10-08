@@ -21,6 +21,8 @@
 		43FBBCF019E5EE1B007313BA /* SVDataRequestResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FBBCEF19E5EE1B007313BA /* SVDataRequestResource.swift */; };
 		43FBBCF419E5EE77007313BA /* SVRequestResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FBBCF319E5EE77007313BA /* SVRequestResource.swift */; };
 		43FBBCF619E5F148007313BA /* SVDataResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FBBCF519E5F148007313BA /* SVDataResource.swift */; };
+		43FBBCF919E5F200007313BA /* SVJSONRequestResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FBBCF819E5F200007313BA /* SVJSONRequestResource.swift */; };
+		43FBBCFB19E5F321007313BA /* SVJSONResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FBBCFA19E5F321007313BA /* SVJSONResource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		43FBBCEF19E5EE1B007313BA /* SVDataRequestResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVDataRequestResource.swift; sourceTree = "<group>"; };
 		43FBBCF319E5EE77007313BA /* SVRequestResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVRequestResource.swift; sourceTree = "<group>"; };
 		43FBBCF519E5F148007313BA /* SVDataResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVDataResource.swift; sourceTree = "<group>"; };
+		43FBBCF819E5F200007313BA /* SVJSONRequestResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVJSONRequestResource.swift; sourceTree = "<group>"; };
+		43FBBCFA19E5F321007313BA /* SVJSONResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVJSONResource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,8 +199,18 @@
 			children = (
 				43FBBCF319E5EE77007313BA /* SVRequestResource.swift */,
 				43FBBCEE19E5EDED007313BA /* Data */,
+				43FBBCF719E5F1E8007313BA /* JSON */,
 			);
 			name = Requests;
+			sourceTree = "<group>";
+		};
+		43FBBCF719E5F1E8007313BA /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				43FBBCF819E5F200007313BA /* SVJSONRequestResource.swift */,
+				43FBBCFA19E5F321007313BA /* SVJSONResource.swift */,
+			);
+			name = JSON;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,7 +322,9 @@
 			files = (
 				43FBBCF419E5EE77007313BA /* SVRequestResource.swift in Sources */,
 				43BCE8D419E5E4B900B63321 /* SVResource.swift in Sources */,
+				43FBBCF919E5F200007313BA /* SVJSONRequestResource.swift in Sources */,
 				43BCE8D819E5E86E00B63321 /* SVResourceClient.swift in Sources */,
+				43FBBCFB19E5F321007313BA /* SVJSONResource.swift in Sources */,
 				43BCE8C319E5A77C00B63321 /* SVRequest.swift in Sources */,
 				43BCE8C819E5AC9C00B63321 /* SVRequestHandler.swift in Sources */,
 				43FBBCF019E5EE1B007313BA /* SVDataRequestResource.swift in Sources */,
