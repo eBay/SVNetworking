@@ -94,3 +94,38 @@ extension SVRequestParameterBuilder
         }
     }
 }
+
+extension SVRequest
+{
+    public class func GET(URL: NSURL, parameters: [String:String]) -> Self
+    {
+        let builder = SVRequestParameterBuilder(URL: URL, method: .GET)
+        builder.parameters = parameters
+        
+        return self(request: builder.request, session: NSURLSession.sharedSession())
+    }
+    
+    public class func POST(URL: NSURL, parameters: [String:String]) -> Self
+    {
+        let builder = SVRequestParameterBuilder(URL: URL, method: .POST)
+        builder.parameters = parameters
+        
+        return self(request: builder.request, session: NSURLSession.sharedSession())
+    }
+    
+    public class func PUT(URL: NSURL, parameters: [String:String]) -> Self
+    {
+        let builder = SVRequestParameterBuilder(URL: URL, method: .PUT)
+        builder.parameters = parameters
+        
+        return self(request: builder.request, session: NSURLSession.sharedSession())
+    }
+    
+    public class func DELETE(URL: NSURL, parameters: [String:String]) -> Self
+    {
+        let builder = SVRequestParameterBuilder(URL: URL, method: .DELETE)
+        builder.parameters = parameters
+        
+        return self(request: builder.request, session: NSURLSession.sharedSession())
+    }
+}

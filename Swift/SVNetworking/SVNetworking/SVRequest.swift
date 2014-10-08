@@ -63,7 +63,7 @@ public class SVRequest: NSObject
     :param: request The URL request to send.
     :param: session The session to send the request in.
     */
-    public init(request: NSURLRequest, session: NSURLSession)
+    public required init(request: NSURLRequest, session: NSURLSession)
     {
         self.request = request
         self.session = session
