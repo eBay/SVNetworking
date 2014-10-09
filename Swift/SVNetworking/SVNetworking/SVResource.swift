@@ -38,6 +38,53 @@ import Foundation
 
 public class SVResource: NSObject
 {
+    private override init() {}
+    
+    deinit
+    {
+        if let uniqueKey = self.uniqueKey
+        {
+            UniqueTable.table.removeValueForKey(uniqueKey)
+        }
+    }
+    
+    private class WeakHolder
+    {
+        var resource: SVResource?
+    }
+    
+    private struct UniqueTable
+    {
+        static var table: [String:WeakHolder] = [:]
+    }
+    
+    private var uniqueKey: String?
+    
+    class func retrieve<T:SVResource>(key: String, createFunction: () -> T) -> T
+    {
+        let uniqueKey = "\(NSStringFromClass(T))\(key)"
+        
+        if let weakHolder = UniqueTable.table[uniqueKey]
+        {
+            if let resource = weakHolder.resource
+            {
+                if let typedResource = resource as? T
+                {
+                    return typedResource
+                }
+            }
+        }
+        
+        let resource = createFunction()
+        resource.uniqueKey = uniqueKey
+        
+        let weakHolder = WeakHolder()
+        weakHolder.resource = resource
+        UniqueTable.table[uniqueKey] = weakHolder
+        
+        return resource
+    }
+    
     // MARK: - State
     public enum State: Int
     {
