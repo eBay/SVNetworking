@@ -45,6 +45,8 @@
 		43FBBD2F19E62499007313BA /* SVImageResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FBBD0019E62223007313BA /* SVImageResource.swift */; };
 		43FBBD3019E62499007313BA /* SVImageScaler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FBBD0219E622AA007313BA /* SVImageScaler.swift */; };
 		43FBBD3119E62499007313BA /* SVResourceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BCE8D719E5E86E00B63321 /* SVResourceClient.swift */; };
+		43FBBD3319E625E0007313BA /* SVImageResourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FBBD3219E625E0007313BA /* SVImageResourceProtocol.swift */; };
+		43FBBD3419E625E0007313BA /* SVImageResourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FBBD3219E625E0007313BA /* SVImageResourceProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +95,7 @@
 		43FBBD1319E62478007313BA /* SVNetworking-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SVNetworking-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43FBBD1919E62478007313BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43FBBD1A19E62478007313BA /* SVNetworking_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVNetworking_iOSTests.swift; sourceTree = "<group>"; };
+		43FBBD3219E625E0007313BA /* SVImageResourceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVImageResourceProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,6 +280,7 @@
 			children = (
 				43FBBD0019E62223007313BA /* SVImageResource.swift */,
 				43FBBD0219E622AA007313BA /* SVImageScaler.swift */,
+				43FBBD3219E625E0007313BA /* SVImageResourceProtocol.swift */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -502,6 +506,7 @@
 				43BCE8CA19E5ADD900B63321 /* SVRequestDataHandler.swift in Sources */,
 				43FBBD0119E62223007313BA /* SVImageResource.swift in Sources */,
 				43BCE8CF19E5B23E00B63321 /* SVRequestBuilder.swift in Sources */,
+				43FBBD3319E625E0007313BA /* SVImageResourceProtocol.swift in Sources */,
 				43FBBCFE19E5F575007313BA /* SVJSON.swift in Sources */,
 				43BCE8CC19E5AF0600B63321 /* SVRequestJSONHandler.swift in Sources */,
 			);
@@ -533,6 +538,7 @@
 				43FBBD2D19E62499007313BA /* SVJSONRequestResource.swift in Sources */,
 				43FBBD2E19E62499007313BA /* SVJSONResource.swift in Sources */,
 				43FBBD2F19E62499007313BA /* SVImageResource.swift in Sources */,
+				43FBBD3419E625E0007313BA /* SVImageResourceProtocol.swift in Sources */,
 				43FBBD3019E62499007313BA /* SVImageScaler.swift in Sources */,
 				43FBBD3119E62499007313BA /* SVResourceClient.swift in Sources */,
 			);

@@ -33,6 +33,25 @@ import Foundation
 
 public class SVJSONResource: SVJSONRequestResource
 {
+    /// The URL to request JSON at.
+    public let URL: NSURL
+    
+    private init(URL: NSURL)
+    {
+        self.URL = URL
+    }
+    
+    /**
+    Retrieves a JSON resource object.
+    
+    :param: URL The URL for the JSON resource object.
+    */
+    public class func dataForURL(URL: NSURL) -> SVJSONResource
+    {
+        return retrieve(URL.absoluteString!, createFunction: { return SVJSONResource(URL: URL) })
+    }
+    
+    /// The retreived JSON, or `None` if the resource has not been loaded or failed to load.
     public private(set) var JSON: SVJSON?
     
     public override func parseFinishedJSON(JSON: SVJSON, error: NSErrorPointer) -> Bool

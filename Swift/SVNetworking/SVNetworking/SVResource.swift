@@ -38,8 +38,6 @@ import Foundation
 
 public class SVResource: NSObject
 {
-    private override init() {}
-    
     deinit
     {
         if let uniqueKey = self.uniqueKey

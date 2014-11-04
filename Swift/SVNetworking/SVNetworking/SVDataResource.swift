@@ -12,6 +12,18 @@ public class SVDataResource: SVDataRequestResource
 {
     public private(set) var data: NSData?
     
+    public let URL: NSURL
+    
+    private init(URL: NSURL)
+    {
+        self.URL = URL
+    }
+    
+    public class func dataForURL(URL: NSURL) -> SVDataResource
+    {
+        return retrieve(URL.absoluteString!, createFunction: { return SVDataResource(URL: URL) })
+    }
+    
     public override func parseFinishedData(data: NSData, error: NSErrorPointer) -> Bool
     {
         self.data = data

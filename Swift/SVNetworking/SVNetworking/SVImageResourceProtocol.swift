@@ -29,9 +29,14 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+import CoreGraphics
 import Foundation
 
-class SVImageResource: SVDataRequestResource
+public protocol SVImageResourceProtocol: class
 {
+    var URL: NSURL { get }
     
+    var scale: CGFloat { get }
+    
+    var image: SVImageType? { get }
 }

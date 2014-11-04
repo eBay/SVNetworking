@@ -33,11 +33,24 @@ import Foundation
 
 public class SVJSONRequestResource: SVRequestResource
 {
+    /**
+    Instructs subclasses to parse JSON data. This function must be overridden.
+    
+    :param: JSON  The JSON data to parse.
+    :param: error An error pointer to set if the JSON value is invalid.
+    */
     public func parseFinishedJSON(JSON: SVJSON, error: NSErrorPointer) -> Bool
     {
         fatalError("Subclasses of SVJSONRequestResource must override parseFinishedJSON(:error)")
     }
     
+    /**
+    Triggers completion of a JSON object.
+    
+    It should not be necessary to override this function in a subclass.
+    
+    :param: JSON A JSON object.
+    */
     public func finishLoadingWithJSON(JSON: SVJSON)
     {
         var error: NSError?
@@ -52,9 +65,21 @@ public class SVJSONRequestResource: SVRequestResource
         }
     }
     
+    /**
+    Returns a request JSON handler. Subclasses can use this function to return a customized handler that performs
+    error checking against an API. It is not necessary to set `completion` or `failure` handlers, these will be
+    overridden by this class anyways.
+    
+    :param: request The request to create a handler for.
+    */
+    public func JSONHandlerForRequest(request: SVRequest) -> SVRequestJSONHandler
+    {
+        return SVRequestJSONHandler(request: request)
+    }
+    
     public override func handlerForRequest(request: SVRequest) -> SVRequestHandler
     {
-        let handler = SVRequestJSONHandler(request: request)
+        let handler = JSONHandlerForRequest(request)
         
         handler.completion = { [weak self] (JSON, response) in
             if let strongSelf = self
