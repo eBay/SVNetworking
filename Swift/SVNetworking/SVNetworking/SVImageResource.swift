@@ -29,9 +29,47 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-import Foundation
+#if os(iOS)
+    import UIKit
+#else
+    import Cocoa
+#endif
 
-class SVImageResource: SVDataRequestResource
+public class SVImageResource: SVDataRequestResource, SVImageResourceProtocol
 {
+    public let URL: NSURL
     
+    public let scale: CGFloat
+    
+    public private(set) var image: SVImageType?
+    
+    private init(URL: NSURL, scale: CGFloat)
+    {
+        self.URL = URL
+        self.scale = scale
+    }
+    
+    public class func imageWithURL(URL: NSURL, scale: CGFloat) -> SVImageResource
+    {
+        let key = "\(URL.absoluteString!)-\(scale)"
+        return retrieve(key, createFunction: { SVImageResource(URL: URL, scale: scale) })
+    }
+    
+    public override func parseFinishedData(data: NSData, error: NSErrorPointer) -> Bool
+    {
+        #if os(iOS)
+            self.image
+        #else
+            self.image = NSImage(data: data)
+        #endif
+        
+        if self.image != nil
+        {
+            return true
+        }
+        else
+        {
+            return false
+        }
+    }
 }
