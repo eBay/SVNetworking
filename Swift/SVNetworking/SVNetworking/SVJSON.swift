@@ -37,53 +37,74 @@ public class SVJSON: NSObject
     private let root: AnyObject
     
     // MARK: - Initialization
+    /**
+    Initializes an `SVJSON` object.
+    
+    :param: root The root JSON object.
+    */
     public init(root: AnyObject)
     {
         self.root = root
     }
     
     // MARK: - Checking Values
+    /// Returns `true` if the value of this JSON object is `null` (`NSNull`).
     public var isNull: Bool {
         return root is NSNull
     }
     
+    /// Returns `true` if the value of this JSON object is a string.
     public var isString: Bool {
         return string != nil
     }
     
+    /// Returns `true` if the value of this JSON object is a number.
     public var isNumber: Bool {
         return number != nil
     }
     
+    /// Returns `true` if the value of this JSON object is an object.
     public var isObject: Bool {
         return (root as? [String:AnyObject]) != nil
     }
     
+    /// Returns `true` if the value of this JSON object is an array.
     public var isArray: Bool {
         return (root as? [AnyObject]) != nil
     }
     
     // MARK: - Values
+    /// Returns the string value of this JSON object, or `nil` if the object is not a string.
     public var string: String? {
         return root as? String
     }
     
+    /// Returns the number value of this JSON object, or `nil` if the object is not a number.
     public var number: NSNumber? {
         return root as? NSNumber
     }
     
+    /// Returns the integer value of this JSON object, or `nil` if the object is not a number.
     public var int: Int? {
         return number?.integerValue
     }
     
+    /// Returns the double value of this JSON object, or `nil` if the object is not a number.
     public var double: Double? {
         return number?.doubleValue
     }
     
+    /// Returns the float value of this JSON object, or `nil` if the object is not a number.
     public var float: Float? {
         return number?.floatValue
     }
     
+    /// Returns the boolean value of this JSON object, or `nil` if the object is not a number.
+    public var bool: Bool? {
+        return number?.boolValue
+    }
+    
+    /// Returns the object value of this JSON object, or `nil` if the object is not am object.
     public var object: [String:SVJSON]? {
         return (root as? [String:AnyObject]).map {
             var object: [String:SVJSON] = [:]
@@ -97,6 +118,7 @@ public class SVJSON: NSObject
         }
     }
     
+    /// Returns the array value of this JSON object, or `nil` if the object is not an array.
     public var array: [SVJSON]? {
         return (root as? [AnyObject]).map { (array) in
             return array.map({ (object) in
