@@ -43,7 +43,7 @@ public class SVRequestParameterBuilder: SVRequestBuilder
         switch (self.method)
         {
             case .GET:
-                let queryString = "?\(createParameterString())"
+                let queryString = "?\(SVRequestParameterBuilder.createParameterString(parameters))"
                 return NSURL(string: queryString, relativeToURL: URL) ?? URL
                 
             default:
@@ -65,7 +65,7 @@ public class SVRequestParameterBuilder: SVRequestBuilder
             }
             else
             {
-                let string = createParameterString()
+                let string = SVRequestParameterBuilder.createParameterString(parameters)
                 
                 if let data = string.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
                 {
@@ -79,23 +79,38 @@ public class SVRequestParameterBuilder: SVRequestBuilder
         }
     }
     
-    public func createParameterString() -> String
+    /**
+    Creates a URL parameter string from a parameter dictionary.
+    
+    :param: parameters The parameters to convert to a string.
+    */
+    public class func createParameterString(parameters: [String:String]) -> String
     {
-        return "&".join(createParameterPairs())
+        return "&".join(createParameterPairStrings(parameters))
     }
     
-    public func createParameterPairs() -> [String]
+    /**
+    Creates an array of URL parameter strings from a parameter dictionary.
+    
+    :param: parameters The parameters to convert to pair strings.
+    */
+    public class func createParameterPairStrings(parameters: [String:String]) -> [String]
     {
         var pairs: [String] = []
         
         for (key, value) in parameters
         {
-            pairs.append("\(key)=\(SVRequestParameterBuilder.URLEncode(value))")
+            pairs.append("\(key)=\(URLEncode(value))")
         }
         
         return pairs
     }
     
+    /**
+    URL-encodes a string.
+    
+    :param: string The string to URL-encode.
+    */
     public class func URLEncode(string: String) -> String
     {
         return string.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet()) ?? string
@@ -120,6 +135,12 @@ extension SVRequestParameterBuilder
 
 extension SVRequest
 {
+    /**
+    Returns a `GET` request for the specified URL.
+    
+    :param: URL        The URL to request.
+    :param: parameters The parameters to include in the request.
+    */
     public class func GET(URL: NSURL, parameters: [String:String]) -> Self
     {
         let builder = SVRequestParameterBuilder(URL: URL, method: .GET)
@@ -128,6 +149,12 @@ extension SVRequest
         return self(request: builder.request, session: NSURLSession.sharedSession())
     }
     
+    /**
+    Returns a `POST` request for the specified URL.
+    
+    :param: URL        The URL to request.
+    :param: parameters The parameters to include in the request.
+    */
     public class func POST(URL: NSURL, parameters: [String:String]) -> Self
     {
         let builder = SVRequestParameterBuilder(URL: URL, method: .POST)
@@ -136,6 +163,12 @@ extension SVRequest
         return self(request: builder.request, session: NSURLSession.sharedSession())
     }
     
+    /**
+    Returns a `PUT` request for the specified URL.
+    
+    :param: URL        The URL to request.
+    :param: parameters The parameters to include in the request.
+    */
     public class func PUT(URL: NSURL, parameters: [String:String]) -> Self
     {
         let builder = SVRequestParameterBuilder(URL: URL, method: .PUT)
@@ -144,6 +177,12 @@ extension SVRequest
         return self(request: builder.request, session: NSURLSession.sharedSession())
     }
     
+    /**
+    Returns a `DELETE` request for the specified URL.
+    
+    :param: URL        The URL to request.
+    :param: parameters The parameters to include in the request.
+    */
     public class func DELETE(URL: NSURL, parameters: [String:String]) -> Self
     {
         let builder = SVRequestParameterBuilder(URL: URL, method: .DELETE)

@@ -64,6 +64,14 @@ public class SVRequestDataHandler: SVRequestHandler
 
 public extension SVRequest
 {
+    /**
+    Creates a data handler for the request, and starts the request.
+    
+    :param: completion A completion handler. This parameter is mandatory.
+    :param: failure    A failure handler. This parameter is mandatory.
+    
+    :returns: A data handler, with the request started.
+    */
     public func data(completion: SVRequestDataHandler.Completion, failure: SVRequestDataHandler.Failure) -> SVRequestDataHandler
     {
         let handler = SVRequestDataHandler(request: self)

@@ -34,9 +34,16 @@ import Foundation
 public class SVRequestHandler: NSObject
 {
     // MARK: - Request
+    /// The request associated with this handler.
     public let request: SVRequest
     
     // MARK: - Initialization
+    /**
+    Initializes a request handler.
+    
+    :param: request The request to handle. The handler will claim the `completion` and `failure` properties of the
+    request, so those properties should not be used outside of this class.
+    */
     public init(request: SVRequest)
     {
         self.request = request
@@ -66,11 +73,25 @@ public class SVRequestHandler: NSObject
     }
     
     // MARK: - Subclass Implementation
+    /**
+    Subclasses must override this function to handle successful request completion. Clients should not need to call or
+    override this function, unless implementing a request handler subclass.
+    
+    :param: data     The data loaded by the request.
+    :param: response The URL response for the request.
+    */
     public func handleCompletionWithData(data: NSData, response: NSURLResponse)
     {
         fatalError("Subclasses of SVRequestHandler must override handleCompletionWithData:response:")
     }
     
+    /**
+    Subclasses must override this function to handle request failure. Clients should not need to call or override this
+    function, unless implementing a request handler subclass.
+    
+    :param: error    The error for the request (or `nil`).
+    :param: response The URL response for the request.
+    */
     public func handleFailureWithError(error: NSError?, response: NSURLResponse)
     {
         fatalError("Subclasses of SVRequestHandler must override handleFailureWithError:response:")

@@ -87,6 +87,14 @@ public class SVRequestJSONHandler: SVRequestHandler
 
 public extension SVRequest
 {
+    /**
+    Creates a JSON handler for the request, and starts the request.
+    
+    :param: completion A completion handler. This parameter is mandatory.
+    :param: failure    A failure handler. This parameter is mandatory.
+    
+    :returns: A JSON handler, with the request started.
+    */
     public func JSON(completion: SVRequestJSONHandler.Completion, failure: SVRequestJSONHandler.Failure) -> SVRequestJSONHandler
     {
         let handler = SVRequestJSONHandler(request: self)
