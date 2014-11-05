@@ -34,7 +34,7 @@ import Foundation
 public class SVJSON: NSObject
 {
     // MARK: - Root
-    public let root: AnyObject
+    private let root: AnyObject
     
     // MARK: - Initialization
     public init(root: AnyObject)
