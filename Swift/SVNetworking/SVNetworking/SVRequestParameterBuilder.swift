@@ -33,6 +33,14 @@ import Foundation
 
 public class SVRequestParameterBuilder: SVRequestBuilder
 {
+    // MARK: - Copying
+    public override func copyWithZone(zone: NSZone) -> AnyObject
+    {
+        let copy = super.copyWithZone(zone) as SVRequestParameterBuilder
+        copy.parameters = parameters
+        return copy
+    }
+    
     /// The parameters for the request. This dictionary can be accessed directly through subscripting, via an extension.
     public var parameters: [String:String] = [:]
     
@@ -50,7 +58,6 @@ public class SVRequestParameterBuilder: SVRequestBuilder
                 return URL
         }
     }
-    
     
     public override func createBody() -> (data: NSData, contentType: String)?
     {

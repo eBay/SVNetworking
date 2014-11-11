@@ -31,7 +31,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import Foundation
 
-public class SVRequestBuilder: NSObject
+public class SVRequestBuilder: NSObject, NSCopying
 {
     public enum Method: String
     {
@@ -79,6 +79,14 @@ public class SVRequestBuilder: NSObject
         {
             return nil
         }
+    }
+    
+    // MARK: - Copying
+    public func copyWithZone(zone: NSZone) -> AnyObject
+    {
+        let copy = self.dynamicType(URL: URL, method: method)
+        copy.headers = headers
+        return copy
     }
     
     // MARK: - Headers
