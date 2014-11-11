@@ -58,7 +58,7 @@ public class SVImageResource: SVDataRequestResource, SVImageResourceProtocol
     public override func parseFinishedData(data: NSData, error: NSErrorPointer) -> Bool
     {
         #if os(iOS)
-            self.image
+            self.image = UIImage(data: data, scale: self.scale)
         #else
             self.image = NSImage(data: data)
         #endif
