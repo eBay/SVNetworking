@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 eBay. All rights reserved.
 //
 
-import Cocoa
+import Foundation
 
 public enum SVRemoteJSONArrayLoadingType
 {
