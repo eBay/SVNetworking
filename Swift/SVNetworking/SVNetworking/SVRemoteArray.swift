@@ -45,6 +45,9 @@ private class SVRemoteArrayObserverLink<T>
 
 public class SVRemoteArray<T>
 {
+    // MARK: - Initialization
+    public init() {}
+    
     // MARK: - Data
     public private(set) var contents: [T] = []
     

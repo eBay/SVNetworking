@@ -16,6 +16,9 @@ public enum SVRemoteJSONArrayLoadingType
 
 public class SVRemoteJSONArray<T>: SVRemoteArray<T>
 {
+    // MARK: - Initialization
+    public override init() {}
+    
     // MARK: - Parsing
     public func checkJSON(JSON: SVJSON, error: NSErrorPointer) -> Bool
     {
