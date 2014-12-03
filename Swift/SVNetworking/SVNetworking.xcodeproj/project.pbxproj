@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		437EC0A21A2E65F400BE6046 /* SVRemoteArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437EC0A11A2E65F400BE6046 /* SVRemoteArray.swift */; };
+		437EC0A41A2E8E6C00BE6046 /* SVRemoteArrayObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437EC0A31A2E8E6C00BE6046 /* SVRemoteArrayObserver.swift */; };
+		437EC0A51A2E8E6C00BE6046 /* SVRemoteArrayObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437EC0A31A2E8E6C00BE6046 /* SVRemoteArrayObserver.swift */; };
+		437EC0A61A2E8E6F00BE6046 /* SVRemoteArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437EC0A11A2E65F400BE6046 /* SVRemoteArray.swift */; };
 		43BCE8AC19E5A6D000B63321 /* SVNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 43BCE8AB19E5A6D000B63321 /* SVNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43BCE8B219E5A6D000B63321 /* SVNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BCE8A619E5A6D000B63321 /* SVNetworking.framework */; };
 		43BCE8B919E5A6D000B63321 /* SVNetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BCE8B819E5A6D000B63321 /* SVNetworkingTests.swift */; };
@@ -67,6 +71,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		437EC0A11A2E65F400BE6046 /* SVRemoteArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVRemoteArray.swift; sourceTree = "<group>"; };
+		437EC0A31A2E8E6C00BE6046 /* SVRemoteArrayObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVRemoteArrayObserver.swift; sourceTree = "<group>"; };
 		43BCE8A619E5A6D000B63321 /* SVNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SVNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43BCE8AA19E5A6D000B63321 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43BCE8AB19E5A6D000B63321 /* SVNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVNetworking.h; sourceTree = "<group>"; };
@@ -132,6 +138,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		437EC0A01A2E655900BE6046 /* Array */ = {
+			isa = PBXGroup;
+			children = (
+				437EC0A11A2E65F400BE6046 /* SVRemoteArray.swift */,
+				437EC0A31A2E8E6C00BE6046 /* SVRemoteArrayObserver.swift */,
+			);
+			name = Array;
+			sourceTree = "<group>";
+		};
 		43BCE89C19E5A6D000B63321 = {
 			isa = PBXGroup;
 			children = (
@@ -160,6 +175,7 @@
 				43BCE8AB19E5A6D000B63321 /* SVNetworking.h */,
 				43FBBCFC19E5F560007313BA /* JSON */,
 				43BCE8C519E5AC6500B63321 /* Networking */,
+				437EC0A01A2E655900BE6046 /* Array */,
 				43BCE8D219E5E4A500B63321 /* Resources */,
 				43BCE8D619E5E85E00B63321 /* Resource Client */,
 				43BCE8A919E5A6D000B63321 /* Supporting Files */,
@@ -496,6 +512,7 @@
 				43BCE8D419E5E4B900B63321 /* SVResource.swift in Sources */,
 				43FBBCF919E5F200007313BA /* SVJSONRequestResource.swift in Sources */,
 				43BCE8D819E5E86E00B63321 /* SVResourceClient.swift in Sources */,
+				437EC0A41A2E8E6C00BE6046 /* SVRemoteArrayObserver.swift in Sources */,
 				43FBBD0319E622AA007313BA /* SVImageScaler.swift in Sources */,
 				43FBBCFB19E5F321007313BA /* SVJSONResource.swift in Sources */,
 				43BCE8C319E5A77C00B63321 /* SVRequest.swift in Sources */,
@@ -506,6 +523,7 @@
 				43BCE8CA19E5ADD900B63321 /* SVRequestDataHandler.swift in Sources */,
 				43FBBD0119E62223007313BA /* SVImageResource.swift in Sources */,
 				43BCE8CF19E5B23E00B63321 /* SVRequestBuilder.swift in Sources */,
+				437EC0A21A2E65F400BE6046 /* SVRemoteArray.swift in Sources */,
 				43FBBD3319E625E0007313BA /* SVImageResourceProtocol.swift in Sources */,
 				43FBBCFE19E5F575007313BA /* SVJSON.swift in Sources */,
 				43BCE8CC19E5AF0600B63321 /* SVRequestJSONHandler.swift in Sources */,
@@ -525,6 +543,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43FBBD2219E62499007313BA /* SVJSON.swift in Sources */,
+				437EC0A61A2E8E6F00BE6046 /* SVRemoteArray.swift in Sources */,
 				43FBBD2319E62499007313BA /* SVRequestBuilder.swift in Sources */,
 				43FBBD2419E62499007313BA /* SVRequestParameterBuilder.swift in Sources */,
 				43FBBD2519E62499007313BA /* SVRequestHandler.swift in Sources */,
@@ -540,6 +559,7 @@
 				43FBBD2F19E62499007313BA /* SVImageResource.swift in Sources */,
 				43FBBD3419E625E0007313BA /* SVImageResourceProtocol.swift in Sources */,
 				43FBBD3019E62499007313BA /* SVImageScaler.swift in Sources */,
+				437EC0A51A2E8E6C00BE6046 /* SVRemoteArrayObserver.swift in Sources */,
 				43FBBD3119E62499007313BA /* SVResourceClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -833,6 +853,7 @@
 				43FBBD1E19E62478007313BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		43FBBD1F19E62478007313BA /* Build configuration list for PBXNativeTarget "SVNetworking-iOSTests" */ = {
 			isa = XCConfigurationList;
@@ -841,6 +862,7 @@
 				43FBBD2119E62478007313BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
