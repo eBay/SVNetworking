@@ -126,4 +126,23 @@ public class SVJSON: NSObject
             })
         }
     }
+    
+    public func path(path: [String]) -> SVJSON?
+    {
+        var JSON: SVJSON? = self
+        
+        for key in path
+        {
+            if let object = JSON?.object
+            {
+                JSON = object[key]
+            }
+            else
+            {
+                JSON = nil
+            }
+        }
+        
+        return JSON
+    }
 }
