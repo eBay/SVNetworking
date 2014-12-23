@@ -142,13 +142,15 @@ extension SVRequestParameterBuilder
 
 extension SVRequest
 {
+    
+    
     /**
     Returns a `GET` request for the specified URL.
     
     :param: URL        The URL to request.
     :param: parameters The parameters to include in the request.
     */
-    public class func GET(URL: NSURL, parameters: [String:String]) -> Self
+    public class func GET(URL: NSURL, parameters: [String:String] = [:]) -> Self
     {
         let builder = SVRequestParameterBuilder(URL: URL, method: .GET)
         builder.parameters = parameters
@@ -162,7 +164,7 @@ extension SVRequest
     :param: URL        The URL to request.
     :param: parameters The parameters to include in the request.
     */
-    public class func POST(URL: NSURL, parameters: [String:String]) -> Self
+    public class func POST(URL: NSURL, parameters: [String:String] = [:]) -> Self
     {
         let builder = SVRequestParameterBuilder(URL: URL, method: .POST)
         builder.parameters = parameters
@@ -176,7 +178,7 @@ extension SVRequest
     :param: URL        The URL to request.
     :param: parameters The parameters to include in the request.
     */
-    public class func PUT(URL: NSURL, parameters: [String:String]) -> Self
+    public class func PUT(URL: NSURL, parameters: [String:String] = [:]) -> Self
     {
         let builder = SVRequestParameterBuilder(URL: URL, method: .PUT)
         builder.parameters = parameters
@@ -190,7 +192,7 @@ extension SVRequest
     :param: URL        The URL to request.
     :param: parameters The parameters to include in the request.
     */
-    public class func DELETE(URL: NSURL, parameters: [String:String]) -> Self
+    public class func DELETE(URL: NSURL, parameters: [String:String] = [:]) -> Self
     {
         let builder = SVRequestParameterBuilder(URL: URL, method: .DELETE)
         builder.parameters = parameters
