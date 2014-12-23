@@ -53,7 +53,7 @@ public class SVRemoteJSONArray<T>: SVRemoteArray<T>
     
     public override func beginRefreshing()
     {
-        refreshHandler = buildRefreshRequest().JSON({ [weak self] (JSON, response) in
+        refreshHandler = buildRefreshRequest().JSON({ [weak self] (handler, JSON, response) in
             if let strongSelf = self
             {
                 strongSelf.refreshHandler = nil
@@ -69,7 +69,7 @@ public class SVRemoteJSONArray<T>: SVRemoteArray<T>
                     strongSelf.failRefreshing(error)
                 }
             }
-        }, failure: { [weak self] (error, response) in
+        }, failure: { [weak self] (handler, error, response) in
             if let strongSelf = self
             {
                 strongSelf.refreshHandler = nil
@@ -80,7 +80,7 @@ public class SVRemoteJSONArray<T>: SVRemoteArray<T>
     
     public override func beginLoadingNextPage()
     {
-        nextPageHandler = buildNextPageRequest().JSON({ [weak self] (JSON, response) in
+        nextPageHandler = buildNextPageRequest().JSON({ [weak self] (handler, JSON, response) in
             if let strongSelf = self
             {
                 strongSelf.nextPageHandler = nil
@@ -97,7 +97,7 @@ public class SVRemoteJSONArray<T>: SVRemoteArray<T>
                     strongSelf.failLoadingNextPage(error)
                 }
             }
-            }, failure: { [weak self] (error, response) in
+            }, failure: { [weak self] (handler, error, response) in
                 if let strongSelf = self
                 {
                     strongSelf.nextPageHandler = nil

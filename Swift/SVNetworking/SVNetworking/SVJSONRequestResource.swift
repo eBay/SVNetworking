@@ -81,14 +81,14 @@ public class SVJSONRequestResource: SVRequestResource
     {
         let handler = JSONHandlerForRequest(request)
         
-        handler.completion = { [weak self] (JSON, response) in
+        handler.completion = { [weak self] (handler, JSON, response) in
             if let strongSelf = self
             {
                 strongSelf.finishLoadingWithJSON(JSON)
             }
         }
         
-        handler.failure = { [weak self] (error, response) in
+        handler.failure = { [weak self] (handler, error, response) in
             if let strongSelf = self
             {
                 strongSelf.failLoadingWithError(error)
