@@ -34,10 +34,10 @@ import Foundation
 public class SVRequestDataHandler: SVRequestHandler
 {
     /// Type alias for completion handler
-    public typealias Completion = (data: NSData, response: NSURLResponse) -> Void
+    public typealias Completion = (handler: SVRequestDataHandler, data: NSData, response: NSURLResponse) -> Void
     
     /// Type alias for failure handler
-    public typealias Failure = (error: NSError?, response: NSURLResponse) -> Void
+    public typealias Failure = (handler: SVRequestDataHandler, error: NSError?, response: NSURLResponse) -> Void
     
     /// A function to run upon successful completion of the request
     public var completion: Completion?
@@ -49,7 +49,7 @@ public class SVRequestDataHandler: SVRequestHandler
     {
         if let completion = self.completion
         {
-            completion(data: data, response: response)
+            completion(handler: self, data: data, response: response)
         }
     }
     
@@ -57,7 +57,7 @@ public class SVRequestDataHandler: SVRequestHandler
     {
         if let failure = self.failure
         {
-            failure(error: error, response: response)
+            failure(handler: self, error: error, response: response)
         }
     }
 }

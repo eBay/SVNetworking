@@ -56,14 +56,14 @@ public class SVDataRequestResource: SVRequestResource
     {
         let handler = SVRequestDataHandler(request: request)
         
-        handler.completion = { [weak self] (data, response) in
+        handler.completion = { [weak self] (handler, data, response) in
             if let strongSelf = self
             {
                 strongSelf.finishLoadingWithData(data)
             }
         }
         
-        handler.failure = { [weak self] (error, response) in
+        handler.failure = { [weak self] (handler, error, response) in
             if let strongSelf = self
             {
                 strongSelf.failLoadingWithError(error)
