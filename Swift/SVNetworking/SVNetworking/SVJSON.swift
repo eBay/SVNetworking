@@ -104,7 +104,7 @@ public class SVJSON: NSObject
         return number?.boolValue
     }
     
-    /// Returns the object value of this JSON object, or `nil` if the object is not am object.
+    /// Returns the object value of this JSON object, or `nil` if the object is not an object.
     public var object: [String:SVJSON]? {
         return (root as? [String:AnyObject]).map {
             var object: [String:SVJSON] = [:]
@@ -116,6 +116,11 @@ public class SVJSON: NSObject
             
             return object
         }
+    }
+    
+    /// Returns the object value of this JSON object, without mapping the contents to `SVJSON` objects.
+    public var basicObject: [String:AnyObject]? {
+        return root as? [String:AnyObject]
     }
     
     /// Returns the array value of this JSON object, or `nil` if the object is not an array.
