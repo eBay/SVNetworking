@@ -132,6 +132,11 @@ public class SVJSON: NSObject
         }
     }
     
+    /// Returns the array value of this JSON object, without mapping the contents to `SVJSON` objects.
+    public var basicArray: [AnyObject]? {
+        return root as? [AnyObject]
+    }
+    
     public func path(path: [String]) -> SVJSON?
     {
         var JSON: SVJSON? = self
