@@ -33,6 +33,12 @@ import Foundation
 
 public class SVRequestHandler: NSObject
 {
+    // MARK: - Retaining Request Handlers
+    private struct LiveHandlers
+    {
+        static var handlers: [SVRequestHandler:Bool] = [:]
+    }
+    
     // MARK: - Request
     /// The request associated with this handler.
     public let request: SVRequest
@@ -50,9 +56,17 @@ public class SVRequestHandler: NSObject
         
         super.init()
         
+        self.request.started = { [weak self] () in
+            if let strongSelf = self
+            {
+                LiveHandlers.handlers[strongSelf] = true
+            }
+        }
+        
         self.request.completion = { [weak self] (data, response) in
             if let strongSelf = self
             {
+                LiveHandlers.handlers.removeValueForKey(strongSelf)
                 strongSelf.handleCompletionWithData(data, response: response)
             }
         }
@@ -60,6 +74,7 @@ public class SVRequestHandler: NSObject
         self.request.failure = { [weak self] (error, response) in
             if let strongSelf = self
             {
+                LiveHandlers.handlers.removeValueForKey(strongSelf)
                 strongSelf.handleFailureWithError(error, response: response)
             }
         }

@@ -69,9 +69,11 @@ public class SVRequest: NSObject
     }
     
     // MARK: - Handlers
+    public typealias Started = () -> Void
     public typealias Completion = (data: NSData, response: NSURLResponse) -> Void
     public typealias Failure = (error: NSError?, response: NSURLResponse) -> Void
     
+    public var started: Started?
     public var completion: Completion?
     public var failure: Failure?
     
@@ -103,6 +105,8 @@ public class SVRequest: NSObject
             
             self.task = task
             task.resume()
+            
+            self.started?()
         }
     }
     
